@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import kotlinx.android.synthetic.main.activity_std_mainpage.*
 import kotlinx.android.synthetic.main.activity_user_select.*
 
 
@@ -20,7 +21,9 @@ class User_select : AppCompatActivity() {
             no_access.setPositiveButton("我知道了",null)
             no_access.show()
         }
-
+        button3.setOnClickListener {
+            super.onBackPressed()
+        }
 
     }
 
