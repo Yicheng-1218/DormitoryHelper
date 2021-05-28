@@ -13,10 +13,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.imageButton.setOnClickListener {
+        //FIXME binding.imageButton.setOnClickListener {
             Intent(this,User_select::class.java).apply {
                 startActivity(this)
             }
-        }
+        //}
     }
 }
