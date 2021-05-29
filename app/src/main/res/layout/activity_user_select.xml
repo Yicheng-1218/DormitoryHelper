@@ -44,7 +44,6 @@
         android:layout_height="70dp"
         android:layout_marginStart="47dp"
         android:background="@drawable/circle_bg"
-        android:onClick="gotostdpage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageButton2"
         app:srcCompat="@drawable/circle_bg" />

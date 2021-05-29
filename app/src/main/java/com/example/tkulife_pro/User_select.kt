@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import com.example.tkulife_pro.Student.Std_mainPage
 import kotlinx.android.synthetic.main.activity_std_mainpage.*
 import kotlinx.android.synthetic.main.activity_user_select.*
 
@@ -24,10 +25,12 @@ class User_select : AppCompatActivity() {
         button3.setOnClickListener {
             super.onBackPressed()
         }
-
+        imageButton3.setOnClickListener {
+            Intent(this,Std_mainPage::class.java).apply {
+                startActivity(this)
+            }
+        }
     }
 
-    fun gotostdpage(p3: View){
-        startActivity(Intent(this,Std_mainPage::class.java))
-    }
+
 }
