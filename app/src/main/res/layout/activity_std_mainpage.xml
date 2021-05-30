@@ -16,6 +16,17 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
+        android:id="@+id/imageButton8"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/circle_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageButton6"
+        app:layout_constraintTop_toTopOf="@+id/imageButton6"
+        app:srcCompat="@drawable/circle_bg" />
+
+    <ImageButton
         android:id="@+id/imageButton5"
         android:layout_width="70dp"
         android:layout_height="70dp"
@@ -30,23 +41,12 @@
         android:id="@+id/imageButton6"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="108dp"
         android:background="@drawable/circle_bg"
         app:layout_constraintEnd_toStartOf="@+id/imageButton8"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton5"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle_bg" />
-
-    <ImageButton
-        android:id="@+id/imageButton8"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/circle_bg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton6"
-        app:layout_constraintTop_toTopOf="@+id/imageButton6"
         app:srcCompat="@drawable/circle_bg" />
 
     <TextView

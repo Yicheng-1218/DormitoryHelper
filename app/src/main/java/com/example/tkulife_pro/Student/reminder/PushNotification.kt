@@ -35,6 +35,9 @@ class PushNotification : AppCompatActivity() {
         }
 
         setRecyclerView(getSQLTimer())
+        binding.button5.setOnClickListener{
+            super.onBackPressed()
+        }
     }
     private fun setRecyclerView(data: ArrayList<Array<Int>>){
         val layoutManager = LinearLayoutManager(this)

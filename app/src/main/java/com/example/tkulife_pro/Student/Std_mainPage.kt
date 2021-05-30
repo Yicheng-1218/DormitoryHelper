@@ -25,5 +25,10 @@ class Std_mainPage : AppCompatActivity() {
                 startActivity(this)
             }
         }
+        binding.imageButton6.setOnClickListener {
+            Intent(this,Laundary::class.java).apply {
+                startActivity(this)
+            }
+        }
     }
 }

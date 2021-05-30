@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
-        <activity android:name=".Student.reminder.PushNotification"></activity>
+        <activity android:name=".Student.Laundary"></activity>
+        <activity android:name=".Student.reminder.PushNotification" />
         <activity android:name=".Student.Std_mainPage" />
         <activity android:name=".User_select" />
         <activity android:name=".MainActivity">
