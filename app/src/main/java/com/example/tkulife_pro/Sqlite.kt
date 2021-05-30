@@ -14,7 +14,7 @@ class Sqlite(context: Context):SQLiteOpenHelper(context,"SQLdb",null,4) {
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val sql = "CREATE TABLE if not exists $Timer ( id integer PRIMARY KEY autoincrement, hour number,minute number)"
+        val sql = "CREATE TABLE if not exists $Timer (hour number,minute number)"
         db!!.execSQL(sql)
     }
 
@@ -26,7 +26,20 @@ class Sqlite(context: Context):SQLiteOpenHelper(context,"SQLdb",null,4) {
         values.put("minute",timer[minute])
         writableDatabase.insert(Timer, null, values)
     }
-//    TODO 新增刪除方法
+
+    fun delTimer(hour:Int,minute: Int){
+        val db:SQLiteDatabase=writableDatabase
+        db.execSQL("Delete from $Timer where hour=$hour and minute=$minute")
+        db.close()
+    }
+
+    fun updateTimer(old_hour:Int,old_minute:Int,new_hour:Int,new_minute:Int){
+        val db:SQLiteDatabase=writableDatabase
+        db.execSQL("UPDATE $Timer set hour=$new_hour,minute=$new_minute where hour=$old_hour and minute=$old_minute ;")
+        println("資料修改完成")
+        db.close()
+    }
+
     fun getTimer(): ArrayList<Array<Int>> {
         val cursor = readableDatabase.query(Timer, arrayOf("hour", "minute"), null, null, null, null, null)
         val timer = ArrayList<Array<Int>>()
@@ -51,6 +64,5 @@ class Sqlite(context: Context):SQLiteOpenHelper(context,"SQLdb",null,4) {
 
         println("總共有 ${cursor.count} 筆資料")
         return timer
-
     }
 }
