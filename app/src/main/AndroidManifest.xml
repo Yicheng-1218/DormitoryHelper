@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
         <activity android:name=".Student.Laundary"></activity>
-        <activity android:name=".Student.reminder.PushNotification" />
+        <activity android:name=".Student.Reminder.PushNotification" />
         <activity android:name=".Student.Std_mainPage" />
         <activity android:name=".User_select" />
         <activity android:name=".MainActivity">
@@ -20,6 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <receiver android:name=".Student.Reminder.PushNotification$Receiver"></receiver>
     </application>
 
 </manifest>

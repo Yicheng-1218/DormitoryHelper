@@ -4,17 +4,16 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import kotlin.math.min
 
 class Sqlite(context: Context):SQLiteOpenHelper(context,"SQLdb",null,4) {
 
-    private var Timer="reminder"
+    private var timer="reminder"
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val sql = "CREATE TABLE if not exists $Timer (hour number,minute number)"
+        val sql = "CREATE TABLE if not exists $timer (hour number,minute number)"
         db!!.execSQL(sql)
     }
 
@@ -24,24 +23,24 @@ class Sqlite(context: Context):SQLiteOpenHelper(context,"SQLdb",null,4) {
         val values = ContentValues()
         values.put("hour", timer[hour])
         values.put("minute",timer[minute])
-        writableDatabase.insert(Timer, null, values)
+        writableDatabase.insert(this.timer, null, values)
     }
 
     fun delTimer(hour:Int,minute: Int){
         val db:SQLiteDatabase=writableDatabase
-        db.execSQL("Delete from $Timer where hour=$hour and minute=$minute")
+        db.execSQL("Delete from $timer where hour=$hour and minute=$minute")
         db.close()
     }
 
     fun updateTimer(old_hour:Int,old_minute:Int,new_hour:Int,new_minute:Int){
         val db:SQLiteDatabase=writableDatabase
-        db.execSQL("UPDATE $Timer set hour=$new_hour,minute=$new_minute where hour=$old_hour and minute=$old_minute ;")
+        db.execSQL("UPDATE $timer set hour=$new_hour,minute=$new_minute where hour=$old_hour and minute=$old_minute ;")
         println("資料修改完成")
         db.close()
     }
 
     fun getTimer(): ArrayList<Array<Int>> {
-        val cursor = readableDatabase.query(Timer, arrayOf("hour", "minute"), null, null, null, null, null)
+        val cursor = readableDatabase.query(timer, arrayOf("hour", "minute"), null, null, null, null, null)
         val timer = ArrayList<Array<Int>>()
 
         try {

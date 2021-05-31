@@ -1,19 +1,24 @@
-package com.example.tkulife_pro.Student.reminder
+package com.example.tkulife_pro.Student.Reminder
 
-import android.app.AlertDialog
-import android.app.TimePickerDialog
-import android.content.DialogInterface
+import android.app.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tkulife_pro.SharedXML
 import com.example.tkulife_pro.Sqlite
 import com.example.tkulife_pro.databinding.ActivityPushNotificationBinding
-import java.text.FieldPosition
+import com.example.tkulife_pro.tkuNotification
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.properties.Delegates
 
 
 class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
@@ -21,6 +26,9 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     private val viewAdapter=ReminderAdapter(this)
     private val hour=0
     private val minute=1
+
+    var trashReminder by Delegates.notNull<Boolean>()
+    var packageReminder by Delegates.notNull<Boolean>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityPushNotificationBinding.inflate(layoutInflater)
@@ -28,22 +36,38 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
         initView()
     }
     private fun initView(){
+        val timerXML= SharedXML(this).getXML("timer")!!
         binding.button4.setOnClickListener {
             val c = Calendar.getInstance()
-            var hour_now = c.get(Calendar.HOUR_OF_DAY)
-            var minute_now = c.get(Calendar.MINUTE)
+            val hourNow = c.get(Calendar.HOUR_OF_DAY)
+            val minuteNow = c.get(Calendar.MINUTE)
             TimePickerDialog(this,{
                     _,hour,minute->
                         val data= arrayOf(hour, minute)
                         addSQLTimer(data)
                         setRecyclerView(getSQLTimer())
 
-            },hour_now,minute_now,false).show()
+            },hourNow,minuteNow,false).show()
         }
 
         setRecyclerView(getSQLTimer())
         binding.button5.setOnClickListener{
             super.onBackPressed()
+        }
+        binding.switch1.apply {
+            isChecked=timerXML.getBoolean("trashReminder",isChecked)
+            setOnCheckedChangeListener { _, b ->
+                trashReminder=isChecked
+                timerXML.edit().putBoolean("trashReminder",b).apply()
+                isChecked=timerXML.getBoolean("trashReminder",isChecked)
+            }
+
+        }
+        binding.switch2.setOnCheckedChangeListener { _, b ->
+            packageReminder=b
+        }
+        binding.textView12.setOnClickListener {
+            receiverTimer()
         }
     }
 
@@ -62,7 +86,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
             //設定傳入recyclerview參數
             adapter=viewAdapter
         }
-        viewAdapter.dataSet=getSQLTimer()
+        viewAdapter.dataSet=data
     }
     private fun getSQLTimer(): ArrayList<Array<Int>> {
         //get sqlite table time
@@ -100,5 +124,21 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
         alter.show()
 
     }
-//    TODO 定時提醒實作
+//    TODO 使用可切換式receiver
+//    TODO 調用SQLite 資料註冊RTC
+    private fun receiverTimer(){
+        var alarmManager=getSystemService(ALARM_SERVICE) as AlarmManager
+        val intent=Intent(this,Receiver::class.java)
+        val pendingIntent=PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
+        Log.d("timer","Create: "+Date().toString())
+        alarmManager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+10000,pendingIntent)
+    }
+    class Receiver : BroadcastReceiver(){
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            Log.d("timer", "Receiver: " + Date().toString())
+            val notify=tkuNotification(p0!!,"垃圾提醒","垃圾提醒")
+            notify.build("垃圾車提醒","該倒垃圾啦(⁎⁍̴̛ᴗ⁍̴̛⁎)")
+            notify.show(0)
+        }
+    }
 }

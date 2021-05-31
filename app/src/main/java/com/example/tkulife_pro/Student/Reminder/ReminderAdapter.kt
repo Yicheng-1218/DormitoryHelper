@@ -1,4 +1,4 @@
-package com.example.tkulife_pro.Student.reminder
+package com.example.tkulife_pro.Student.Reminder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

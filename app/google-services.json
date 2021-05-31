@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "297847354750",
+    "firebase_url": "https://dormdb-622b7-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "dormdb-622b7",
+    "storage_bucket": "dormdb-622b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297847354750:android:9d7871561a26435b616f2f",
+        "android_client_info": {
+          "package_name": "com.example.tkulife_pro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297847354750-ksjm9d8m6ek6qcggohu598i9ahentg8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Olz74L6tDgp2EFbck1IzQd5u6CHkSdI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "297847354750-ksjm9d8m6ek6qcggohu598i9ahentg8c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
