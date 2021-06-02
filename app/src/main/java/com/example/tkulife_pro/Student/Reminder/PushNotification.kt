@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -56,6 +57,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
         }
         binding.switch1.apply {
             isChecked=timerXML.getBoolean("trashReminder",isChecked)
+            trashReminder=isChecked
             setOnCheckedChangeListener { _, b ->
                 trashReminder=isChecked
                 timerXML.edit().putBoolean("trashReminder",b).apply()
@@ -67,8 +69,21 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
             packageReminder=b
         }
         binding.textView12.setOnClickListener {
-            receiverTimer()
+            if(trashReminder){
+                receiverTimer()
+            }
         }
+
+//        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION).apply {
+//            addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
+//        }
+//        if (trashReminder){
+//            LocalBroadcastManager.getInstance(this).registerReceiver(tr,
+//                filter
+//            )
+//        }else{
+//            LocalBroadcastManager.getInstance(this).unregisterReceiver(tr)
+//        }
     }
 
     private fun setRecyclerView(data: ArrayList<Array<Int>>){
@@ -128,17 +143,16 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
 //    TODO 調用SQLite 資料註冊RTC
     private fun receiverTimer(){
         var alarmManager=getSystemService(ALARM_SERVICE) as AlarmManager
-        val intent=Intent(this,Receiver::class.java)
+        val intent=Intent(this,TrashReceiver::class.java)
         val pendingIntent=PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
         Log.d("timer","Create: "+Date().toString())
         alarmManager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+10000,pendingIntent)
     }
-    class Receiver : BroadcastReceiver(){
+
+    class TrashReceiver:BroadcastReceiver(){
         override fun onReceive(p0: Context?, p1: Intent?) {
             Log.d("timer", "Receiver: " + Date().toString())
-            val notify=tkuNotification(p0!!,"垃圾提醒","垃圾提醒")
-            notify.build("垃圾車提醒","該倒垃圾啦(⁎⁍̴̛ᴗ⁍̴̛⁎)")
-            notify.show(0)
+            tkuNotification(p0!!,"垃圾提醒","垃圾提醒").build("垃圾車提醒","該倒垃圾啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(0)
         }
     }
 }

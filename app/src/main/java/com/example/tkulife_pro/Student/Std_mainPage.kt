@@ -4,6 +4,7 @@ import com.example.tkulife_pro.Student.Reminder.PushNotification
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.tkulife_pro.Student.Laundry.Laundry
 import com.example.tkulife_pro.databinding.ActivityStdMainpageBinding
 
 class Std_mainPage : AppCompatActivity() {
@@ -25,7 +26,7 @@ class Std_mainPage : AppCompatActivity() {
             }
         }
         binding.imageButton6.setOnClickListener {
-            Intent(this,Laundary::class.java).apply {
+            Intent(this, Laundry::class.java).apply {
                 startActivity(this)
             }
         }

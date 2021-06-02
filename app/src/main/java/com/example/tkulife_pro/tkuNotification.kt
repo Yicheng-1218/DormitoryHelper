@@ -23,7 +23,7 @@ class tkuNotification(private val context: Context,private val id :String, priva
     }
 
 //    建立推播內容方法
-    fun build(title:String,text:String){
+    fun build(title:String,text:String): tkuNotification {
         val builder = Notification.Builder(context, id)
         builder.setSmallIcon(R.drawable.email__1_)
             .setContentTitle(title)
@@ -31,6 +31,7 @@ class tkuNotification(private val context: Context,private val id :String, priva
             .setAutoCancel(true)
 
         content= builder.build()
+        return this
     }
 
 //    顯示推播內容

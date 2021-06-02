@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
-        <activity android:name=".Student.Laundary"></activity>
+        <activity android:name=".Student.Laundry.LittleTimer"></activity>
+        <activity android:name=".Student.Laundry.Laundry" />
         <activity android:name=".Student.Reminder.PushNotification" />
         <activity android:name=".Student.Std_mainPage" />
         <activity android:name=".User_select" />
@@ -20,9 +21,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- TODO 設定垃圾車receiver -->
+        <receiver android:name=".Student.Reminder.PushNotification$TrashReceiver">
+            <intent-filter>
+                <action android:name="trash"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".Student.Laundry.LittleTimer$AlarmReceiver">
+            <intent-filter>
+                <action android:name="littleTimer"></action>
+            </intent-filter>
+        </receiver>
 
-
-        <receiver android:name=".Student.Reminder.PushNotification$Receiver"></receiver>
     </application>
 
 </manifest>
