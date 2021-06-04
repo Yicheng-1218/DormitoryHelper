@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tkulife_pro">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
-        <activity android:name=".Student.Laundry.LittleTimer"></activity>
+
+        <activity android:name=".Student.Laundry.LittleTimer" />
         <activity android:name=".Student.Laundry.Laundry" />
         <activity android:name=".Student.Reminder.PushNotification" />
         <activity android:name=".Student.Std_mainPage" />
@@ -20,19 +23,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- TODO 設定垃圾車receiver -->
+        </activity> <!-- TODO 設定垃圾車receiver -->
         <receiver android:name=".Student.Reminder.PushNotification$TrashReceiver">
             <intent-filter>
-                <action android:name="trash"></action>
+                <action android:name="trash" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".Student.Laundry.LittleTimer$AlarmReceiver">
-            <intent-filter>
-                <action android:name="littleTimer"></action>
-            </intent-filter>
-        </receiver>
-
     </application>
 
 </manifest>

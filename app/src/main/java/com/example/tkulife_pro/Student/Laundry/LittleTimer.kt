@@ -7,16 +7,18 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.widget.EditText
-import com.example.tkulife_pro.Student.Reminder.PushNotification
 import com.example.tkulife_pro.databinding.ActivityLittleTimerBinding
 import com.example.tkulife_pro.tkuNotification
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
+import java.util.concurrent.CountDownLatch
+import kotlin.concurrent.timer
 import kotlin.math.min
 import kotlin.properties.Delegates
-import kotlin.time.milliseconds
+
 
 class LittleTimer : AppCompatActivity() {
     private lateinit var binding:ActivityLittleTimerBinding
@@ -26,6 +28,9 @@ class LittleTimer : AppCompatActivity() {
     private var hour by Delegates.notNull<String>()
     private var minute by Delegates.notNull<String>()
     private var second by Delegates.notNull<String>()
+    private var timerRunning=false
+    private var timeLeftInMilliSecond:Long = 0
+    private lateinit var myTimer:CountDownTimer
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,31 +43,36 @@ class LittleTimer : AppCompatActivity() {
         hourEditText=binding.textInputLayout2.editText!!
         minuteEditText=binding.textInputLayout.editText!!
         secondEditText=binding.textInputLayout3.editText!!
+        hourEditText?.setText("0")
+        minuteEditText?.setText("0")
+        secondEditText?.setText("0")
 
         binding.button.setOnClickListener {
             super.onBackPressed()
         }
         binding.button8.setOnClickListener {
-            hourEditText?.setText("")
-            minuteEditText?.setText("")
-            secondEditText?.setText("")
+            hourEditText?.setText("0")
+            minuteEditText?.setText("0")
+            secondEditText?.setText("0")
             clearFocus()
+            if (timerRunning&&timeLeftInMilliSecond>0L){
+                binding.button8.text="重設"
+                timeLeftInMilliSecond=0
+                myTimer.onFinish()
+                startStop()
+            }
+
         }
         binding.button9.setOnClickListener {
-            val millis=getMillis()
-            if(millis!=0L){
-                setTimer(millis)
-                Log.d("timer", "h: $hour")
-                Log.d("timer","m: $minute")
-                Log.d("timer","s: $second")
-                Log.d("timer", "millis: $millis")
-//                TODO 實作取消鬧鐘方法
-                Snackbar.make(it,"計時器已設定",Snackbar.LENGTH_LONG).show()
+            timeLeftInMilliSecond=getMillis()
+            if(timeLeftInMilliSecond>0L){
+                Log.d("timer","millieSecond:$timeLeftInMilliSecond")
+                startStop()
+//                Snackbar.make(it,"計時器已設定",Snackbar.LENGTH_LONG).show()
+                clearFocus()
             }
-            hourEditText?.setText("")
-            minuteEditText?.setText("")
-            secondEditText?.setText("")
-            clearFocus()
+
+
 
 
         }
@@ -73,40 +83,71 @@ class LittleTimer : AppCompatActivity() {
         secondEditText?.clearFocus()
     }
 
-    private fun setTimer(millis:Long){
-        var alarmManager=getSystemService(ALARM_SERVICE) as AlarmManager
-        val intent=Intent(this, AlarmReceiver::class.java)
-        intent.action="littleTimer"
-        val pendingIntent= PendingIntent.getBroadcast(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        Log.d("timer","Create: "+Date().toString())
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+millis,pendingIntent)
+    private fun updateTimer(){
+        val hour=timeLeftInMilliSecond.toInt()/(60000*60)
+        val minute=timeLeftInMilliSecond.toInt()/60000
+        val second=timeLeftInMilliSecond.toInt() % 60000 / 1000
+        hourEditText.setText(hour.toString())
+        minuteEditText.setText(minute.toString())
+        secondEditText.setText(second.toString())
     }
+
+    private fun startStop(){
+        if (timerRunning){
+            stopTimer()
+        }else{
+            startTimer()
+        }
+    }
+
+    private fun stopTimer(){
+        myTimer.cancel()
+        binding.button9.text="繼續"
+        timerRunning=false
+    }
+    private fun startTimer(){
+        myTimer=object:CountDownTimer(timeLeftInMilliSecond,1000){
+            override fun onTick(p0: Long) {
+                timeLeftInMilliSecond=p0
+                updateTimer()
+                hourEditText.isEnabled=false
+                minuteEditText.isEnabled=false
+                secondEditText.isEnabled=false
+            }
+
+            override fun onFinish() {
+                tkuNotification(this@LittleTimer,"洗衣計時","洗衣計時").build("計時器","設定的計時器到啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(1)
+                hourEditText.isEnabled=true
+                minuteEditText.isEnabled=true
+                secondEditText.isEnabled=true
+                binding.button8.text="重設"
+                binding.button9.text="開始計時"
+            }
+        }.start()
+        binding.button9.text="暫停"
+        binding.button8.text="取消"
+        timerRunning=true
+    }
+
 
     private fun getMillis(): Long {
         var millis:Long=0
         hour=hourEditText?.text.toString()
         minute=minuteEditText?.text.toString()
         second=secondEditText?.text.toString()
-        if(hour.isEmpty()&&minute.isEmpty()&&second.isEmpty()){
-            secondEditText.error="不可完全空白"
-        }
-        if (hour.isNotEmpty()){
-            millis+=hour.toLong()*1000*60*60
-        }
-        if (minute.isNotEmpty()){
-            millis+=minute.toLong()*1000*60
-        }
-        if (second.isNotEmpty()){
-            millis+=second.toLong()*1000
+        if(hour=="0"&&minute=="0"&&second=="0"){
+            secondEditText.error="不可設定0秒鬧鐘"
+        }else{
+            if (hour!="0"){
+                millis+=hour.toLong()*1000*60*60
+            }
+            if (minute!="0"){
+                millis+=minute.toLong()*1000*60
+            }
+            if (second!="0"){
+                millis+=second.toLong()*1000
+            }
         }
         return millis
-    }
-
-    class AlarmReceiver:BroadcastReceiver(){
-        override fun onReceive(p0: Context?, p1: Intent?) {
-            Log.d("timer", "Receiver: " + Date().toString())
-            tkuNotification(p0!!,"洗衣提醒","洗衣提醒").build("計時器","設定的計時器到啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(1)
-        }
-
     }
 }
