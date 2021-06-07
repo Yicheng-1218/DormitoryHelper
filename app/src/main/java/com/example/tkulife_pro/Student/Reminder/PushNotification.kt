@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.os.PowerManager
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tkulife_pro.R
 import com.example.tkulife_pro.SharedXML
 import com.example.tkulife_pro.Sqlite
 import com.example.tkulife_pro.databinding.ActivityPushNotificationBinding
@@ -143,7 +145,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
 //    TODO 使用可切換式receiver
 //    TODO 調用SQLite 資料註冊RTC
     private fun receiverTimer(){
-        var alarmManager=getSystemService(ALARM_SERVICE) as AlarmManager
+        val alarmManager=getSystemService(ALARM_SERVICE) as AlarmManager
         val intent=Intent(this,TrashReceiver::class.java)
         val pendingIntent=PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
         Log.d("timer","Create: "+Date().toString())
@@ -156,20 +158,15 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
             val status=timerXML?.getBoolean("trashReminder",false)
             if (status == true) {
 //                發送提醒
-                Log.d("timer", "Receiver: " + Date().toString())
-                tkuNotification(p0,"垃圾提醒","垃圾提醒").build("垃圾車提醒","該倒垃圾啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(0)
-//                註冊下一次的timer
-                var alarmManager = p0.getSystemService(ALARM_SERVICE) as AlarmManager
-                val intent = Intent(p0, TrashReceiver::class.java)
-                val pendingIntent =
-                    PendingIntent.getBroadcast(p0, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-                Log.d("timer", "Create: " + Date().toString())
-//                TODO 設定隔日millisecond
-                alarmManager.set(
-                    AlarmManager.RTC_WAKEUP,
-                    System.currentTimeMillis() + 10000,
-                    pendingIntent
+                tkuNotification(p0, "垃圾車提醒", "垃圾車提醒").build("垃圾車提醒", "該倒垃圾啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(R.string.trashReminder)
+                val wakelock = p0.getSystemService(POWER_SERVICE) as PowerManager
+//                兩個Flag缺一不可，都存在才可以點亮螢幕
+                val newWake = wakelock.newWakeLock(
+                    PowerManager.ACQUIRE_CAUSES_WAKEUP or PowerManager.SCREEN_DIM_WAKE_LOCK,
+                    "MyApp::trash"
                 )
+//                自動熄滅時間
+                newWake.acquire(5000 /*5 second*/)
             }
         }
     }

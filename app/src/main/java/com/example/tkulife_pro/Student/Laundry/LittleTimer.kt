@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.widget.EditText
+import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityLittleTimerBinding
 import com.example.tkulife_pro.tkuNotification
 import com.google.android.material.snackbar.Snackbar
@@ -116,7 +117,9 @@ class LittleTimer : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                tkuNotification(this@LittleTimer,"洗衣計時","洗衣計時").build("計時器","設定的計時器到啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(1)
+                tkuNotification(this@LittleTimer,"洗衣計時","洗衣計時").build("計時器","設定的計時器到啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(
+                    R.string.littleTimer
+                )
                 hourEditText.isEnabled=true
                 minuteEditText.isEnabled=true
                 secondEditText.isEnabled=true

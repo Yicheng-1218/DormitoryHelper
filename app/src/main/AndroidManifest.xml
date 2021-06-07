@@ -24,7 +24,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- TODO 設定垃圾車receiver -->
+        </activity>
+        <!-- TODO 設定垃圾車receiver -->
         <receiver android:name=".Student.Reminder.PushNotification$TrashReceiver">
             <intent-filter>
                 <action android:name="trash" />

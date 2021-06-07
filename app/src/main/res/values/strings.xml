@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">淡江i生活</string>
+    <string name="trashReminder">0</string>
+    <string name="littleTimer">1</string>
 </resources>

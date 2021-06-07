@@ -20,6 +20,7 @@ class tkuNotification(private val context: Context,private val id :String, priva
 //    初始化channel建立
     init {
         channel=setChannel()
+        channel.lockscreenVisibility=Notification.VISIBILITY_PUBLIC
     }
 
 //    建立推播內容方法
@@ -29,6 +30,7 @@ class tkuNotification(private val context: Context,private val id :String, priva
             .setContentTitle(title)
             .setContentText(text)
             .setAutoCancel(true)
+            .setVisibility(Notification.VISIBILITY_PUBLIC)
 
         content= builder.build()
         return this
