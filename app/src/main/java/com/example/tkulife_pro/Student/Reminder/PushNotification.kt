@@ -39,105 +39,93 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
         setContentView(binding.root)
         initView()
     }
-    private fun initView() {
-//        取得開關狀態表
-        val timerXML = SharedXML(this).getXML("timer")!!
-
-//        設定鬧鐘紐
+    private fun initView(){
+        val timerXML= SharedXML(this).getXML("timer")!!
         binding.button4.setOnClickListener {
             val c = Calendar.getInstance()
             val hourNow = c.get(Calendar.HOUR_OF_DAY)
             val minuteNow = c.get(Calendar.MINUTE)
-            TimePickerDialog(this, { _, hour, minute ->
-                val data = arrayOf(hour, minute, System.currentTimeMillis().toInt())
-                addSQLTimer(data)
-                setRecyclerView(getSQLTimer())
+            TimePickerDialog(this,{
+                    _,hour,minute->
+                        val data= arrayOf(hour, minute)
+                        addSQLTimer(data)
+                        setRecyclerView(getSQLTimer())
 
-            }, hourNow, minuteNow, false).show()
+            },hourNow,minuteNow,false).show()
         }
-//        初始化RecyclerView
-        setRecyclerView(getSQLTimer())
 
-//        返回鍵
-        binding.button5.setOnClickListener {
+        setRecyclerView(getSQLTimer())
+        binding.button5.setOnClickListener{
             super.onBackPressed()
         }
-
-//        垃圾車提醒開關
         binding.switch1.apply {
-            isChecked = timerXML.getBoolean("trashReminder", isChecked)
-            trashReminder = isChecked
+            isChecked=timerXML.getBoolean("trashReminder",isChecked)
+            trashReminder=isChecked
             setOnCheckedChangeListener { _, b ->
-                trashReminder = isChecked
-                timerXML.edit().putBoolean("trashReminder", b).apply()
-                isChecked = timerXML.getBoolean("trashReminder", isChecked)
+                trashReminder=isChecked
+                timerXML.edit().putBoolean("trashReminder",b).apply()
+                isChecked=timerXML.getBoolean("trashReminder",isChecked)
             }
 
         }
-
-//        包裹提醒開關
-        binding.switch2.apply {
-            isChecked = timerXML.getBoolean("packageReminder", isChecked)
-            packageReminder = isChecked
-            setOnCheckedChangeListener { _, b ->
-                packageReminder = isChecked
-                timerXML.edit().putBoolean("packageReminder", b).apply()
-                isChecked = timerXML.getBoolean("packageReminder", isChecked)
-            }
-
+        binding.switch2.setOnCheckedChangeListener { _, b ->
+            packageReminder=b
         }
         binding.textView12.setOnClickListener {
-//            測試刪除TABLE
-            Sqlite(this).dropTable()
-            recreate()
+            if(trashReminder){
+                receiverTimer()
+            }
         }
 
+//        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION).apply {
+//            addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
+//        }
+//        if (trashReminder){
+//            LocalBroadcastManager.getInstance(this).registerReceiver(tr,
+//                filter
+//            )
+//        }else{
+//            LocalBroadcastManager.getInstance(this).unregisterReceiver(tr)
+//        }
     }
 
-//    設定RecyclerView內容
     private fun setRecyclerView(data: ArrayList<Array<Int>>){
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.RecyclerView.apply {
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
-//            設定分隔線
             addItemDecoration(
                 DividerItemDecoration(
                     this@PushNotification,
                     DividerItemDecoration.VERTICAL
                 )
             )
-
+            //設定傳入recyclerview參數
             adapter=viewAdapter
         }
-        //設定傳入recyclerview參數
         viewAdapter.dataSet=data
     }
-
-//    取得SQL資料
     private fun getSQLTimer(): ArrayList<Array<Int>> {
         //get sqlite table time
         val db=Sqlite(this)
         return db.getTimer()
     }
-
-//    添加SQL資料
     private fun addSQLTimer(time:Array<Int>){
         //set sqlite table time
         val db=Sqlite(this)
         db.addTimer(time)
     }
 
-//    覆寫RecyclerView的點擊監聽
     override fun onItemClick(position: Int) {
         val timerList=getSQLTimer()[position]
         println(position)
-        val createAt=timerList[2]
+        val old_hour=timerList[hour]
+        val old_minute=timerList[minute]
         fun updateTimer(){
             TimePickerDialog(this,{
                     _,hour,minute->
-                Sqlite(this).updateTimer(createAt,hour,minute)
+                Sqlite(this).updateTimer(old_hour,old_minute,hour,minute)
                 setRecyclerView(getSQLTimer())
             },timerList[hour],timerList[minute],false).show()
 
@@ -149,34 +137,21 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
         alter.setPositiveButton("修改"
         ) { _, _ -> updateTimer() }
         alter.setNegativeButton("刪除"
-        ) { _, _ -> Sqlite(this).delTimer(createAt);setRecyclerView(getSQLTimer()) }
+        ) { _, _ -> Sqlite(this).delTimer(old_hour,old_minute);setRecyclerView(getSQLTimer()) }
         alter.setNeutralButton("取消",null)
         alter.show()
 
     }
-
-//    添加循環鬧鐘
-    private fun addAlarm(createAT:Int){
-//    TODO 設定循環鬧鐘的trigger
+//    TODO 使用可切換式receiver
+//    TODO 調用SQLite 資料註冊RTC
+    private fun receiverTimer(){
         val alarmManager=getSystemService(ALARM_SERVICE) as AlarmManager
         val intent=Intent(this,TrashReceiver::class.java)
-        intent.action="trash"
-        intent.addCategory(createAT.toString())
         val pendingIntent=PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
         Log.d("timer","Create: "+Date().toString())
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+10000,86400000,pendingIntent)
-    }
-//    清除循環鬧鐘
-    private fun cancelAlarm(createAT: Int){
-        val alarmManager=getSystemService(ALARM_SERVICE) as AlarmManager
-        val intent=Intent(this,TrashReceiver::class.java)
-        intent.action="trash"
-        intent.addCategory(createAT.toString())
-        val pendingIntent=PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
-        alarmManager.cancel(pendingIntent)
+        alarmManager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+10000,pendingIntent)
     }
 
-//    廣播接收
     class TrashReceiver:BroadcastReceiver(){
         override fun onReceive(p0: Context?, p1: Intent?) {
             val timerXML= SharedXML(p0!!).getXML("timer")
