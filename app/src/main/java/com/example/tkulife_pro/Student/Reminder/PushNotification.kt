@@ -33,6 +33,10 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
 
     var trashReminder by Delegates.notNull<Boolean>()
     var packageReminder by Delegates.notNull<Boolean>()
+
+    //        倒垃圾廣播意圖
+    private val trashIntent=Intent(this,TrashReceiver::class.java)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityPushNotificationBinding.inflate(layoutInflater)
@@ -42,6 +46,8 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     private fun initView() {
 //        取得開關狀態表
         val timerXML = SharedXML(this).getXML("timer")!!
+        trashIntent.action="trash"
+
 
 //        設定鬧鐘紐
         binding.button4.setOnClickListener {
@@ -52,6 +58,8 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
                 val data = arrayOf(hour, minute, System.currentTimeMillis().toInt())
                 addSQLTimer(data)
                 setRecyclerView(getSQLTimer())
+
+                setAlarm(AlarmManager.RTC_WAKEUP,hour,minute,86400000,data[2],trashIntent)
 
             }, hourNow, minuteNow, false).show()
         }
@@ -149,32 +157,43 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
         alter.setPositiveButton("修改"
         ) { _, _ -> updateTimer() }
         alter.setNegativeButton("刪除"
-        ) { _, _ -> Sqlite(this).delTimer(createAt);setRecyclerView(getSQLTimer()) }
+        ) { _, _ -> Sqlite(this).delTimer(createAt);setRecyclerView(getSQLTimer());cancelAlarm(createAt,trashIntent) }
         alter.setNeutralButton("取消",null)
         alter.show()
 
     }
 
-//    添加循環鬧鐘
-    private fun addAlarm(createAT:Int){
-//    TODO 設定循環鬧鐘的trigger
-        val alarmManager=getSystemService(ALARM_SERVICE) as AlarmManager
-        val intent=Intent(this,TrashReceiver::class.java)
-        intent.action="trash"
-        intent.addCategory(createAT.toString())
-        val pendingIntent=PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
-        Log.d("timer","Create: "+Date().toString())
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+10000,86400000,pendingIntent)
+//    overload SetAlarm
+    private fun setAlarm(type: Int, hour: Int, minute: Int, intervalMillis: Long, requestCode: Int, intent: Intent) {
+        val now = Calendar.getInstance()
+        val targetTime = now.clone() as Calendar
+        targetTime.set(Calendar.HOUR_OF_DAY, hour)
+        targetTime.set(Calendar.MINUTE, minute)
+        targetTime.set(Calendar.SECOND, 0)
+        targetTime.set(Calendar.MILLISECOND, 0)
+        if (targetTime.before(now))
+            targetTime.add(Calendar.DATE, 1)
+        setAlarm(type, targetTime.timeInMillis, intervalMillis, requestCode, intent)
+
     }
-//    清除循環鬧鐘
-    private fun cancelAlarm(createAT: Int){
-        val alarmManager=getSystemService(ALARM_SERVICE) as AlarmManager
-        val intent=Intent(this,TrashReceiver::class.java)
-        intent.action="trash"
-        intent.addCategory(createAT.toString())
-        val pendingIntent=PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
-        alarmManager.cancel(pendingIntent)
+
+//    設定鬧鐘
+    private fun setAlarm(type: Int, triggerAtMillis: Long, intervalMillis: Long, requestCode: Int, intent: Intent) {
+        val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setRepeating(type, triggerAtMillis, intervalMillis, PendingIntent.getBroadcast(this,
+            requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT))
+        Log.d("alarm","alarm set")
     }
+
+//    取消鬧鐘
+    private fun cancelAlarm(requestCode: Int, intent: Intent) {
+        val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.cancel(
+            PendingIntent.getBroadcast(this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT))
+        Log.d("alarm","alarm cancel")
+    }
+
+
 
 //    廣播接收
     class TrashReceiver:BroadcastReceiver(){
