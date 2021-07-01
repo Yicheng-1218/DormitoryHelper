@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.SharedXML
 import com.example.tkulife_pro.Sqlite
+import com.example.tkulife_pro.Student.reminder.ReminderAdapter
 import com.example.tkulife_pro.databinding.ActivityPushNotificationBinding
 import com.example.tkulife_pro.tkuNotification
 import java.util.*
@@ -25,7 +26,7 @@ import kotlin.collections.ArrayList
 import kotlin.properties.Delegates
 
 
-class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
+class PushNotification : AppCompatActivity(), ReminderAdapter.OnItemClick {
     private lateinit var binding: ActivityPushNotificationBinding
     private val viewAdapter=ReminderAdapter(this)
     private val hour=0
