@@ -13,11 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
 
-        <activity android:name=".Student.Laundry.LittleTimer" />
-        <activity android:name=".Student.Laundry.Laundry" />
-        <activity android:name=".Student.Reminder.PushNotification" />
-        <activity android:name=".Student.Std_mainPage" />
-        <activity android:name=".User_select" />
+        <activity android:name=".student.laundry.LittleTimer" />
+        <activity android:name=".student.laundry.Laundry" />
+        <activity android:name=".student.reminder.PushNotification" />
+        <activity android:name=".student.Std_mainPage" />
+        <activity android:name=".UserSelect" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- TODO 設定垃圾車receiver -->
-        <receiver android:name=".Student.Reminder.PushNotification$TrashReceiver">
+        <receiver android:name=".student.reminder.PushNotification$TrashReceiver">
             <intent-filter>
                 <action android:name="trash" />
             </intent-filter>

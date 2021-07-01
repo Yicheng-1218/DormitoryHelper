@@ -1,10 +1,10 @@
-package com.example.tkulife_pro.Student
+package com.example.tkulife_pro.student
 
-import com.example.tkulife_pro.Student.Reminder.PushNotification
+import com.example.tkulife_pro.student.reminder.PushNotification
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.tkulife_pro.Student.Laundry.Laundry
+import com.example.tkulife_pro.student.laundry.Laundry
 import com.example.tkulife_pro.databinding.ActivityStdMainpageBinding
 
 class Std_mainPage : AppCompatActivity() {

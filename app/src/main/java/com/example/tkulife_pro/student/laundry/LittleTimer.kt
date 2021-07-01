@@ -1,10 +1,5 @@
-package com.example.tkulife_pro.Student.Laundry
+package com.example.tkulife_pro.student.laundry
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -13,11 +8,7 @@ import android.widget.EditText
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityLittleTimerBinding
 import com.example.tkulife_pro.tkuNotification
-import com.google.android.material.snackbar.Snackbar
 import java.util.*
-import java.util.concurrent.CountDownLatch
-import kotlin.concurrent.timer
-import kotlin.math.min
 import kotlin.properties.Delegates
 
 

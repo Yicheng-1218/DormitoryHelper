@@ -1,16 +1,14 @@
 package com.example.tkulife_pro
 
 import android.content.Intent
-import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AlertDialog
-import com.example.tkulife_pro.Student.Std_mainPage
+import com.example.tkulife_pro.student.Std_mainPage
 import com.example.tkulife_pro.databinding.ActivityUserSelectBinding
 
 
-class User_select : AppCompatActivity() {
+class UserSelect : AppCompatActivity() {
     private lateinit var binding: ActivityUserSelectBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +29,11 @@ class User_select : AppCompatActivity() {
         }
         //TODO 管理員視窗
         binding.imageButton2.setOnClickListener {
-            val no_access= AlertDialog.Builder(this)
-            no_access.setMessage("您沒有管理員權限")
-            no_access.setTitle("錯誤")
-            no_access.setPositiveButton("我知道了",null)
-            no_access.show()
+            val noAccess= AlertDialog.Builder(this)
+            noAccess.setMessage("您沒有管理員權限")
+            noAccess.setTitle("錯誤")
+            noAccess.setPositiveButton("我知道了",null)
+            noAccess.show()
         }
         //TODO 確認視窗
         binding.button6.setOnClickListener {

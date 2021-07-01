@@ -1,4 +1,4 @@
-package com.example.tkulife_pro.Student.Laundry
+package com.example.tkulife_pro.student.laundry
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,15 +10,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-
-
-import com.google.gson.Gson
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
-import org.json.JSONObject
-import kotlin.reflect.typeOf
 
 
 class Laundry : AppCompatActivity() {
