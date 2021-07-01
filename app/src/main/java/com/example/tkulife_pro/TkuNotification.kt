@@ -7,7 +7,7 @@ import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 
 
-class tkuNotification(private val context: Context,private val id :String, private val name:String) {
+class TkuNotification(private val context: Context, private val id :String, private val name:String) {
     private var channel:NotificationChannel
     private val manager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
     lateinit var content:Notification
@@ -24,7 +24,7 @@ class tkuNotification(private val context: Context,private val id :String, priva
     }
 
 //    建立推播內容方法
-    fun build(title:String,text:String): tkuNotification {
+    fun build(title:String,text:String): TkuNotification {
         val builder = Notification.Builder(context, id)
         builder.setSmallIcon(R.drawable.email__1_)
             .setContentTitle(title)

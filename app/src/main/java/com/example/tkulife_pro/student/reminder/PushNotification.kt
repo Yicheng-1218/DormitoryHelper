@@ -14,7 +14,7 @@ import com.example.tkulife_pro.R
 import com.example.tkulife_pro.SharedXML
 import com.example.tkulife_pro.Sqlite
 import com.example.tkulife_pro.databinding.ActivityPushNotificationBinding
-import com.example.tkulife_pro.tkuNotification
+import com.example.tkulife_pro.TkuNotification
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.properties.Delegates
@@ -22,6 +22,7 @@ import kotlin.properties.Delegates
 
 class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     private lateinit var binding: ActivityPushNotificationBinding
+    private lateinit var trashIntent:Intent
     private val viewAdapter=ReminderAdapter(this)
     private val hour=0
     private val minute=1
@@ -29,8 +30,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     var trashReminder by Delegates.notNull<Boolean>()
     var packageReminder by Delegates.notNull<Boolean>()
 
-    //        倒垃圾廣播意圖
-    private val trashIntent=Intent(this,TrashReceiver::class.java)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +41,9 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     private fun initView() {
 //        取得開關狀態表
         val timerXML = SharedXML(this).getXML("timer")!!
+
+//        到垃圾廣播意圖
+        trashIntent=Intent(this,TrashReceiver::class.java)
         trashIntent.action="trash"
 
 
@@ -54,6 +57,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
                 addSQLTimer(data)
                 setRecyclerView(getSQLTimer())
 
+//              設定循環鬧鐘廣播，間隔1天
                 setAlarm(AlarmManager.RTC_WAKEUP,hour,minute,86400000,data[2],trashIntent)
 
             }, hourNow, minuteNow, false).show()
@@ -197,7 +201,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
             val status=timerXML?.getBoolean("trashReminder",false)
             if (status == true) {
 //                發送提醒
-                tkuNotification(p0, "垃圾車提醒", "垃圾車提醒").build("垃圾車提醒", "該倒垃圾啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(R.string.trashReminder)
+                TkuNotification(p0, "垃圾車提醒", "垃圾車提醒").build("垃圾車提醒", "該倒垃圾啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(R.string.trashReminder)
                 val wakelock = p0.getSystemService(POWER_SERVICE) as PowerManager
 //                兩個Flag缺一不可，都存在才可以點亮螢幕
                 val newWake = wakelock.newWakeLock(

@@ -9,6 +9,7 @@ import com.example.tkulife_pro.databinding.ReminderItemBinding
 class ReminderAdapter(private var itemClickListener:OnItemClick):
     RecyclerView.Adapter<ReminderAdapter.ViewHolder>() {
 
+//    資料集
     var dataSet= ArrayList<Array<Int>>()
     private val hour=0
     private val minute=1
@@ -48,6 +49,7 @@ class ReminderAdapter(private var itemClickListener:OnItemClick):
         return dataSet.size
     }
 
+//    column的點擊介面
     interface OnItemClick{
         fun onItemClick(position: Int)
     }

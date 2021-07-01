@@ -27,37 +27,34 @@ class Laundry : AppCompatActivity() {
 //        建立database實例
         database = Firebase.database.reference
 
-
-        //        返回鍵
+//        返回鍵
         binding.button7.setOnClickListener {
             super.onBackPressed()
         }
 
-//         洗衣提醒
+//        洗衣提醒
         binding.imageButton12.setOnClickListener {
             Intent(this,LittleTimer::class.java).apply {
                 startActivity(this)
             }
         }
 
+
+
+//        TODO 移植到樓層顯示頁
 //        realtime監聽
         val listener=object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+//                接收廣播
                 val res=snapshot.value as HashMap<*,*>
-                val test=res["test"] as HashMap<*,*>
-
-                var count=0
-                for (v in test["A-02"] as ArrayList<Map<*,*>>){
-                    if (v["con"]=="usable"){
-                        count++
-                    }
-                    Log.d("firebase",v.toString())
-                }
-                Log.d("firebase","A02可用台數=$count")
+                val db=res["Washer"] as HashMap<*,*>
+                val map=getUsableCount(db,'A')
+//                印出指定樓層可用數量
+                Log.d("firebase",map["A-01"].toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+//                接收廣播失敗
             }
 
         }
@@ -65,7 +62,25 @@ class Laundry : AppCompatActivity() {
         database.addValueEventListener(listener)
 
     }
-    private fun getUsableCount(){
-//TODO
+
+//    TODO 移植到樓層顯示頁
+//    取得每樓層可用機器數量
+    private fun getUsableCount(data:HashMap<*,*>,building:Char):MutableMap<String,Int>{
+        val res= mutableMapOf<String,Int>()
+        for (key in data.keys){
+            var count=0
+            key as String
+            val subKey=key[0]
+            if (subKey==building){
+                for (field in data[key] as ArrayList<Map<*,*>>){
+                    if (field["con"]=="usable"){
+                        count++
+                    }
+                }
+                Log.d("firebase","$key:可用台數=$count")
+            }
+            res[key]=count
+        }
+        return res
     }
 }

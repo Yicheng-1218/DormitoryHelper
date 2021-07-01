@@ -7,7 +7,7 @@ import android.os.Bundle
 import com.example.tkulife_pro.student.laundry.Laundry
 import com.example.tkulife_pro.databinding.ActivityStdMainpageBinding
 
-class Std_mainPage : AppCompatActivity() {
+class StdMainPage : AppCompatActivity() {
     private lateinit var binding: ActivityStdMainpageBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

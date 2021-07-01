@@ -7,7 +7,7 @@ import android.util.Log
 import android.widget.EditText
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityLittleTimerBinding
-import com.example.tkulife_pro.tkuNotification
+import com.example.tkulife_pro.TkuNotification
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -108,7 +108,7 @@ class LittleTimer : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                tkuNotification(this@LittleTimer,"洗衣計時","洗衣計時").build("計時器","設定的計時器到啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(
+                TkuNotification(this@LittleTimer,"洗衣計時","洗衣計時").build("計時器","設定的計時器到啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(
                     R.string.littleTimer
                 )
                 hourEditText.isEnabled=true

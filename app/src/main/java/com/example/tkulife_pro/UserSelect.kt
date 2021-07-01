@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
-import com.example.tkulife_pro.student.Std_mainPage
 import com.example.tkulife_pro.databinding.ActivityUserSelectBinding
+import com.example.tkulife_pro.student.StdMainPage
 
 
 class UserSelect : AppCompatActivity() {
@@ -23,7 +23,7 @@ class UserSelect : AppCompatActivity() {
             super.onBackPressed()
         }
         binding.imageButton3.setOnClickListener {
-            Intent(this,Std_mainPage::class.java).apply {
+            Intent(this,StdMainPage::class.java).apply {
                 startActivity(this)
             }
         }
