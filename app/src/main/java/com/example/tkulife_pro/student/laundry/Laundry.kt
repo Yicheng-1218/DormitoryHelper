@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.tkulife_pro.databinding.ActivityLaundryBinding
+import com.example.tkulife_pro.student.laundry.status.floors.FloorStatus
 import com.example.tkulife_pro.student.laundry.status.machinestatus.MachineStatus
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -41,7 +42,7 @@ class Laundry : AppCompatActivity() {
 
 //        洗衣機按鈕
         binding.imageButton11.setOnClickListener {
-            Intent(this,MachineStatus::class.java).apply {
+            Intent(this,FloorStatus::class.java).apply {
                 putExtra("DataType","washer")
                 startActivity(this)
             }

@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
-        <activity android:name=".student.laundry.status.machinestatus.MachineStatus"></activity>
+        <activity android:name=".student.laundry.status.floors.FloorStatus"></activity>
+        <activity android:name=".student.laundry.status.machinestatus.MachineStatus" />
         <activity android:name=".student.laundry.LittleTimer" />
         <activity android:name=".student.laundry.Laundry" />
         <activity android:name=".student.reminder.PushNotification" />
