@@ -2,6 +2,7 @@ package com.example.tkulife_pro.student.laundry.status.floors
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.databinding.ActivityFloorStatusBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -24,4 +25,6 @@ class FloorStatus : AppCompatActivity() {
         }.attach()
 
     }
+
+
 }

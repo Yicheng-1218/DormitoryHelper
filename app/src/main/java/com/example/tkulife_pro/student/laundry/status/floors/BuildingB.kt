@@ -15,7 +15,7 @@ class BuildingB : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_floor2, container, false)
+        return inflater.inflate(R.layout.fragment_building_b, container, false)
     }
 
 

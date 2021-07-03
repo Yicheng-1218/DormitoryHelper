@@ -74,25 +74,7 @@ class MachineStatus : AppCompatActivity() {
         viewAdapter.dataList=adapterData
     }
 
-    //    取得每樓層可用機器數量
-    private fun getUsableCount(data:HashMap<*,*>,building:Char):MutableMap<String,Int>{
-        val res= mutableMapOf<String,Int>()
-        for (key in data.keys){
-            var count=0
-            key as String
-            val subKey=key[0]
-            if (subKey==building){
-                for (field in data[key] as ArrayList<Map<*,*>>){
-                    if (field["con"]=="usable"){
-                        count++
-                    }
-                }
-                Log.d("firebase","$key:可用台數=$count")
-            }
-            res[key]=count
-        }
-        return res
-    }
+
 
 
 }
