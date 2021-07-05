@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,9 +18,10 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="89dp"
-            android:layout_height="82dp"
-            app:srcCompat="@drawable/ic_laundry"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:paddingVertical="15dp"
+            app:srcCompat="@drawable/ic_stairs"
             tools:layout_editor_absoluteX="18dp"
             tools:layout_editor_absoluteY="23dp" />
 
@@ -27,7 +32,6 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
-            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
@@ -37,7 +41,6 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
-            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     </LinearLayout>
 

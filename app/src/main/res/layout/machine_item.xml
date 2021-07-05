@@ -15,7 +15,7 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="104dp"
+            android:layout_width="100dp"
             android:layout_height="100dp"
             android:paddingVertical="15dp"
             app:srcCompat="@drawable/ic_laundry" />
@@ -27,7 +27,6 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
-            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
@@ -37,7 +36,6 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
-            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     </LinearLayout>
 

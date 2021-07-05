@@ -1,5 +1,6 @@
 package com.example.tkulife_pro.student.laundry.status.floors
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,9 +11,22 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.FragmentBuildingABinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import java.lang.Exception
+import kotlin.math.log
+import kotlin.properties.Delegates
 
-class BuildingA : Fragment() {
+
+
+class BuildingA(private val machineType:String) : Fragment() {
     private lateinit var binding: FragmentBuildingABinding
+    private lateinit var database: DatabaseReference
+    private lateinit var viewAdapter: FloorAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,10 +38,35 @@ class BuildingA : Fragment() {
     }
 
     private fun initView(){
-     //   setRecycleView(getUsableCount())
+        viewAdapter= FloorAdapter()
+        //        建立database實例
+        database = Firebase.database.reference
+        //        realtime監聽
+        val listener=object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+//                接收廣播
+                try {
+                    val res=snapshot.value as HashMap<*,*>
+                    val nodeList=res[machineType] as HashMap<*,*>
+//                建立recyclerView
+                    setRecyclerView(nodeList,'A')
+                }catch (e:Exception){
+                    Log.d("firebase",e.toString())
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+//                接收廣播失敗
+            }
+
+        }
+//        新增監聽事件
+        database.addValueEventListener(listener)
     }
 
-    private fun setRecycleView(adapterData:MutableMap<String,Int>){
+
+    private fun setRecyclerView(adapterData:HashMap<*,*>,building:Char){
+
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.BuildA.apply {
@@ -38,29 +77,12 @@ class BuildingA : Fragment() {
                     DividerItemDecoration.VERTICAL
                 )
             )
-            adapter = FloorAdapter()
+            adapter = viewAdapter
         }
+        viewAdapter.data=adapterData
+        viewAdapter.building=building
+    }
 
-    }
-    //    取得每樓層可用機器數量
-    private fun getUsableCount(data:HashMap<*,*>,building:Char):MutableMap<String,Int>{
-        val res= mutableMapOf<String,Int>()
-        for (key in data.keys){
-            var count=0
-            key as String
-            val subKey=key[0]
-            if (subKey==building){
-                for (field in data[key] as ArrayList<Map<*,*>>){
-                    if (field["con"]=="usable"){
-                        count++
-                    }
-                }
-                Log.d("firebase","$key:可用台數=$count")
-            }
-            res[key]=count
-        }
-        return res
-    }
 
 
 }
