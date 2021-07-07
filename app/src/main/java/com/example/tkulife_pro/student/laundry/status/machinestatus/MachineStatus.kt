@@ -28,9 +28,18 @@ class MachineStatus : AppCompatActivity() {
     }
     private fun initView(){
 
+//        返回鍵
+        binding.button10.setOnClickListener {
+            super.onBackPressed()
+        }
+
 
         //        建立database實例
         database = Firebase.database.reference
+
+//        取得intent資料
+        val dataType=intent.getStringExtra("DataType")
+        val floor=intent.getStringExtra("floor")
 
 
         //        realtime監聽
@@ -38,9 +47,9 @@ class MachineStatus : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
 //                接收廣播
                 val res=snapshot.value as HashMap<*,*>
-                val nodeList=res["Washer"] as HashMap<*,*>
+                val nodeList=res[dataType] as HashMap<*,*>
 //                建立recyclerView
-                setRecyclerView(nodeList["A-01"] as ArrayList<Map<*, *>>)
+                setRecyclerView(nodeList[floor] as ArrayList<Map<*, *>>)
 
 
             }

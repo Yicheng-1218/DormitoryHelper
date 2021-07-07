@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tkulife_pro.databinding.FloorItemBinding
+import com.example.tkulife_pro.student.reminder.ReminderAdapter
 import kotlin.math.floor
 import kotlin.properties.Delegates
 
 
-class FloorAdapter: RecyclerView.Adapter<FloorAdapter.ViewHolder>(){
+class FloorAdapter(private var itemClickListener: OnItemClick): RecyclerView.Adapter<FloorAdapter.ViewHolder>(){
 
     lateinit var  data: HashMap<*, *>
     var building by Delegates.notNull<Char>()
@@ -26,12 +27,14 @@ class FloorAdapter: RecyclerView.Adapter<FloorAdapter.ViewHolder>(){
         val floor=position+1
         holder.view.textView22.text = "${"$building-0$floor"} 層樓有:"
         holder.view.textView23.text = "${res["$building-0$floor"]}台可用"
+        holder.view.floorItem.setOnClickListener {
+            itemClickListener.onItemClick(position)
+        }
     }
     override fun getItemCount(): Int {
         return 6
     }
 
-//    TODO ItemOnClick
 
     //    取得每樓層可用機器數量
     private fun getUsableCount(data:HashMap<*,*>,building:Char):MutableMap<String,Int>{
@@ -50,5 +53,10 @@ class FloorAdapter: RecyclerView.Adapter<FloorAdapter.ViewHolder>(){
             res[key]=count
         }
         return res
+    }
+
+//    時做onClick
+    interface OnItemClick{
+        fun onItemClick(position: Int)
     }
 }

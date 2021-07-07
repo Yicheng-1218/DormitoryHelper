@@ -19,7 +19,13 @@ class StatusAdapter: RecyclerView.Adapter<StatusAdapter.ViewHolder>(){
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data=dataList[position]
         holder.view.textView14.text=data["id"].toString()
-        holder.view.textView16.text=data["con"].toString()
+        var status=""
+        when(data["con"]){
+            "using" -> status="使用中"
+            "broken" -> status="故障"
+            "usable" -> status="閒置中"
+        }
+        holder.view.textView16.text=status
     }
 
     override fun getItemCount(): Int {
