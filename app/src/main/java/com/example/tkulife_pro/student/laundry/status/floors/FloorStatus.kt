@@ -21,13 +21,16 @@ class FloorStatus : AppCompatActivity(){
 
     private fun initView(){
 
+        binding.button11.setOnClickListener{
+            super.onBackPressed()
+        }
 //        取得資料種類
         dataType= intent.getStringExtra("DataType").toString()
         val fragments= arrayListOf(BuildingA(dataType),BuildingB(dataType),BuildingC(dataType)) as ArrayList<Fragment>
         val pageAdapter = PageAdapter(supportFragmentManager, lifecycle,fragments)
         binding.ViewPager.adapter = pageAdapter
 
-        val title: ArrayList<String> = arrayListOf("A棟", "B棟", "C棟")
+        val title: ArrayList<String> = arrayListOf("一館", "二館", "三館")
 
         TabLayoutMediator(binding.tabLayout, binding.ViewPager){
             tab, position ->
