@@ -4,16 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.tkulife_pro.OkHttpUtil
+import com.example.tkulife_pro.OkHttpUtil.Companion.mOkHttpUtil
 import com.example.tkulife_pro.databinding.ActivityLaundryBinding
 import com.example.tkulife_pro.student.laundry.fixreport.FixPage
 import com.example.tkulife_pro.student.laundry.status.floors.FloorStatus
-import com.example.tkulife_pro.student.laundry.status.machinestatus.MachineStatus
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import okhttp3.Response
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.IOException
 
 
 class Laundry : AppCompatActivity() {
@@ -64,6 +63,28 @@ class Laundry : AppCompatActivity() {
             }
         }
 
+//        報修按鈕r
+        binding.imageButton13.setOnClickListener {
+            val json=JSONObject("{'email':'123','name':'456','phone':'789','room_bed':'987','package':[{'id':'147','from':'good'}],'id':'789'}")
+            mOkHttpUtil.getAsync("https://test.bestea.space/studentList",object :OkHttpUtil.ICallback{
+                override fun onResponse(response: Response) {
+                    val res=response.body?.string()
+                    try {
+                        Log.d("okhttp",response.toString())
+                        Log.d("okhttp",JSONObject(res).toString())
+                    }catch (e:Exception){
+                        Log.d("okhttp",e.toString())
+                    }
+
+                }
+
+                override fun onFailure(e: IOException) {
+                    Log.d("okhttp",e.toString())
+                }
+
+            })
+
+        }
     }
 
 
