@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.tkulife_pro.databinding.ActivityLaundryBinding
+import com.example.tkulife_pro.student.laundry.fixreport.FixPage
 import com.example.tkulife_pro.student.laundry.status.floors.FloorStatus
 import com.example.tkulife_pro.student.laundry.status.machinestatus.MachineStatus
 import com.google.firebase.database.DataSnapshot
@@ -31,6 +32,13 @@ class Laundry : AppCompatActivity() {
 //        返回鍵
         binding.button7.setOnClickListener {
             super.onBackPressed()
+        }
+
+//        報修頁面
+        binding.imageButton13.setOnClickListener {
+            Intent(this,FixPage::class.java).apply {
+                startActivity(this)
+            }
         }
 
 //        洗衣提醒
