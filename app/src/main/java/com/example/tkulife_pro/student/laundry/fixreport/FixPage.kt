@@ -2,35 +2,36 @@ package com.example.tkulife_pro.student.laundry.fixreport
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.tkulife_pro.databinding.ActivityFixPageBinding
-import com.example.tkulife_pro.databinding.ActivityLaundryBinding
-import kotlinx.android.synthetic.main.activity_fix_page.*
 
-class FixPage : AppCompatActivity() {
+class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: ActivityFixPageBinding
-    val building= arrayListOf<String>("一館","二館","三館","洗衣場")
-    var idc_building=ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityFixPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        set_spinner2()
-        val arrayAdapter=ArrayAdapter(this,android.R.layout.simple_spinner_item,idc_building)
-        spinner2.adapter=arrayAdapter
+        initView()
+    }
+    private fun initView(){
+        binding.spinner1.onItemSelectedListener=this
+
     }
 
-    fun set_spinner2(){
-        if(spinner1.selectedItemPosition==0){
-            idc_building.add(building[3])
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        if (p2==0){
+            binding.spinner2.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item, arrayOf("洗衣場"))
         }else{
-            for(i in 0..2){
-                idc_building.add(building[i])
-            }
+            binding.spinner2.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item, arrayOf("一館","二館","三館"))
         }
     }
 
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+    }
 
 
 }
