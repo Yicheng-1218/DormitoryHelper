@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
-        <activity android:name=".student.laundry.fixreport.FixPage"></activity>
+        <activity android:name=".admin.AdminMainPage"></activity>
+        <activity android:name=".student.laundry.fixreport.FixPage" />
         <activity android:name=".student.laundry.status.floors.FloorStatus" />
         <activity android:name=".student.laundry.status.machinestatus.MachineStatus" />
         <activity android:name=".student.laundry.LittleTimer" />

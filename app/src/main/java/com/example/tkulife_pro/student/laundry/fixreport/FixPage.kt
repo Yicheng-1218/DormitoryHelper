@@ -24,11 +24,12 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         if (p2==0){
             binding.spinner2.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item, arrayOf("洗衣場"))
+            binding.spinner3.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item, (1..16).toList())
         }else{
             binding.spinner2.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item, arrayOf("一館","二館","三館"))
+            binding.spinner3.adapter=ArrayAdapter(this,android.R.layout.simple_spinner_item, (1..3).toList())
         }
     }
-
     override fun onNothingSelected(p0: AdapterView<*>?) {
 
     }
