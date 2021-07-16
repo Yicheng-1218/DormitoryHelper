@@ -11,7 +11,7 @@ import com.example.tkulife_pro.admin.fixreport.FixTab.TabAdapter
 import com.example.tkulife_pro.databinding.ActivityFixNotificationBinding
 import com.example.tkulife_pro.databinding.ActivityMachineStatusBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_fix_notification.*
+
 
 class FixNotification : AppCompatActivity() {
     private lateinit var binding:ActivityFixNotificationBinding
