@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".admin.AdminMainPage">
 
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button"
+        android:text="back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <TextView
         android:id="@+id/textView26"
         android:layout_width="62dp"
