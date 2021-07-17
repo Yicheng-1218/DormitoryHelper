@@ -39,11 +39,16 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 "{'type':'${type}','no':'${no}','depict':'${depict}'}"
             )
             if(type!="未選擇"){
+                binding.button.isEnabled=false
                 mOkHttpUtil.post("https://tkudorm.site/repair",json,object: OkHttpUtil.ICallback{
                     override fun onResponse(response: Response) {
                         val res = response.body?.string()
                         Snackbar.make(it, JSONObject(res)["msg"].toString(), Snackbar.LENGTH_LONG).show()
+                        runOnUiThread{
+                            binding.button.isEnabled=true
+                        }
                     }
+
                     override fun onFailure(e: IOException) {
 
                     }
