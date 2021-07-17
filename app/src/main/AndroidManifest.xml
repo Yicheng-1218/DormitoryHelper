@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
+        <activity android:name=".admin.fixreport.FixTab.DescribePage"></activity>
         <activity android:name=".admin.AdminMainPage" />
         <activity android:name=".admin.fixreport.FixNotification" />
         <activity android:name=".student.laundry.fixreport.FixPage" />

@@ -76,7 +76,7 @@ class Check: Fragment(),PageAdapter.OnItemClick {
     }
 
     override fun onItemClick(position: Int) {
-        Intent(requireContext(),FixNotification::class.java).apply{
+        Intent(requireContext(),DescribePage::class.java).apply{
             startActivity((this))
         }
     }
