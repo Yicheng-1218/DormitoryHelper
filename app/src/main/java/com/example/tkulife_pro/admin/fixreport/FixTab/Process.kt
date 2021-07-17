@@ -13,6 +13,7 @@ import com.example.tkulife_pro.databinding.FragmentProcessBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import org.json.JSONArray
 
 
 class Process(private val machineType:String) : Fragment(),PageAdapter.OnItemClick {
@@ -34,7 +35,7 @@ class Process(private val machineType:String) : Fragment(),PageAdapter.OnItemCli
             override fun onDataChange(snapshot: DataSnapshot) {
                 val res = snapshot.value as HashMap<*,*>
                 val nodeList = res[machineType] as HashMap<*,*>
-                setRecyclerView(nodeList)
+//                setRecyclerView(nodeList)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -44,7 +45,7 @@ class Process(private val machineType:String) : Fragment(),PageAdapter.OnItemCli
 
     }
 
-    private fun setRecyclerView(adapterData: HashMap<*,*>) {
+    private fun setRecyclerView(adapterData: JSONArray) {
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.Process.apply {
