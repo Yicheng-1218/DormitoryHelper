@@ -15,8 +15,4 @@ class TabAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, private
     override fun createFragment(position: Int): Fragment {
         return fragments[position]
     }
-
-    interface OnItemClick{
-        fun onItemClick(position: Int)
-    }
 }

@@ -1,21 +1,18 @@
 package com.example.tkulife_pro.admin.fixreport
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Process
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.tkulife_pro.R
-import com.example.tkulife_pro.admin.fixreport.FixTab.Check
-import com.example.tkulife_pro.admin.fixreport.FixTab.PageAdapter
 import com.example.tkulife_pro.admin.fixreport.FixTab.TabAdapter
 import com.example.tkulife_pro.databinding.ActivityFixNotificationBinding
-import com.example.tkulife_pro.databinding.ActivityMachineStatusBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlin.collections.ArrayList
 
 
 class FixNotification : AppCompatActivity() {
     private lateinit var binding:ActivityFixNotificationBinding
     private lateinit var dataType:String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityFixNotificationBinding.inflate(layoutInflater)
@@ -31,7 +28,7 @@ class FixNotification : AppCompatActivity() {
 
         dataType=intent.getStringExtra("DataType").toString()
 
-        val fragments = arrayListOf(Check(dataType),com.example.tkulife_pro.admin.fixreport.FixTab.Process(dataType)) as ArrayList<Fragment>
+        val fragments = arrayListOf(com.example.tkulife_pro.admin.fixreport.FixTab.Check(dataType),com.example.tkulife_pro.admin.fixreport.FixTab.Process(dataType)) as ArrayList<Fragment>
         val pageAdapter = TabAdapter(supportFragmentManager, lifecycle, fragments)
         binding.ViewPager.adapter=pageAdapter
 
