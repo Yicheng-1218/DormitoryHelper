@@ -32,10 +32,10 @@ class Check: Fragment(),PageAdapter.OnItemClick {
         initView()
         return binding.root
     }
-    private fun initView(){
-        binding.progressBar.isVisible=true
-        viewAdapter = PageAdapter(this)
-        OkHttpUtil.mOkHttpUtil.getAsync("https://tkudorm.site/repairList",object : OkHttpUtil.ICallback {
+
+    override fun onResume() {
+        super.onResume()
+        OkHttpUtil.mOkHttpUtil.getAsync("https://tkudorm.site/repairList/rep",object : OkHttpUtil.ICallback {
             override fun onResponse(response: Response) {
                 val res = response.body?.string()
                 json= JSONArray(res)
@@ -49,18 +49,10 @@ class Check: Fragment(),PageAdapter.OnItemClick {
 
             }
         })
-
-//        val listener = object: ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                    val res=snapshot.value as HashMap<*,*>
-//                    val nodeList=res[machineType] as HashMap<*,*>
-//                    setRecyclerView(nodeList)
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//
-//            }
-//        }
+    }
+    private fun initView(){
+        binding.progressBar.isVisible=true
+        viewAdapter = PageAdapter(this)
     }
 
 
@@ -85,6 +77,7 @@ class Check: Fragment(),PageAdapter.OnItemClick {
         val machine = item["machine"] as JSONObject
         Intent(requireContext(),DescribePage::class.java).apply{
             putExtra("rep",machine["rep"].toString())
+            putExtra("index",position.toString())
             startActivity((this))
         }
     }

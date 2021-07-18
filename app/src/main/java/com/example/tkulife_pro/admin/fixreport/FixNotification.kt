@@ -24,6 +24,10 @@ class FixNotification : AppCompatActivity() {
         initView()
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.ViewPager.currentItem=intent.getIntExtra("Page",0)
+    }
     private fun initView(){
         binding.button12.setOnClickListener{
             super.onBackPressed()
@@ -31,7 +35,7 @@ class FixNotification : AppCompatActivity() {
 
 
 
-        val fragments = arrayListOf(com.example.tkulife_pro.admin.fixreport.FixTab.Check(),com.example.tkulife_pro.admin.fixreport.FixTab.Process("")) as ArrayList<Fragment>
+        val fragments = arrayListOf(com.example.tkulife_pro.admin.fixreport.FixTab.Check(),com.example.tkulife_pro.admin.fixreport.FixTab.Process()) as ArrayList<Fragment>
         val pageAdapter = TabAdapter(supportFragmentManager, lifecycle, fragments)
         binding.ViewPager.adapter=pageAdapter
 
@@ -41,6 +45,7 @@ class FixNotification : AppCompatActivity() {
             tab, position ->
             tab.text=title[position]
         }.attach()
+
     }
 
 }
