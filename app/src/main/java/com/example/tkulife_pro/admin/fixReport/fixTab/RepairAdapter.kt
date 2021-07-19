@@ -1,18 +1,16 @@
-package com.example.tkulife_pro.admin.fixreport.FixTab
+package com.example.tkulife_pro.admin.fixReport.fixTab
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.FixItemBinding
 import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.Exception
-import java.lang.reflect.Array
 
-class PageAdapter(private var itemClickListener: OnItemClick): RecyclerView.Adapter<PageAdapter.ViewHolder>() {
+class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Adapter<RepairAdapter.ViewHolder>() {
 
     lateinit var  data: JSONArray
 
@@ -26,9 +24,12 @@ class PageAdapter(private var itemClickListener: OnItemClick): RecyclerView.Adap
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val details=data[position] as JSONObject
         val location=details["location"].toString()
+//        location路徑分割
         val type=location.split('_')
+
+//        字串轉換對照表
         if(type[1]!="1F"){
-            val ref= mapOf<String,String>(
+            val ref= mapOf(
                 "A" to "一館",
                 "B" to "二館",
                 "C" to "三館",

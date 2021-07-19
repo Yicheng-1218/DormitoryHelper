@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.databinding.FragmentBuildingBBinding
-import com.example.tkulife_pro.student.laundry.status.machinestatus.MachineStatus
+import com.example.tkulife_pro.student.laundry.status.machineStatus.MachineStatus
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference

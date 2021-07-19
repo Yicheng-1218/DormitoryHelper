@@ -1,7 +1,5 @@
-package com.example.tkulife_pro.admin.fixreport.FixTab
+package com.example.tkulife_pro.admin.fixReport.fixTab
 
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,27 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.OkHttpUtil
-import com.example.tkulife_pro.admin.fixreport.FixNotification
 import com.example.tkulife_pro.databinding.FragmentProcessBinding
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 
 
-class Process : Fragment(),PageAdapter.OnItemClick {
+class Process : Fragment(),RepairAdapter.OnItemClick {
     private lateinit var binding: FragmentProcessBinding
-    private lateinit var viewAdapter: PageAdapter
+    private lateinit var viewAdapter: RepairAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,7 +48,7 @@ class Process : Fragment(),PageAdapter.OnItemClick {
 
 
     private fun initView(){
-        viewAdapter = PageAdapter(this)
+        viewAdapter = RepairAdapter(this)
     }
 
     private fun setRecyclerView(adapterData: JSONArray) {
@@ -77,31 +67,34 @@ class Process : Fragment(),PageAdapter.OnItemClick {
 
 
 
+//    處理中頁面元素監聽
     override fun onItemClick(position: Int) {
         val confirm = AlertDialog.Builder(requireContext())
         confirm.setMessage("確認要將狀態改為可使用嗎?")
         confirm.setTitle("確認視窗")
         confirm.setNegativeButton("取消", null)
-        confirm.setPositiveButton("確定",object : DialogInterface.OnClickListener {
-            override fun onClick(p0: DialogInterface?, p1: Int) {
-                Log.d("index",position.toString())
-                OkHttpUtil.mOkHttpUtil.put("https://tkudorm.site/repair", JSONObject("{'index':'${position}' , 'con' : 'usable' ,'key' : 'con'} "),object : OkHttpUtil.ICallback{
+        confirm.setPositiveButton("確定") { _, _ ->
+//            管理員put路由(usable)
+            OkHttpUtil.mOkHttpUtil.put("https://tkudorm.site/repair",
+                JSONObject("{'index':'${position}' , 'con' : 'usable' ,'key' : 'con'} "),
+                object : OkHttpUtil.ICallback {
                     override fun onResponse(response: Response) {
                         val res = response.body?.string()
-                        activity?.runOnUiThread{
-                            Toast.makeText(requireContext(),
+                        activity?.runOnUiThread {
+                            Toast.makeText(
+                                requireContext(),
                                 JSONObject(res)["msg"].toString(),
-                                Toast.LENGTH_LONG).show()
-                                onResume()
+                                Toast.LENGTH_LONG
+                            ).show()
+                            onResume()
                         }
                     }
+
                     override fun onFailure(e: IOException) {
 
                     }
                 })
-            }
-
-        }).show()
+        }.show()
     }
 
 }

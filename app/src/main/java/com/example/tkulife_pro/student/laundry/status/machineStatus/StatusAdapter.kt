@@ -1,4 +1,4 @@
-package com.example.tkulife_pro.student.laundry.status.machinestatus
+package com.example.tkulife_pro.student.laundry.status.machineStatus
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

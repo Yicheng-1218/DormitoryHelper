@@ -1,8 +1,7 @@
-package com.example.tkulife_pro.student.laundry.status.machinestatus
+package com.example.tkulife_pro.student.laundry.status.machineStatus
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.databinding.ActivityMachineStatusBinding
@@ -12,9 +11,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import org.json.JSONArray
-import org.json.JSONObject
-import java.lang.reflect.Array
 
 class MachineStatus : AppCompatActivity() {
     private lateinit var binding:ActivityMachineStatusBinding

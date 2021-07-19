@@ -3,16 +3,9 @@ package com.example.tkulife_pro.student.laundry
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.example.tkulife_pro.OkHttpUtil
-import com.example.tkulife_pro.OkHttpUtil.Companion.mOkHttpUtil
 import com.example.tkulife_pro.databinding.ActivityLaundryBinding
-import com.example.tkulife_pro.student.laundry.fixreport.FixPage
+import com.example.tkulife_pro.student.laundry.fixReport.FixPage
 import com.example.tkulife_pro.student.laundry.status.floors.FloorStatus
-import okhttp3.Response
-import org.json.JSONArray
-import org.json.JSONObject
-import java.io.IOException
 
 
 class Laundry : AppCompatActivity() {

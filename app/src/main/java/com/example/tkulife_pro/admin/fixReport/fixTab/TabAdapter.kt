@@ -1,4 +1,4 @@
-package com.example.tkulife_pro.admin.fixreport.FixTab
+package com.example.tkulife_pro.admin.fixReport.fixTab
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

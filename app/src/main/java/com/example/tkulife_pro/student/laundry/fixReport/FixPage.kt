@@ -1,4 +1,4 @@
-package com.example.tkulife_pro.student.laundry.fixreport
+package com.example.tkulife_pro.student.laundry.fixReport
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,23 +28,33 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun initView() {
+//        新增spinner的選擇監聽
         binding.spinner1.onItemSelectedListener = this
+
+//        卻定報修按鈕
         binding.button.setOnClickListener {
-            Log.d("fix",radioSelectType())
-            Log.d("fix",stringCombination())
             var type=radioSelectType()
             var no=stringCombination()
-            val depict=binding.editTextTextPersonName.text.toString()
-            val json=JSONObject(
-                "{'type':'${type}','no':'${no}','depict':'${depict}'}"
-            )
+            val depict=binding.detailBox.text.toString()
+
+//            發送請求資料
+            val json=JSONObject("{'type':'${type}','no':'${no}','depict':'${depict}'}")
+
+//            如果DataValid發送請求
             if(type!="未選擇"){
+//                請求過程關閉按鈕
                 binding.button.isEnabled=false
+
+//                學生端報修post
                 mOkHttpUtil.post("https://tkudorm.site/repair",json,object: OkHttpUtil.ICallback{
                     override fun onResponse(response: Response) {
                         val res = response.body?.string()
+//                        顯示server回傳結果
                         Snackbar.make(it, JSONObject(res)["msg"].toString(), Snackbar.LENGTH_LONG).show()
+
+//                        UI線程
                         runOnUiThread{
+//                            請求完成開啟按鈕
                             binding.button.isEnabled=true
                         }
                     }
@@ -59,6 +69,7 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//        如果選擇1F就只有洗衣場選項
         if (p2 == 0) {
             binding.spinner2.adapter =
                 ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayOf("洗衣場"))
@@ -76,6 +87,7 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     }
 
+//    檢查radioButton選擇種類
     private fun radioSelectType(): String {
         var res=""
         if (binding.radioButton.isChecked || binding.radioButton2.isChecked) {
@@ -90,7 +102,9 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
         return res
     }
-    private fun stringCombination():String {  //spinner組合(棟+樓+機台編號)
+
+    //spinner組合(棟+樓+機台編號)
+    private fun stringCombination():String {
         var res=""
         var array= arrayOf("A","B","C")
         val floor=binding.spinner1.selectedItemPosition

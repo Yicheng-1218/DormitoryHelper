@@ -1,17 +1,15 @@
-package com.example.tkulife_pro.admin.fixreport
+package com.example.tkulife_pro.admin.fixReport
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.tkulife_pro.admin.fixreport.FixTab.TabAdapter
+import com.example.tkulife_pro.admin.fixReport.fixTab.Check
+import com.example.tkulife_pro.admin.fixReport.fixTab.Process
+import com.example.tkulife_pro.admin.fixReport.fixTab.TabAdapter
 import com.example.tkulife_pro.databinding.ActivityFixNotificationBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlin.collections.ArrayList
-import com.example.tkulife_pro.OkHttpUtil
-import com.example.tkulife_pro.OkHttpUtil.Companion.mOkHttpUtil
-import okhttp3.Response
 import org.json.JSONArray
-import java.io.IOException
 
 class FixNotification : AppCompatActivity() {
     private lateinit var binding:ActivityFixNotificationBinding
@@ -26,16 +24,20 @@ class FixNotification : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+//        接收確定報修後導向至處理中頁面
         binding.ViewPager.currentItem=intent.getIntExtra("Page",0)
     }
+
+
     private fun initView(){
+//        返回鍵
         binding.button12.setOnClickListener{
             super.onBackPressed()
         }
 
 
-
-        val fragments = arrayListOf(com.example.tkulife_pro.admin.fixreport.FixTab.Check(),com.example.tkulife_pro.admin.fixreport.FixTab.Process()) as ArrayList<Fragment>
+//        建立fragments陣列
+        val fragments = arrayListOf(Check(),Process()) as ArrayList<Fragment>
         val pageAdapter = TabAdapter(supportFragmentManager, lifecycle, fragments)
         binding.ViewPager.adapter=pageAdapter
 

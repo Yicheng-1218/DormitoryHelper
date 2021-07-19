@@ -1,10 +1,9 @@
-package com.example.tkulife_pro.student.laundry.status.machinestatus
+package com.example.tkulife_pro.student.laundry.status.machineStatus
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tkulife_pro.databinding.MachineItemBinding
-import com.example.tkulife_pro.student.laundry.status.machinestatus.S_Adapter
 
 class S_Adapter: RecyclerView.Adapter<S_Adapter.ViewHolder>(){
 
