@@ -1,17 +1,16 @@
-package com.example.tkulife_pro.student.laundry.status.machineStatus
+package com.example.tkulife_pro.machineStatus
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tkulife_pro.databinding.MachineItemBinding
 
-class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
+class S_Adapter: RecyclerView.Adapter<S_Adapter.ViewHolder>(){
 
-
-    class ViewHolder(val view: MachineItemBinding):RecyclerView.ViewHolder(view.root)
+    class ViewHolder(val view: MachineItemBinding): RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemBinding = MachineItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding= MachineItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(itemBinding)
     }
 

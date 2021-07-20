@@ -1,4 +1,4 @@
-package com.example.tkulife_pro.student.laundry.status.machineStatus
+package com.example.tkulife_pro.machineStatus
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,7 +15,7 @@ import com.google.firebase.ktx.Firebase
 class MachineStatus : AppCompatActivity() {
     private lateinit var binding:ActivityMachineStatusBinding
     private lateinit var database: DatabaseReference
-    private val viewAdapter=StatusAdapter()
+    private val viewAdapter= StatusAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityMachineStatusBinding.inflate(layoutInflater)

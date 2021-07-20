@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.tkulife_pro.databinding.ActivityLaundryBinding
 import com.example.tkulife_pro.student.laundry.fixReport.FixPage
-import com.example.tkulife_pro.student.laundry.status.floors.FloorStatus
+import com.example.tkulife_pro.student.laundry.status.floor.FloorStatus
 
 
 class Laundry : AppCompatActivity() {
@@ -50,7 +50,7 @@ class Laundry : AppCompatActivity() {
 
 //        烘衣機按鈕
         binding.imageButton10.setOnClickListener {
-            Intent(this,FloorStatus::class.java).apply {
+            Intent(this, null).apply {
                 putExtra("DataType","Dryer")
                 startActivity(this)
             }
@@ -58,24 +58,6 @@ class Laundry : AppCompatActivity() {
 
 //        報修按鈕
         binding.imageButton13.setOnClickListener {
-//            val json=JSONObject("{'email':'123','name':'456','phone':'789','room_bed':'987','package':[{'id':'147','from':'good'}],'id':'789'}")
-//            mOkHttpUtil.getAsync("https://test.bestea.space/studentList",object :OkHttpUtil.ICallback{
-//                override fun onResponse(response: Response) {
-//                    val res=response.body?.string()
-//                    try {
-//                        Log.d("okhttp",response.toString())
-//                        Log.d("okhttp",JSONObject(res).toString())
-//                    }catch (e:Exception){
-//                        Log.d("okhttp",e.toString())
-//                    }
-//
-//                }
-//
-//                override fun onFailure(e: IOException) {
-//                    Log.d("okhttp",e.toString())
-//                }
-//
-//            })
             Intent(this,FixPage::class.java).apply {
                 startActivity(this)
             }

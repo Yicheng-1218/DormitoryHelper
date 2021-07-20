@@ -1,4 +1,4 @@
-package com.example.tkulife_pro.student.laundry.status.floors
+package com.example.tkulife_pro.floors
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

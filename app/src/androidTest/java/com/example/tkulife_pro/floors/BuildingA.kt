@@ -1,4 +1,4 @@
-package com.example.tkulife_pro.student.laundry.status.floors
+package com.example.tkulife_pro.floors
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tkulife_pro.databinding.FragmentBuildingBBinding
-import com.example.tkulife_pro.student.laundry.status.machineStatus.MachineStatus
+//import com.example.tkulife_pro.databinding.FragmentBuildingABinding
+import com.example.tkulife_pro.machineStatus.MachineStatus
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -20,19 +20,23 @@ import com.google.firebase.ktx.Firebase
 import java.lang.Exception
 
 
-class BuildingB(private val machineType:String) : Fragment(),FloorAdapter.OnItemClick {
 
-    private lateinit var binding: FragmentBuildingBBinding
+
+class BuildingA(private val machineType:String) : Fragment(), FloorAdapter.OnItemClick {
+//    private lateinit var binding: FragmentBuildingABinding
     private lateinit var database: DatabaseReference
     private lateinit var viewAdapter: FloorAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        binding= FragmentBuildingBBinding.inflate(layoutInflater)
-        initView()
-        return binding.root
+    ): View? {
+//        binding = FragmentBuildingABinding.inflate(layoutInflater)
+//        initView()
+//        return binding.root
+        return null
+
     }
+
     private fun initView(){
         viewAdapter= FloorAdapter(this)
         //        建立database實例
@@ -45,8 +49,8 @@ class BuildingB(private val machineType:String) : Fragment(),FloorAdapter.OnItem
                     val res=snapshot.value as HashMap<*,*>
                     val nodeList=res[machineType] as HashMap<*,*>
 //                建立recyclerView
-                    setRecyclerView(nodeList,'B')
-                }catch (e: Exception){
+                    setRecyclerView(nodeList,'A')
+                }catch (e:Exception){
                     Log.d("firebase",e.toString())
                 }
             }
@@ -65,26 +69,29 @@ class BuildingB(private val machineType:String) : Fragment(),FloorAdapter.OnItem
 
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        binding.BuildB.apply {
-            setHasFixedSize(true)
-            setLayoutManager(layoutManager)
-            addItemDecoration(
-                DividerItemDecoration(requireContext(),
-                    DividerItemDecoration.VERTICAL
-                )
-            )
-            adapter = viewAdapter
-        }
-        viewAdapter.data=adapterData
-        viewAdapter.building=building
+//        binding.BuildA.apply {
+//            setHasFixedSize(true)
+//            setLayoutManager(layoutManager)
+//            addItemDecoration(
+//                DividerItemDecoration(requireContext(),
+//                    DividerItemDecoration.VERTICAL
+//                )
+//            )
+//            adapter = viewAdapter
+//        }
+//        viewAdapter.data=adapterData
+//        viewAdapter.building=building
     }
 
 //    元素點擊事件
     override fun onItemClick(position: Int) {
         Intent(requireContext(), MachineStatus::class.java).apply {
             putExtra("DataType",machineType)
-            putExtra("floor","B-0${position+1}")
+            putExtra("floor","A-0${position+1}")
             startActivity(this)
         }
     }
+
+
+
 }
