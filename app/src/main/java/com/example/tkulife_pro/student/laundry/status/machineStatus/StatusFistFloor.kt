@@ -6,6 +6,7 @@ import com.example.tkulife_pro.databinding.ActivityStatusFistFloorBinding
 
 class StatusFistFloor : AppCompatActivity() {
     private lateinit var binding: ActivityStatusFistFloorBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityStatusFistFloorBinding.inflate(layoutInflater)
