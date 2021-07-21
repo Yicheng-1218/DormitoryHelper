@@ -3,13 +3,22 @@ package com.example.tkulife_pro.student.laundry
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.tkulife_pro.databinding.ActivityLaundryBinding
 import com.example.tkulife_pro.student.laundry.fixReport.FixPage
 import com.example.tkulife_pro.student.laundry.status.floor.FloorStatus
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import java.lang.Exception
 
 
 class Laundry : AppCompatActivity() {
     private lateinit var binding: ActivityLaundryBinding
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +28,6 @@ class Laundry : AppCompatActivity() {
     }
 
     private fun initView(){
-
 
 //        返回鍵
         binding.button7.setOnClickListener {
@@ -50,7 +58,7 @@ class Laundry : AppCompatActivity() {
 
 //        烘衣機按鈕
         binding.imageButton10.setOnClickListener {
-            Intent(this, null).apply {
+            Intent(this, FloorStatus::class.java).apply {
                 putExtra("DataType","Dryer")
                 startActivity(this)
             }
@@ -63,6 +71,4 @@ class Laundry : AppCompatActivity() {
             }
         }
     }
-
-
 }

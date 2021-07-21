@@ -6,10 +6,17 @@ import com.example.tkulife_pro.databinding.ActivityStatusFistFloorBinding
 
 class StatusFistFloor : AppCompatActivity() {
     private lateinit var binding: ActivityStatusFistFloorBinding
-
+    private val viewAdapter= StatusAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityStatusFistFloorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initView()
+    }
+
+    private fun initView(){
+        binding.button16.setOnClickListener {
+            super.onBackPressed()
+        }
     }
 }
