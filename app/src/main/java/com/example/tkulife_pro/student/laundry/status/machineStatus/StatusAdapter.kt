@@ -8,10 +8,11 @@ import com.example.tkulife_pro.databinding.MachineItemBinding
 class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
 
 
-    class ViewHolder(val view: MachineItemBinding):RecyclerView.ViewHolder(view.root)
+    class ViewHolder(val view: MachineItemBinding) : RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemBinding = MachineItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding =
+            MachineItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemBinding)
     }
 
@@ -22,4 +23,5 @@ class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         TODO("Not yet implemented")
     }
+
 }
