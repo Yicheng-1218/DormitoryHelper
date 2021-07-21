@@ -1,5 +1,6 @@
 package com.example.tkulife_pro.student.laundry.status.floor
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +11,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.databinding.ActivityFloorStatusBinding
 import com.example.tkulife_pro.student.laundry.status.SharedViewModel
+import com.example.tkulife_pro.student.laundry.status.machineStatus.StatusFirstFloor
+import com.example.tkulife_pro.student.laundry.status.machineStatus.StatusWithTab
 
 class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
+    private lateinit var machineType :String
     private lateinit var binding:ActivityFloorStatusBinding
     private lateinit var viewModel:SharedViewModel
     private var  viewAdapter = FloorAdapter(this)
@@ -28,11 +32,11 @@ class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
     }
     private fun initView(){
         binding.progressBar2.isVisible = true
-        val type = intent.getStringExtra("DataType")
+        machineType = intent.getStringExtra("DataType")!!
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
         viewModel.getRealtimeData().observe(this, { data->
 //            TODO UPDATE UI ON HERE
-            setRecycleView(data,type!!)
+            setRecycleView(data,machineType!!)
             //關閉loading圖示
             binding.progressBar2.isVisible = false
         })
@@ -62,6 +66,17 @@ class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
     }
 
     override fun onItemClick(position: Int) {
-
+        if(position==0){
+            Intent(this, StatusFirstFloor::class.java).apply {
+                putExtra("DataType",machineType)
+                startActivity(this)
+            }
+        }else {
+            Intent(this, StatusWithTab::class.java).apply {
+                putExtra("DataType",machineType)
+                putExtra("selectPos",(position+1).toString())
+                startActivity(this)
+            }
+        }
     }
 }

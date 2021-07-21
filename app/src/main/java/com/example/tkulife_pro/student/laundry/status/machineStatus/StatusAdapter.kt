@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tkulife_pro.databinding.MachineItemBinding
 
 class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
+    lateinit var floor :String
+    lateinit var machineData : ArrayList<HashMap<*,*>>
 
 
     class ViewHolder(val view: MachineItemBinding) : RecyclerView.ViewHolder(view.root)
@@ -16,11 +18,13 @@ class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val machine = machineData[position]
+        holder.view.textView14.text = "${floor}-${machine["id"]}"
+        holder.view.textView16.text = machine["con"].toString()
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return machineData.size
     }
 
 }
