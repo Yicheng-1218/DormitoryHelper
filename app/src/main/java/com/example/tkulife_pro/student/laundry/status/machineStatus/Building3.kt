@@ -22,8 +22,8 @@ class Building3 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentBuilding3Binding.inflate(layoutInflater)
-        return binding.root
         initView()
+        return binding.root
     }
 
     private fun initView(){

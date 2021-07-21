@@ -20,9 +20,8 @@ class Building1 : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentBuilding1Binding.inflate(layoutInflater)
-
-        return binding.root
         initView()
+        return binding.root
     }
 
     private fun initView(){

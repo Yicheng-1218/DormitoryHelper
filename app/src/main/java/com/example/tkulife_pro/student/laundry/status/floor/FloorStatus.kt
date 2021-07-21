@@ -62,6 +62,6 @@ class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
     }
 
     override fun onItemClick(position: Int) {
-        Log.d("value",position.toString())
+
     }
 }
