@@ -37,6 +37,7 @@ class SharedViewModel : ViewModel() {
                 repository.value=snapshot.value as HashMap<*, *>
             }
 
+//            資料取得失敗
             override fun onCancelled(error: DatabaseError) {
                 repository.value= hashMapOf("msg" to "Firebase出現錯誤")
             }

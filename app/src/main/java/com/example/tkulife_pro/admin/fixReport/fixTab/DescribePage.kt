@@ -20,8 +20,6 @@ class DescribePage : AppCompatActivity() {
         binding = ActivityDescribePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView()
-
-
     }
 
     private fun initView() {
@@ -57,7 +55,7 @@ class DescribePage : AppCompatActivity() {
 //                                顯示server回傳
                                 Toast.makeText(
                                     this@DescribePage,
-                                    JSONObject(res)["msg"].toString(),
+                                    JSONObject(res!!)["msg"].toString(),
                                     Toast.LENGTH_LONG
                                 ).show()
 
@@ -85,8 +83,8 @@ class DescribePage : AppCompatActivity() {
             confirm.setTitle("確認視窗")
             confirm.setNegativeButton("取消", null)
             confirm.setPositiveButton("確定") { _, _ ->
+//                管理員put請求(usable)
                 mOkHttpUtil.put(
-//                    管理員put請求(usable)
                     "https://tkudorm.site/repair",
 //                    請求附加資料(index,con,key)
                     JSONObject("{'key':'rep', 'index':'${index}' , 'con' : 'usable'} "),
@@ -100,7 +98,7 @@ class DescribePage : AppCompatActivity() {
 //                                顯示sever回傳
                               Toast.makeText(
                                     this@DescribePage,
-                                    JSONObject(res)["msg"].toString(),
+                                    JSONObject(res!!)["msg"].toString(),
                                     Toast.LENGTH_LONG
                                 ).show()
 

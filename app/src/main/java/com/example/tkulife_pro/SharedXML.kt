@@ -10,7 +10,7 @@ class SharedXML(private val context: Context) {
     private fun createXML(name: String): SharedPreferences? {
         val table=context.getSharedPreferences(name,Context.MODE_PRIVATE)
         val editor=table.edit()
-        editor.commit()
+        editor.apply()
         return table
     }
 }

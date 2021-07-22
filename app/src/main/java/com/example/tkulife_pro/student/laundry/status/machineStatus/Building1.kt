@@ -16,6 +16,7 @@ class Building1(val selectFloor : String,val machineType:String) : Fragment(){
     private lateinit var binding: FragmentBuilding1Binding
     private lateinit var viewModel: SharedViewModel
     private var viewAdapter = StatusAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,7 +25,7 @@ class Building1(val selectFloor : String,val machineType:String) : Fragment(){
         return binding.root
     }
 
-
+//    設定recyclerView
     private fun setRecyclerView(adapterData:ArrayList<HashMap<*,*>>) {
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -44,9 +45,12 @@ class Building1(val selectFloor : String,val machineType:String) : Fragment(){
         viewAdapter.machineType = machineType
     }
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+//        取得viewModel
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+//        viewModel資料監聽
         viewModel.getRealtimeData().observe(viewLifecycleOwner,{ data->
             val type=data[machineType] as HashMap<*,*>
             val machineList = type["A-0${selectFloor}"] as ArrayList<HashMap<*,*>>

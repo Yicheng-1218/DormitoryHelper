@@ -1,5 +1,6 @@
 package com.example.tkulife_pro.student.reminder
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,8 +10,10 @@ import com.example.tkulife_pro.databinding.ReminderItemBinding
 class ReminderAdapter(private var itemClickListener:OnItemClick):
     RecyclerView.Adapter<ReminderAdapter.ViewHolder>() {
 
-//    資料集
+//    SQL鬧鐘資料表
     var dataSet= ArrayList<Array<Int>>()
+
+
     private val hour=0
     private val minute=1
 
@@ -24,6 +27,7 @@ class ReminderAdapter(private var itemClickListener:OnItemClick):
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //接收sqlite傳入參數&邏輯判斷
         var hour=dataSet[position][hour]

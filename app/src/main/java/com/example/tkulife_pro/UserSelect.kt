@@ -7,7 +7,6 @@ import androidx.appcompat.app.AlertDialog
 import com.example.tkulife_pro.admin.AdminMainPage
 import com.example.tkulife_pro.databinding.ActivityUserSelectBinding
 import com.example.tkulife_pro.student.StdMainPage
-import java.security.Guard
 
 
 class UserSelect : AppCompatActivity() {
@@ -48,7 +47,7 @@ class UserSelect : AppCompatActivity() {
         }
     }
 
-    private fun Guard(){
+    private fun guard(){
         val noAccess= AlertDialog.Builder(this)
         noAccess.setMessage("您沒有管理員權限")
         noAccess.setTitle("錯誤")

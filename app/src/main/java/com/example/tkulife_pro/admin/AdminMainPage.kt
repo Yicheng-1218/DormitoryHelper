@@ -12,7 +12,6 @@ class AdminMainPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityAdminMainPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         initView()
     }
 

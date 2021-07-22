@@ -1,5 +1,6 @@
 package com.example.tkulife_pro.student.laundry.status.floor
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ class FloorAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ada
         return ViewHolder(itemBinding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.view.textView22.text = "${position+1}F"
         holder.view.textView23.text = "共有${getUsable(machineData)[position]}台可用"
@@ -33,42 +35,41 @@ class FloorAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ada
 //    拆解資料計算可用台數
     private fun getUsable(data: HashMap<*,*>):ArrayList<Int>{
         val type = data[machineType] as HashMap<*,*>
-        val total = arrayListOf<Int>(0,0,0,0,0,0)
-        val floor1 = type["1F"] as ArrayList<HashMap<*,*>>
-        for (F in type.keys){
+        val total = arrayListOf(0,0,0,0,0,0)
+        for (F in type.keys ){
             if(F!="1F"){
                 F as String
                 when (F[3]){
                     '2' -> {
-                        for (i in type[F] as ArrayList<HashMap<*,*,>>){
+                        for (i in type[F] as ArrayList<HashMap<*,*>>){
                             if(i["con"]=="usable"){
                                 total[1]++
                             }
                         }
                     }
                     '3' -> {
-                        for (i in type[F] as ArrayList<HashMap<*,*,>>){
+                        for (i in type[F] as ArrayList<HashMap<*,*>>){
                             if(i["con"]=="usable"){
                                 total[2]++
                             }
                         }
                     }
                     '4' -> {
-                        for (i in type[F] as ArrayList<HashMap<*,*,>>){
+                        for (i in type[F] as ArrayList<HashMap<*,*>>){
                             if(i["con"]=="usable"){
                                 total[3]++
                             }
                         }
                     }
                     '5' -> {
-                        for (i in type[F] as ArrayList<HashMap<*,*,>>){
+                        for (i in type[F] as ArrayList<HashMap<*,*>>){
                             if(i["con"]=="usable"){
                                 total[4]++
                             }
                         }
                     }
                     '6' -> {
-                        for (i in type[F] as ArrayList<HashMap<*,*,>>){
+                        for (i in type[F] as ArrayList<HashMap<*,*>>){
                             if(i["con"]=="usable"){
                                 total[5]++
                             }
@@ -76,7 +77,7 @@ class FloorAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ada
                     }
                 }
             }else{
-                for (i in floor1) {
+                for (i in type["1F"] as ArrayList<HashMap<*,*>>) {
                     if(i["con"]=="usable"){
                         total[0]++
                     }

@@ -6,21 +6,18 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
-        <activity android:name=".student.laundry.status.machineStatus.StatusWithTab"></activity>
+        <activity android:name=".student.laundry.status.machineStatus.StatusWithTab" />
         <activity android:name=".student.laundry.status.machineStatus.StatusFirstFloor" />
         <activity android:name=".student.laundry.status.floor.FloorStatus" />
         <activity android:name=".admin.fixReport.fixTab.DescribePage" />
         <activity android:name=".admin.AdminMainPage" />
         <activity android:name=".admin.fixReport.FixNotification" />
         <activity android:name=".student.laundry.fixReport.FixPage" />
-        <activity android:name=".floors.FloorStatus" />
-        <activity android:name=".machineStatus.MachineStatus" />
         <activity android:name=".student.laundry.LittleTimer" />
         <activity android:name=".student.laundry.Laundry" />
         <activity android:name=".student.reminder.PushNotification" />
@@ -34,7 +31,8 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".student.reminder.PushNotification$TrashReceiver">
+        <receiver android:name=".student.reminder.PushNotification$TrashReceiver"
+            android:permission="android.permission.WAKE_LOCK">
             <intent-filter>
                 <action android:name="trash" />
             </intent-filter>

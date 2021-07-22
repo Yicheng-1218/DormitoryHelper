@@ -19,21 +19,27 @@ class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+//        對照機器種類給予圖片
         if(machineType=="Washer"){
             holder.view.imageView4.setImageResource(R.drawable.ic_washing_machine)
         }else{
             holder.view.imageView4.setImageResource(R.drawable.ic_tumble_dryer)
         }
-        var con =""
-        val machine = machineData[position]
-        holder.view.textView14.text = "${floor}-${machine["id"]}"
-        when (machine["con"]){
-            "using" -> con="運轉"
-            "usable" -> con="閒置"
-            "broken" -> con="故障"
-        }
 
-        holder.view.textView16.text = con
+//        對照表
+        val map = mapOf(
+            "using" to "運轉",
+            "usable" to "閒置",
+            "broken" to "故障"
+        )
+        val machine = machineData[position]
+
+//        編號
+        holder.view.textView14.text = "${floor}-${machine["id"]}"
+
+//        狀態
+        holder.view.textView16.text = map[machine["con"]]
     }
 
     override fun getItemCount(): Int {

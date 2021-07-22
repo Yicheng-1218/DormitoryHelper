@@ -32,20 +32,24 @@ class LittleTimer : AppCompatActivity() {
         initView()
     }
     private fun initView(){
+//        初始化editText
         hourEditText=binding.textInputLayout2.editText!!
         minuteEditText=binding.textInputLayout.editText!!
         secondEditText=binding.textInputLayout3.editText!!
-        hourEditText?.setText("0")
-        minuteEditText?.setText("0")
-        secondEditText?.setText("0")
+        hourEditText.setText("0")
+        minuteEditText.setText("0")
+        secondEditText.setText("0")
 
+//        返回鍵
         binding.button.setOnClickListener {
             super.onBackPressed()
         }
+
+//        重設
         binding.button8.setOnClickListener {
-            hourEditText?.setText("0")
-            minuteEditText?.setText("0")
-            secondEditText?.setText("0")
+            hourEditText.setText("0")
+            minuteEditText.setText("0")
+            secondEditText.setText("0")
             clearFocus()
             if (timerRunning&&timeLeftInMilliSecond>0L){
                 binding.button8.text="重設"
@@ -55,12 +59,13 @@ class LittleTimer : AppCompatActivity() {
             }
 
         }
+
+//        開始計時
         binding.button9.setOnClickListener {
             timeLeftInMilliSecond=getMillis()
             if(timeLeftInMilliSecond>0L){
                 Log.d("timer","millieSecond:$timeLeftInMilliSecond")
                 startStop()
-//                Snackbar.make(it,"計時器已設定",Snackbar.LENGTH_LONG).show()
                 clearFocus()
             }
 
@@ -69,12 +74,15 @@ class LittleTimer : AppCompatActivity() {
 
         }
     }
+
+//    清除聚焦
     private fun clearFocus(){
-        hourEditText?.clearFocus()
-        minuteEditText?.clearFocus()
-        secondEditText?.clearFocus()
+        hourEditText.clearFocus()
+        minuteEditText.clearFocus()
+        secondEditText.clearFocus()
     }
 
+//    更新時間方法
     private fun updateTimer(){
         val hour=timeLeftInMilliSecond.toInt()/(60000*60)
         val minute=timeLeftInMilliSecond.toInt()/60000
@@ -84,6 +92,7 @@ class LittleTimer : AppCompatActivity() {
         secondEditText.setText(second.toString())
     }
 
+//    計時開關
     private fun startStop(){
         if (timerRunning){
             stopTimer()
@@ -92,11 +101,14 @@ class LittleTimer : AppCompatActivity() {
         }
     }
 
+//    暫停計時
     private fun stopTimer(){
         myTimer.cancel()
         binding.button9.text="繼續"
         timerRunning=false
     }
+
+//    開始計時
     private fun startTimer(){
         myTimer=object:CountDownTimer(timeLeftInMilliSecond,1000){
             override fun onTick(p0: Long) {
@@ -123,12 +135,12 @@ class LittleTimer : AppCompatActivity() {
         timerRunning=true
     }
 
-
+//    取得millis時間
     private fun getMillis(): Long {
         var millis:Long=0
-        hour=hourEditText?.text.toString()
-        minute=minuteEditText?.text.toString()
-        second=secondEditText?.text.toString()
+        hour= hourEditText.text.toString()
+        minute= minuteEditText.text.toString()
+        second= secondEditText.text.toString()
         if(hour=="0"&&minute=="0"&&second=="0"){
             secondEditText.error="不可設定0秒鬧鐘"
         }else{

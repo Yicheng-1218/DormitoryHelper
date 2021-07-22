@@ -31,13 +31,19 @@ class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
         finish()
     }
     private fun initView(){
+//        開啟loading圖示
         binding.progressBar2.isVisible = true
+
+//        取得intent機器種類
         machineType = intent.getStringExtra("DataType")!!
+
+//        取得viewModel
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+//        viewModel資料監聽
         viewModel.getRealtimeData().observe(this, { data->
-//            TODO UPDATE UI ON HERE
+//            更新recyclerView
             setRecycleView(data,machineType!!)
-            //關閉loading圖示
+//            關閉loading圖示
             binding.progressBar2.isVisible = false
         })
 
@@ -47,10 +53,11 @@ class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
         }
     }
 
+//    設定recyclerView
     private fun setRecycleView(adapterData:HashMap<*,*>,machineType:String){
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.RecyclerView2.apply {
-            val layoutManager = LinearLayoutManager(this@FloorStatus)
-            layoutManager.orientation = LinearLayoutManager.VERTICAL
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
             addItemDecoration(
@@ -65,13 +72,16 @@ class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
         viewAdapter.machineType = machineType
     }
 
+//    元素點擊監聽
     override fun onItemClick(position: Int) {
         if(position==0){
+//            點擊一樓選項
             Intent(this, StatusFirstFloor::class.java).apply {
                 putExtra("DataType",machineType)
                 startActivity(this)
             }
         }else {
+//            點擊一樓以外選項
             Intent(this, StatusWithTab::class.java).apply {
                 putExtra("DataType",machineType)
                 putExtra("selectPos",(position+1).toString())

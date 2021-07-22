@@ -27,8 +27,8 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     private val hour=0
     private val minute=1
 
-    var trashReminder by Delegates.notNull<Boolean>()
-    var packageReminder by Delegates.notNull<Boolean>()
+    private var trashReminder by Delegates.notNull<Boolean>()
+    private var packageReminder by Delegates.notNull<Boolean>()
 
 
 
@@ -93,12 +93,6 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
             }
 
         }
-        binding.textView12.setOnClickListener {
-//            測試刪除TABLE
-            Sqlite(this).dropTable()
-            recreate()
-        }
-
     }
 
 //    設定RecyclerView內容

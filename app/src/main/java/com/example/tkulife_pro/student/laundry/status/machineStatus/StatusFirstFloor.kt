@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -32,13 +31,18 @@ class StatusFirstFloor : AppCompatActivity() {
     }
 
     private fun initView(){
+//        取得intent機器種類
         machineType = intent.getStringExtra("DataType")!!
+
+
 //        返回鍵
         binding.button16.setOnClickListener {
             onBackPressed()
         }
 
+//        取得viewModel
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+//        viewModel資料監聽
         viewModel.getRealtimeData().observe(this, { data->
             val type=data[machineType] as HashMap<*,*>
             val machineList = type["1F"] as ArrayList<HashMap<*,*>>
@@ -47,14 +51,19 @@ class StatusFirstFloor : AppCompatActivity() {
 
 //        示意圖
         binding.button17.setOnClickListener {
-            var dialog = MachineDiagram()
-            dialog.show(supportFragmentManager,"machineDiagram")
+//            建立示意圖物件
+            val dialog=MachineDialog()
+
+//            顯示示意圖
+            dialog.show(supportFragmentManager,"dialog")
         }
     }
+
+//    設定recyclerView
     private fun setRecyclerView(adapterData:ArrayList<HashMap<*,*>>){
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.recyclerView.apply {
-            val layoutManager = LinearLayoutManager(this@StatusFirstFloor)
-            layoutManager.orientation = LinearLayoutManager.VERTICAL
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
             addItemDecoration(
@@ -67,5 +76,20 @@ class StatusFirstFloor : AppCompatActivity() {
         viewAdapter.floor = "1F"
         viewAdapter.machineData = adapterData
         viewAdapter.machineType = machineType
+    }
+
+//    示意圖專用class
+    class MachineDialog:DialogFragment(){
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            var rootView:View=inflater.inflate(R.layout.fragment_machine_diagram,container,false)
+            rootView.findViewById<View>(R.id.close).setOnClickListener{
+                dismiss()
+            }
+            return rootView
+        }
     }
 }

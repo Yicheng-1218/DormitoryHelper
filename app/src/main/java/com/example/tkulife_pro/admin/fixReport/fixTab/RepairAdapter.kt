@@ -1,5 +1,6 @@
 package com.example.tkulife_pro.admin.fixReport.fixTab
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ad
         return ViewHolder(itemBinding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val details=data[position] as JSONObject
         val location=details["location"].toString()
@@ -29,6 +31,7 @@ class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ad
 
 //        字串轉換對照表
         if(type[1]!="1F"){
+//            分館分樓報修顯示
             val ref= mapOf(
                 "A" to "一館",
                 "B" to "二館",
@@ -46,11 +49,12 @@ class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ad
                 Log.d("index",floor.toString())
             }
         }else{
+//            1F報修顯示
             holder.view.textView27.text = "${type[1]}-${type[2].toInt()+1}"
         }
 
 
-
+//        取得機器種類
         var machine=type[0]
         when (machine){
             "Washer" -> {
@@ -62,8 +66,10 @@ class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ad
                 holder.view.imageView5.setImageResource(R.drawable.ic_tumble_dryer)
             }
         }
+//        顯示機器種類
         holder.view.textView29.text = machine
 
+//        點擊回傳position
         holder.view.fixItem.setOnClickListener {
             itemClickListener.onItemClick(position)
         }

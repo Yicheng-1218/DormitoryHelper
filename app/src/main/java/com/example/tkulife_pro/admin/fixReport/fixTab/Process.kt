@@ -1,13 +1,13 @@
 package com.example.tkulife_pro.admin.fixReport.fixTab
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.OkHttpUtil
@@ -20,11 +20,11 @@ import java.io.IOException
 
 class Process : Fragment(),RepairAdapter.OnItemClick {
     private lateinit var binding: FragmentProcessBinding
-    private lateinit var viewAdapter: RepairAdapter
+    private lateinit var viewAdapter:RepairAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentProcessBinding.inflate(layoutInflater)
         initView()
         return binding.root
@@ -32,11 +32,16 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
 
     override fun onResume() {
         super.onResume()
+//        request報修清單(con)
         OkHttpUtil.mOkHttpUtil.getAsync("https://tkudorm.site/repairList/con",object : OkHttpUtil.ICallback {
             override fun onResponse(response: Response) {
+//                回傳報修清單陣列
                 val res = response.body?.string()
                 activity?.runOnUiThread{
+//                    UI線程
                     setRecyclerView(JSONArray(res))
+//                    關閉loading圖示
+                    binding.progressBar3.isVisible=false
                 }
             }
 
@@ -46,11 +51,13 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
         })
     }
 
-
     private fun initView(){
-        viewAdapter = RepairAdapter(this)
+//        開啟loading圖示
+        binding.progressBar3.isVisible=true
+        viewAdapter=RepairAdapter(this)
     }
 
+//    設定recyclerView
     private fun setRecyclerView(adapterData: JSONArray) {
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -69,6 +76,7 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
 
 //    處理中頁面元素監聽
     override fun onItemClick(position: Int) {
+//    顯示對話框
         val confirm = AlertDialog.Builder(requireContext())
         confirm.setMessage("確認要將狀態改為可使用嗎?")
         confirm.setTitle("確認視窗")
@@ -81,11 +89,13 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
                     override fun onResponse(response: Response) {
                         val res = response.body?.string()
                         activity?.runOnUiThread {
+//                            顯示server回傳
                             Toast.makeText(
                                 requireContext(),
-                                JSONObject(res)["msg"].toString(),
+                                JSONObject(res!!)["msg"].toString(),
                                 Toast.LENGTH_LONG
                             ).show()
+//                            重新讀取清單
                             onResume()
                         }
                     }

@@ -2,8 +2,6 @@ package com.example.tkulife_pro.student.laundry.fixReport
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -12,7 +10,6 @@ import com.example.tkulife_pro.OkHttpUtil
 import com.example.tkulife_pro.OkHttpUtil.Companion.mOkHttpUtil
 import com.example.tkulife_pro.databinding.ActivityFixPageBinding
 import com.google.android.material.snackbar.Snackbar
-
 import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
@@ -33,8 +30,8 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 //        卻定報修按鈕
         binding.button.setOnClickListener {
-            var type=radioSelectType()
-            var no=stringCombination()
+            val type=radioSelectType()
+            val no=stringCombination()
             val depict=binding.detailBox.text.toString()
 
 //            發送請求資料
@@ -50,7 +47,7 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                     override fun onResponse(response: Response) {
                         val res = response.body?.string()
 //                        顯示server回傳結果
-                        Snackbar.make(it, JSONObject(res)["msg"].toString(), Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(it, JSONObject(res!!)["msg"].toString(), Snackbar.LENGTH_LONG).show()
 
 //                        UI線程
                         runOnUiThread{
@@ -89,12 +86,12 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 //    檢查radioButton選擇種類
     private fun radioSelectType(): String {
-        var res=""
+        val res: String
         if (binding.radioButton.isChecked || binding.radioButton2.isChecked) {
-            if (binding.radioButton.isChecked) {
-                res="Washer"
+            res = if (binding.radioButton.isChecked) {
+                "Washer"
             } else {
-                res="Dryer"
+                "Dryer"
             }
         } else {
             res="未選擇"
@@ -105,15 +102,15 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     //spinner組合(棟+樓+機台編號)
     private fun stringCombination():String {
-        var res=""
-        var array= arrayOf("A","B","C")
+        val res: String
+        val array= arrayOf("A","B","C")
         val floor=binding.spinner1.selectedItemPosition
         val building=binding.spinner2.selectedItemPosition
         val id=binding.spinner3.selectedItemPosition
-        if(floor==0){
-            res="1F_${id}"
+        res = if(floor==0){
+            "1F_${id}"
         }else {
-            res = "${array[building]}-0${floor+1}_${id}"
+            "${array[building]}-0${floor+1}_${id}"
         }
         return res
     }

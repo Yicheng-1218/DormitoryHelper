@@ -23,7 +23,7 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCheckBinding.inflate(layoutInflater)
         initView()
         return binding.root
@@ -35,13 +35,13 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
 //        request報修清單(rep)
         OkHttpUtil.mOkHttpUtil.getAsync("https://tkudorm.site/repairList/rep",object : OkHttpUtil.ICallback {
             override fun onResponse(response: Response) {
-//                回傳報修(陣列)
+//                回傳報修清單陣列
                 val res = response.body?.string()
-                json= JSONArray(res)
                 activity?.runOnUiThread{
-                    setRecyclerView(json)
+//                    UI線程
+                    setRecyclerView(JSONArray(res))
 
-//                    關閉loading圈圈
+//                    關閉loading圖示
                     binding.progressBar.isVisible=false
                 }
             }
@@ -52,7 +52,7 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
         })
     }
     private fun initView(){
-//        開啟loading圈圈
+//        開啟loading圖示
         binding.progressBar.isVisible=true
         viewAdapter = RepairAdapter(this)
     }

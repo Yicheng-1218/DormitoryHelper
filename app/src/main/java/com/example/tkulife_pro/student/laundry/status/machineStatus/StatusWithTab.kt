@@ -17,13 +17,17 @@ class StatusWithTab : AppCompatActivity() {
         initView()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 
     private fun initView() {
         val floor = intent.getStringExtra("selectPos")!!
         val type = intent.getStringExtra("DataType")!!
 //        返回鍵
         binding.button11.setOnClickListener(){
-            super.onBackPressed()
+            onBackPressed()
         }
 
 //        設定viewPager畫面內容
