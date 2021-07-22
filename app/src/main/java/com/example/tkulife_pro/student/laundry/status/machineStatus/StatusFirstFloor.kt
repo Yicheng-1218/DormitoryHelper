@@ -47,8 +47,8 @@ class StatusFirstFloor : AppCompatActivity() {
 
 //        示意圖
         binding.button17.setOnClickListener {
-            object :DialogFragment(){
-            }.show(supportFragmentManager,"dialog")
+            var dialog = MachineDiagram()
+            dialog.show(supportFragmentManager,"machineDiagram")
         }
     }
     private fun setRecyclerView(adapterData:ArrayList<HashMap<*,*>>){
