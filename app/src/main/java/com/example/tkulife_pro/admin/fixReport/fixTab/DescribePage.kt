@@ -88,8 +88,8 @@ class DescribePage : AppCompatActivity() {
                 mOkHttpUtil.put(
 //                    管理員put請求(usable)
                     "https://tkudorm.site/repair",
-//                    請求附加資料(index,con)
-                    JSONObject("{'index':'${index}' , 'con' : 'usable'} "),
+//                    請求附加資料(index,con,key)
+                    JSONObject("{'key':'rep', 'index':'${index}' , 'con' : 'usable'} "),
                     object : OkHttpUtil.ICallback {
                         override fun onResponse(response: Response) {
 //                            非同步線程

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
         <activity android:name=".student.laundry.status.machineStatus.StatusWithTab"></activity>
-        <activity android:name=".student.laundry.status.machineStatus.StatusFistFloor" />
+        <activity android:name=".student.laundry.status.machineStatus.StatusFirstFloor" />
         <activity android:name=".student.laundry.status.floor.FloorStatus" />
         <activity android:name=".admin.fixReport.fixTab.DescribePage" />
         <activity android:name=".admin.AdminMainPage" />

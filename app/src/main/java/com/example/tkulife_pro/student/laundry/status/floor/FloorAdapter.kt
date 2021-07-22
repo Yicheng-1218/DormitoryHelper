@@ -29,6 +29,8 @@ class FloorAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ada
     override fun getItemCount(): Int {
         return 6
     }
+
+//    拆解資料計算可用台數
     private fun getUsable(data: HashMap<*,*>):ArrayList<Int>{
         val type = data[machineType] as HashMap<*,*>
         val total = arrayListOf<Int>(0,0,0,0,0,0)
@@ -81,9 +83,11 @@ class FloorAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ada
                 }
             }
         }
-        Log.d("value","總共"+total)
+        Log.d("value", "總共$total")
         return total
     }
+
+//    元素點擊介面
     interface OnItemClick{
         fun onItemClick(position: Int)
     }
