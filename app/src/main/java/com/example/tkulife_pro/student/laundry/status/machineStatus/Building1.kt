@@ -6,39 +6,51 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.databinding.FragmentBuilding1Binding
 import com.example.tkulife_pro.student.laundry.status.SharedViewModel
 
-class Building1 : Fragment(){
+class Building1(val selectFloor : String,val machineType:String) : Fragment(){
 
     private lateinit var binding: FragmentBuilding1Binding
     private lateinit var viewModel: SharedViewModel
-    private lateinit var viewAdapter: StatusAdapter
+    private var viewAdapter = StatusAdapter()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentBuilding1Binding.inflate(layoutInflater)
-        initView()
         return binding.root
     }
 
-    private fun initView(){
-        viewAdapter=StatusAdapter()
-    }
 
-    private fun setRecyclerView() {
+    private fun setRecyclerView(adapterData:ArrayList<HashMap<*,*>>) {
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.recycleView1.apply {
+            setHasFixedSize(true)
+            setLayoutManager(layoutManager)
+            addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+            adapter = viewAdapter //只建立一次FloorAdapter
+        }
+        viewAdapter.floor = "一館-${selectFloor}F"
+        viewAdapter.machineData = adapterData
+        viewAdapter.machineType = machineType
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
         viewModel.getRealtimeData().observe(viewLifecycleOwner,{ data->
-//            TODO UPDATE UI ON HERE
-
+            val type=data[machineType] as HashMap<*,*>
+            val machineList = type["A-0${selectFloor}"] as ArrayList<HashMap<*,*>>
+            setRecyclerView(machineList)
         })
     }
 

@@ -42,7 +42,7 @@ class StatusFirstFloor : AppCompatActivity() {
         viewModel.getRealtimeData().observe(this, { data->
             val type=data[machineType] as HashMap<*,*>
             val machineList = type["1F"] as ArrayList<HashMap<*,*>>
-            setRecycleView(machineList)
+            setRecyclerView(machineList)
         })
 
 //        示意圖
@@ -51,7 +51,7 @@ class StatusFirstFloor : AppCompatActivity() {
             }.show(supportFragmentManager,"dialog")
         }
     }
-    private fun setRecycleView(adapterData:ArrayList<HashMap<*,*>>){
+    private fun setRecyclerView(adapterData:ArrayList<HashMap<*,*>>){
         binding.recyclerView.apply {
             val layoutManager = LinearLayoutManager(this@StatusFirstFloor)
             layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -66,5 +66,6 @@ class StatusFirstFloor : AppCompatActivity() {
         }
         viewAdapter.floor = "1F"
         viewAdapter.machineData = adapterData
+        viewAdapter.machineType = machineType
     }
 }
