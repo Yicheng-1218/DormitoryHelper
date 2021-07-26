@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
+        <activity android:name=".student.laundry.peaktimeChart.PeakTime"></activity>
         <activity android:name=".student.laundry.status.machineStatus.StatusWithTab" />
         <activity android:name=".student.laundry.status.machineStatus.StatusFirstFloor" />
         <activity android:name=".student.laundry.status.floor.FloorStatus" />
@@ -31,7 +32,8 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".student.reminder.PushNotification$TrashReceiver"
+        <receiver
+            android:name=".student.reminder.PushNotification$TrashReceiver"
             android:permission="android.permission.WAKE_LOCK">
             <intent-filter>
                 <action android:name="trash" />

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.tkulife_pro.databinding.ActivityLaundryBinding
 import com.example.tkulife_pro.student.laundry.fixReport.FixPage
+import com.example.tkulife_pro.student.laundry.peaktimeChart.PeakTime
 import com.example.tkulife_pro.student.laundry.status.floor.FloorStatus
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -67,6 +68,13 @@ class Laundry : AppCompatActivity() {
 //        報修按鈕
         binding.imageButton13.setOnClickListener {
             Intent(this,FixPage::class.java).apply {
+                startActivity(this)
+            }
+        }
+
+//        使用率按鈕
+        binding.imageButton14.setOnClickListener{
+            Intent(this,PeakTime::class.java).apply {
                 startActivity(this)
             }
         }
