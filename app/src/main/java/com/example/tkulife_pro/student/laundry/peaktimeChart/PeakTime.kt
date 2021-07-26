@@ -1,5 +1,6 @@
 package com.example.tkulife_pro.student.laundry.peaktimeChart
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.tkulife_pro.R
@@ -17,35 +18,35 @@ class PeakTime : AppCompatActivity() {
         initView()
     }
 
-    fun initView(){
+    private fun initView(){
 
         // x axis values
-        val xvalues=ArrayList<String>()
-        xvalues.add("08:00")
-        xvalues.add("09:00")
-        xvalues.add("10:00")
-        xvalues.add("11:00")
-        xvalues.add("12:00")
-        xvalues.add("13:00")
+        val xValues=ArrayList<String>()
+        xValues.add("08:00")
+        xValues.add("09:00")
+        xValues.add("10:00")
+        xValues.add("11:00")
+        xValues.add("12:00")
+        xValues.add("13:00")
 
-        //bar entries
-        val barentries=ArrayList<BarEntry>()
-        barentries.add(BarEntry(3f,0))
-        barentries.add(BarEntry(7f,0))
-        barentries.add(BarEntry(14f,0))
-        barentries.add(BarEntry(21f,0))
-        barentries.add(BarEntry(8f,0))
-        barentries.add(BarEntry(9f,0))
+        //bar Entries
+        val barEntries=ArrayList<BarEntry>()
+        barEntries.add(BarEntry(3f,0))
+        barEntries.add(BarEntry(7f,1))
+        barEntries.add(BarEntry(14f,2))
+        barEntries.add(BarEntry(21f,3))
+        barEntries.add(BarEntry(8f,4))
+        barEntries.add(BarEntry(9f,5))
 
-        // bardata set
-        val bardataset=BarDataSet(barentries,null)
-        bardataset.color=R.color.iconBlue
+        // bar Dataset
+        val barDataset=BarDataSet(barEntries,null)
+        barDataset.color=R.color.iconBlue
 
         //  make a bar data
-        val data =BarData(xvalues,bardataset)
+        val data =BarData(xValues,barDataset)
         binding.barChart.data=data
 
-        binding.barChart.setBackgroundColor(resources.getColor(R.color.white))
+        binding.barChart.setBackgroundColor(Color.WHITE)
         binding.barChart.animateXY(3000,3000)
 
     }
