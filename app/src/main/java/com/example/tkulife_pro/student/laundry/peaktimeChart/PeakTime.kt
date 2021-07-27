@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.PeakTimeTabBinding
 import com.example.tkulife_pro.student.laundry.status.SharedViewModel
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -25,11 +26,9 @@ class PeakTime : AppCompatActivity() {
         setContentView(binding.root)
         initView()
     }
-
+    val dataSet = ArrayList<ArrayList<Float>>()
     private fun initView(){
-        val xlabel = arrayListOf<String>("08","10","12","14","16","18","20","22")
 
-        val dataSet = ArrayList<ArrayList<Float>>()
         dataSet.add(arrayListOf(10f,16f,8f,20f,6f,2f,5f,13f))
         dataSet.add(arrayListOf(5f,13f,6f,5f,6f,12f,10f,6f))
         dataSet.add(arrayListOf(8f,11f,10f,2f,16f,20f,15f,10f))
@@ -38,39 +37,12 @@ class PeakTime : AppCompatActivity() {
         dataSet.add(arrayListOf(2f,8f,18f,20f,16f,6f,4f,16f))
         dataSet.add(arrayListOf(5f,6f,18f,14f,10f,3f,15f,10f))
 
-//        val entry = ArrayList<BarEntry>()
-//        for((i,e) in dataSet[0].withIndex()){
-//            entry.add(BarEntry(e,i))
-//        }
-//        val barDataset = BarDataSet(entry,null)
-//        barDataset.color=R.color.iconBlue
-//        val data =BarData(xlabel,barDataset)
-//        binding.barChart.apply {
-//            xAxis.position = XAxis.XAxisPosition.BOTTOM
-//            this.data = data
-//            setBackgroundColor(Color.WHITE)
-//            animateXY(2000,2000)
-//            setDescription("每兩小時統計一次")
-//        }
+        setBarChart(0)
 
         binding.tabLayout.addOnTabSelectedListener(object:
             TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                val entry = ArrayList<BarEntry>()
-                for((i,e) in dataSet[tab!!.position].withIndex()){
-                    entry.add(BarEntry(e,i))
-                }
-                val barDataset = BarDataSet(entry,null)
-                barDataset.color=R.color.iconBlue
-                val data =BarData(xlabel,barDataset)
-                binding.barChart.apply {
-                    xAxis.position = XAxis.XAxisPosition.BOTTOM
-                    this.data = data
-                    setBackgroundColor(Color.WHITE)
-                    animateXY(2000,2000)
-                    setDescription("每兩小時統計一次")
-                }
-
+                setBarChart(tab!!.position)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -83,6 +55,25 @@ class PeakTime : AppCompatActivity() {
 
         })
 
+
+    }
+    private fun setBarChart(position : Int){
+        val xlabel = arrayListOf<String>("08","10","12","14","16","18","20","22")
+        val entry = ArrayList<BarEntry>()
+        for((i,e) in dataSet[position].withIndex()){
+            entry.add(BarEntry(e,i))
+        }
+        val barDataset = BarDataSet(entry,null)
+        barDataset.color=R.color.iconBlue
+        val data =BarData(xlabel,barDataset)
+        binding.barChart.apply {
+            xAxis.position = XAxis.XAxisPosition.BOTTOM
+            this.data = data
+            setBackgroundColor(Color.WHITE)
+            animateXY(2000,2000)
+            setDescription("每兩小時統計一次")
+            legend.textSize = 25f
+        }
 
     }
 }
