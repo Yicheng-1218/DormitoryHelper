@@ -73,7 +73,7 @@ class PeakTime : AppCompatActivity() {
             valueTextSize=16f
         }
 //    長條圖顏色
-        barDataset.color=R.color.black
+        barDataset.color=R.color.tkuGray
         val data =BarData(xLabel,barDataset)
         binding.barChart.apply {
 //            xLabel

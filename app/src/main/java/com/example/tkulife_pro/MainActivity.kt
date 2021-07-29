@@ -19,6 +19,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(this)
             }
         }
+        Intent(this,FCMService::class.java).apply {
+            startService(this)
+        }
+
     }
 
 }

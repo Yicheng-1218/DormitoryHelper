@@ -11,7 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
-        <activity android:name=".student.laundry.peaktimeChart.PeakTime"></activity>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/email__1_" />
+        <service
+            android:name=".FCMService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <activity android:name=".student.laundry.peaktimeChart.PeakTime" />
         <activity android:name=".student.laundry.status.machineStatus.StatusWithTab" />
         <activity android:name=".student.laundry.status.machineStatus.StatusFirstFloor" />
         <activity android:name=".student.laundry.status.floor.FloorStatus" />
@@ -40,5 +52,6 @@
             </intent-filter>
         </receiver>
     </application>
+
 
 </manifest>
