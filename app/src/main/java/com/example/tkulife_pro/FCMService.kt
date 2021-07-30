@@ -5,18 +5,20 @@ import android.content.Intent
 import android.os.IBinder
 import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 class FCMService : FirebaseMessagingService(){
-
-
+    val database = Firebase.firestore
     override fun onCreate() {
         super.onCreate()
+        val user = Firebase.auth.currentUser
         val token = FirebaseMessaging.getInstance().token
             .addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
@@ -29,8 +31,18 @@ class FCMService : FirebaseMessagingService(){
 
                 // Log and toast
                 Log.d("fcm", token.toString())
-
+                if(user!=null){
+                    val email = user.email!!.split('@')
+                    val userRef = database.collection("student").document("${email[0]}")
+                    Log.d("user", "${email[0]}")
+// Set the "isCapital" field of the city 'DC'
+                        userRef
+                            .update("token", token)
+                            .addOnSuccessListener { Log.d("user", "DocumentSnapshot successfully updated!") }
+                            .addOnFailureListener { e -> Log.w("user", "Error updating document", e) }
+                    }
             })
+
     }
 
     override fun onNewToken(token: String) {

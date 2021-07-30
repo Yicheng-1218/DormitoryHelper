@@ -3,10 +3,12 @@ package com.example.tkulife_pro
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.tkulife_pro.admin.AdminMainPage
 import com.example.tkulife_pro.databinding.ActivityUserSelectBinding
 import com.example.tkulife_pro.student.StdMainPage
+import com.firebase.ui.auth.AuthUI
 
 
 class UserSelect : AppCompatActivity() {
@@ -41,7 +43,16 @@ class UserSelect : AppCompatActivity() {
             val confirm = AlertDialog.Builder(this)
             confirm.setMessage("是否清除帳密")
             confirm.setTitle("確認視窗")
-            confirm.setNegativeButton("是", null)
+            confirm.setNegativeButton("是"){ _,_->
+                AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener {
+                        Toast.makeText(this,"您已登出此帳號!",Toast.LENGTH_LONG).show()
+                        Intent(this,MainActivity::class.java).apply {
+                            startActivity(this)
+                        }
+                    }
+            }
             confirm.setPositiveButton("否", null)
             confirm.show()
         }
