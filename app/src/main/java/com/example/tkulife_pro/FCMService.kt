@@ -61,7 +61,7 @@ class FCMService : FirebaseMessagingService(){
         // Check if message contains a notification payload.
         remoteMessage.notification?.let {
             Log.d("fcm", "Message Notification Body: ${it.body}")
-            TkuNotification(this,"包裹提醒","包裹提醒").build("包裹提醒","您目前有包裹需領取! 寄件人:${remoteMessage.data["寄件人"]}").show(2)
+            TkuNotification(this,"包裹提醒","包裹提醒").build("包裹提醒","您目前有包裹需領取! 包裹編號後3碼:${remoteMessage.data["pid"]}").show(2)
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM

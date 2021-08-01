@@ -61,7 +61,9 @@ class MainActivity : AppCompatActivity() {
             // Successfully signed in
             val user = FirebaseAuth.getInstance().currentUser
             Log.d("user",user.toString())
-            recreate()
+            Intent(this,FCMService::class.java).apply {
+                startService(this)
+            }
         } else {
             // Sign in failed. If response is null the user canceled the
             // sign-in flow using the back button. Otherwise check
