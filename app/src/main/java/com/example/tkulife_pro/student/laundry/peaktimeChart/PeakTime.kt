@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.PeakTimeTabBinding
 import com.example.tkulife_pro.student.laundry.status.SharedViewModel
+import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -29,15 +30,16 @@ class PeakTime : AppCompatActivity() {
     }
     private fun initView(){
 //        假設資料集
-        dataSet.add(arrayListOf(10f,16f,8f,20f,6f,2f,5f,13f))
-        dataSet.add(arrayListOf(5f,13f,6f,5f,6f,12f,10f,6f))
-        dataSet.add(arrayListOf(8f,11f,10f,2f,16f,20f,15f,10f))
-        dataSet.add(arrayListOf(12f,6f,18f,20f,9f,9f,17f,10f))
-        dataSet.add(arrayListOf(3f,17f,20f,15f,14f,5f,9f,7f))
-        dataSet.add(arrayListOf(2f,8f,18f,20f,16f,6f,4f,16f))
-        dataSet.add(arrayListOf(5f,6f,18f,14f,10f,3f,15f,10f))
 
-//        初始化barChart為資料1
+        dataSet.add(arrayListOf(10f,21f,13f,25f,11f,2f,5f,6f,5f))
+        dataSet.add(arrayListOf(25f,13f,6f,12f,6f,11f,10f,15f,2f))
+        dataSet.add(arrayListOf(8f,19f,10f,2f,16f,20f,15f,5f,5f))
+        dataSet.add(arrayListOf(12f,6f,18f,20f,9f,8f,17f,2f,8f))
+        dataSet.add(arrayListOf(3f,17f,20f,18f,10f,5f,9f,7f,11f))
+        dataSet.add(arrayListOf(2f,8f,18f,20f,16f,6f,14f,8f,8f))
+        dataSet.add(arrayListOf(14f,6f,18f,16f,10f,11f,15f,3f,7f))
+        dataSet.add(arrayListOf(4f,8f,30f,16f,10f,9f,13f,8f,2f))
+        //        初始化barChart為資料1
         setBarChart(0)
 
 //        TAB點擊監聽
@@ -62,15 +64,16 @@ class PeakTime : AppCompatActivity() {
 
 //    設定barChart
     private fun setBarChart(position : Int){
-        val xLabel = arrayListOf("08","10","12","14","16","18","20","22")
+        val xValues = ArrayList<String>()
+        val xLabel = arrayListOf("08-10","10-12","12-14","14-16","16-18","18-20","20-22","22-24","24-08")
         val entry = ArrayList<BarEntry>().also {
             for((i,e) in dataSet[position].withIndex()){
                 it.add(BarEntry(e,i))
             }
         }
-        val barDataset = BarDataSet(entry,null).apply {
+        val barDataset = BarDataSet(entry,"個時段使用次數/全天使用次數").apply {
 //            資料字體大小
-            valueTextSize=16f
+            valueTextSize=20f
         }
 //    長條圖顏色
         barDataset.color=R.color.tkuGray
@@ -79,11 +82,18 @@ class PeakTime : AppCompatActivity() {
 //            xLabel
             xAxis.apply {
                 this.position = XAxis.XAxisPosition.BOTTOM
-                textSize=13f
+                textSize=11f
             }
+            xAxis.labelRotationAngle=-60f
+            xAxis.spaceBetweenLabels=2
+            xAxis.setDrawGridLines(false)
 //            yLabel
-            axisLeft.textSize=11f
-            axisRight.textSize=11f
+            axisLeft.axisLineWidth=0.9f
+            axisLeft.setDrawGridLines(false)
+            axisRight.setDrawGridLines(false)
+            barDataset.setDrawValues(false)
+            //axisLeft.textSize=11f
+            //axisRight.textSize=11f
 //            加入資料集
             this.data = data
 //            設定背景色
@@ -91,7 +101,7 @@ class PeakTime : AppCompatActivity() {
 //            圖表動畫
             animateXY(2000,2000)
 //            圖表描述
-            setDescription("每兩小時統計一次")
+            setDescription("")
 //            描述字體大小
             setDescriptionTextSize(16f)
         }
