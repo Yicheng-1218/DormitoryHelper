@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.tkulife_pro.student.laundry.Laundry
 import com.example.tkulife_pro.databinding.ActivityStdMainpageBinding
+import com.example.tkulife_pro.student.stdPackage.PackagePage
 
 class StdMainPage : AppCompatActivity() {
     private lateinit var binding: ActivityStdMainpageBinding
@@ -27,6 +28,11 @@ class StdMainPage : AppCompatActivity() {
         }
         binding.imageButton6.setOnClickListener {
             Intent(this, Laundry::class.java).apply {
+                startActivity(this)
+            }
+        }
+        binding.imageButton8.setOnClickListener{
+            Intent(this, PackagePage::class.java).apply {
                 startActivity(this)
             }
         }
