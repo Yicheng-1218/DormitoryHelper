@@ -23,12 +23,14 @@
             </intent-filter>
         </service>
 
+        <activity android:name=".student.stdPackage.PackagePage" />
         <activity android:name=".student.laundry.peaktimeChart.PeakTime" />
         <activity android:name=".student.laundry.status.machineStatus.StatusWithTab" />
         <activity android:name=".student.laundry.status.machineStatus.StatusFirstFloor" />
         <activity android:name=".student.laundry.status.floor.FloorStatus" />
         <activity android:name=".admin.fixReport.fixTab.DescribePage" />
         <activity android:name=".admin.AdminMainPage" />
+        <activity android:name=".admin.packageManagement.PushNotification" />
         <activity android:name=".admin.fixReport.FixNotification" />
         <activity android:name=".student.laundry.fixReport.FixPage" />
         <activity android:name=".student.laundry.LittleTimer" />

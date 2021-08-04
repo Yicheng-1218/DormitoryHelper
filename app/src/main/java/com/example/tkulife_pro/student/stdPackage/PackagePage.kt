@@ -25,14 +25,23 @@ class PackagePage : AppCompatActivity() {
         initView()
     }
     private fun initView(){
+//        開啟loading圖示
         binding.progressBar4.isVisible = true
+
+//        取得目前登入的使用者
         val user = Firebase.auth.currentUser
+
+
+//        分割EMAIL取得學號
         val uid = user?.email?.split('@')?: arrayListOf()
+
+//        向server請求包裹清單
         mOkHttpUtil.getAsync("https://tkudorm.site/pklist/${uid[0]}", object :OkHttpUtil.ICallback{
             override fun onResponse(response: Response) {
                 val value = response.body?.string()
                 runOnUiThread{
                     setRecyclerView(JSONArray(value))
+//                    關閉loading圖示
                     binding.progressBar4.isVisible = false
                 }
 
@@ -44,6 +53,8 @@ class PackagePage : AppCompatActivity() {
 
         })
     }
+
+//    設定recyclerView
     private fun setRecyclerView(packageList : JSONArray){
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -56,7 +67,7 @@ class PackagePage : AppCompatActivity() {
                     DividerItemDecoration.VERTICAL
                 )
             )
-            adapter = viewAdapter //只建立一次FloorAdapter
+            adapter = viewAdapter
         }
         viewAdapter.packageList = packageList
     }

@@ -6,22 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import com.example.tkulife_pro.R
+import com.example.tkulife_pro.databinding.PackageNotificationFormBinding
 
-class PackagePushForm:DialogFragment() {
+class PackagePushForm: Fragment() {
+
+    private lateinit var binding: PackageNotificationFormBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        var rootView:View=inflater.inflate(R.layout.package_notification_form,container,false)
+    ): View {
+        binding= PackageNotificationFormBinding.inflate(layoutInflater)
 
-        rootView.findViewById<View>(R.id.button19).setOnClickListener{
-            var id=R.id.package_id.toString()
-            Toast.makeText(context,"已成功發送",Toast.LENGTH_LONG)
-            dismiss()
-        }
-
-        return rootView
+        return binding.root
     }
 }

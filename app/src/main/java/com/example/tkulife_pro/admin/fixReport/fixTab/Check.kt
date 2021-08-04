@@ -37,9 +37,10 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
             override fun onResponse(response: Response) {
 //                回傳報修清單陣列
                 val res = response.body?.string()
+                json=JSONArray(res)
                 activity?.runOnUiThread{
 //                    UI線程
-                    setRecyclerView(JSONArray(res))
+                    setRecyclerView(json)
 
 //                    關閉loading圖示
                     binding.progressBar.isVisible=false

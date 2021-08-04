@@ -18,19 +18,23 @@ class StdMainPage : AppCompatActivity() {
         initView()
     }
     private fun initView(){
+//        返回鍵
         binding.button2.setOnClickListener {
             super.onBackPressed()
         }
+//        鎖屏提醒
         binding.imageButton5.setOnClickListener {
             Intent(this,PushNotification::class.java).apply {
                 startActivity(this)
             }
         }
+//        洗衣烘衣
         binding.imageButton6.setOnClickListener {
             Intent(this, Laundry::class.java).apply {
                 startActivity(this)
             }
         }
+//        包裹狀態
         binding.imageButton8.setOnClickListener{
             Intent(this, PackagePage::class.java).apply {
                 startActivity(this)

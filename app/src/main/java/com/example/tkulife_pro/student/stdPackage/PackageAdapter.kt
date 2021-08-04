@@ -1,5 +1,6 @@
 package com.example.tkulife_pro.student.stdPackage
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ class PackageAdapter : RecyclerView.Adapter<PackageAdapter.ViewHolder>(){
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pkg = packageList[position] as JSONObject
         holder.view.textView32.text = "編號末三碼: ${pkg["pid"]}"

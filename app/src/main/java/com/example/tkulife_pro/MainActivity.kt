@@ -21,16 +21,23 @@ class MainActivity : AppCompatActivity() {
         initView()
     }
     private fun initView(){
+//        宿舍管理按鈕
         binding.imageButton.setOnClickListener {
             Intent(this,UserSelect::class.java).apply {
                 startActivity(this)
             }
         }
+
+//        開啟FCM服務
         Intent(this,FCMService::class.java).apply {
             startService(this)
         }
+
+//        取得登入狀態
         getUser()
     }
+
+//    取得登入狀態
     private fun getUser(){
         val user = Firebase.auth.currentUser
         if (user != null) {
@@ -42,19 +49,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+//    登入方法
     private fun logIn(){
 
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build())
 
-// Create and launch sign-in intent
         val signInIntent = AuthUI.getInstance()
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
             .build()
         signInLauncher.launch(signInIntent)
     }
+
+//    檢查登入結果
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
         val response = result.idpResponse
         if (result.resultCode == RESULT_OK) {
@@ -65,12 +73,11 @@ class MainActivity : AppCompatActivity() {
                 startService(this)
             }
         } else {
-            // Sign in failed. If response is null the user canceled the
-            // sign-in flow using the back button. Otherwise check
-            // response.getError().getErrorCode() and handle the error.
-            // ...
+
         }
     }
+
+//    登入啟動器
     private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
     ) { res ->

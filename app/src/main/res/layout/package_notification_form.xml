@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/common_google_signin_btn_icon_dark_normal_background">
 
     <TextView
         android:id="@+id/textView32"
@@ -85,20 +86,22 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView38"
         app:layout_constraintStart_toEndOf="@+id/textView38"
-        app:layout_constraintTop_toTopOf="@+id/textView38" />
+        app:layout_constraintTop_toTopOf="@+id/textView38"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/button19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="412dp"
+        android:layout_marginTop="50dp"
         android:text="送出"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

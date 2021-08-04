@@ -16,29 +16,30 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 class FCMService : FirebaseMessagingService(){
-    val database = Firebase.firestore
+    private val database = Firebase.firestore
     private lateinit var timerXML : SharedPreferences
+
+//    service onCreate
     override fun onCreate() {
         super.onCreate()
         timerXML = SharedXML(this).getXML("timer")!!
         val user = Firebase.auth.currentUser
-        val token = FirebaseMessaging.getInstance().token
+
+//    取得token
+        FirebaseMessaging.getInstance().token
             .addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
                     Log.w("fcm", "Fetching FCM registration token failed", task.exception)
                     return@OnCompleteListener
                 }
 
-                // Get new FCM registration token
                 val token = task.result
 
-                // Log and toast
                 Log.d("fcm", token.toString())
                 if(user!=null){
                     val email = user.email!!.split('@')
-                    val userRef = database.collection("student").document("${email[0]}")
-                    Log.d("user", "${email[0]}")
-// Set the "isCapital" field of the city 'DC'
+                    val userRef = database.collection("student").document(email[0])
+                    Log.d("user", email[0])
                         userRef
                             .update("token", token)
                             .addOnSuccessListener { Log.d("user", "DocumentSnapshot successfully updated!") }
@@ -48,13 +49,15 @@ class FCMService : FirebaseMessagingService(){
 
     }
 
+//    當有新Token產生時觸發
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.d("fcm", "refresh token:$token")
     }
+
+//    前景接收FCM作業
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         val isEnableFCM = timerXML.getBoolean("packageReminder",true)
-        // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         if(isEnableFCM){
             Log.d("fcm", "From: ${remoteMessage.from}")
             // Check if message contains a data payload.
