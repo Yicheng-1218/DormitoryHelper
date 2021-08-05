@@ -1,5 +1,6 @@
 package com.example.tkulife_pro.student.laundry.status.machineStatus
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
         return ViewHolder(itemBinding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 //        對照機器種類給予圖片

@@ -14,7 +14,7 @@ import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
 
-class PackagePushForm(val userData:HashMap<*,*>): Fragment() {
+class PackagePushForm(private val userData:HashMap<*,*>): Fragment() {
 
     private lateinit var binding: PackageNotificationFormBinding
 
@@ -54,7 +54,7 @@ class PackagePushForm(val userData:HashMap<*,*>): Fragment() {
             mOkHttpUtil.post("https://tkudorm.site/package",body,object :OkHttpUtil.ICallback{
                 override fun onResponse(response: Response) {
                     val res=response.body?.string()
-                    val json=JSONObject(res)
+                    val json=JSONObject(res!!)
                     activity?.runOnUiThread {
                         Toast.makeText(requireContext(),"${json["msg"]}",Toast.LENGTH_SHORT).show()
                         binding.progressBar5.isVisible=false

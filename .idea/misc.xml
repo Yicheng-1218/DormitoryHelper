@@ -6,9 +6,15 @@
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/drawable/circle_bg.xml" value="0.20989583333333334" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/drawable/ic_email.xml" value="0.20989583333333334" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/drawable/loupe.xml" value="0.2359375" />
+        <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/activity_package_page.xml" value="0.2296875" />
+        <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/activity_package_record.xml" value="0.2296875" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/activity_push_notification.xml" value="0.15052083333333333" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/activity_push_packagenotification.xml" value="0.2640625" />
+        <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/machine_item.xml" value="0.5" />
+        <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/package_item.xml" value="0.315625" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/package_notification_form.xml" value="0.2640625" />
+        <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/peak_time_tab.xml" value="0.315625" />
+        <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/reminder_item.xml" value="0.315625" />
       </map>
     </option>
   </component>
