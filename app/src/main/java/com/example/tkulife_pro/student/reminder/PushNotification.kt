@@ -100,15 +100,18 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.RecyclerView.apply {
+            if (getLayoutManager()==null){
+//              設定分隔線
+                addItemDecoration(
+                    DividerItemDecoration(
+                        this@PushNotification,
+                        DividerItemDecoration.VERTICAL
+                    )
+                )
+            }
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
-//            設定分隔線
-            addItemDecoration(
-                DividerItemDecoration(
-                    this@PushNotification,
-                    DividerItemDecoration.VERTICAL
-                )
-            )
+
 
             adapter=viewAdapter
         }

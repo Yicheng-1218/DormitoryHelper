@@ -30,14 +30,17 @@ class Building2(val selectFloor : String,val machineType:String) : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.recycleView2.apply {
+            if (getLayoutManager()==null){
+                addItemDecoration(
+                    DividerItemDecoration(
+                        requireContext(),
+                        DividerItemDecoration.VERTICAL
+                    )
+                )
+            }
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    DividerItemDecoration.VERTICAL
-                )
-            )
+
             adapter = viewAdapter //只建立一次FloorAdapter
         }
         viewAdapter.floor = "二館-${selectFloor}F"

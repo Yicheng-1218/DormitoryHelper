@@ -62,11 +62,14 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.Process.apply {
+            if (getLayoutManager()==null){
+                addItemDecoration(
+                    DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL)
+                )
+            }
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
-            addItemDecoration(
-                DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL)
-            )
+
             adapter = viewAdapter
         }
         viewAdapter.data = adapterData

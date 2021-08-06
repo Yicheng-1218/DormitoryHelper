@@ -59,14 +59,16 @@ class PackagePage : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.packageRecycler.apply {
+            if (getLayoutManager()==null){
+                addItemDecoration(
+                    DividerItemDecoration(
+                        this@PackagePage,
+                        DividerItemDecoration.VERTICAL
+                    )
+                )
+            }
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
-            addItemDecoration(
-                DividerItemDecoration(
-                    this@PackagePage,
-                    DividerItemDecoration.VERTICAL
-                )
-            )
             adapter = viewAdapter
         }
         viewAdapter.packageList = packageList

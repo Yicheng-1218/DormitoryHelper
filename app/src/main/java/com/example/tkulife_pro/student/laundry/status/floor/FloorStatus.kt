@@ -58,13 +58,16 @@ class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.RecyclerView2.apply {
+            if (getLayoutManager()==null){
+                addItemDecoration(
+                    DividerItemDecoration(this@FloorStatus,
+                        DividerItemDecoration.VERTICAL
+                    )
+                )
+            }
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
-            addItemDecoration(
-                DividerItemDecoration(this@FloorStatus,
-                    DividerItemDecoration.VERTICAL
-                )
-            )
+
             adapter = viewAdapter //只建立一次FloorAdapter
         }
 

@@ -50,7 +50,7 @@ class LittleTimer : AppCompatActivity() {
             hourEditText.setText("0")
             minuteEditText.setText("0")
             secondEditText.setText("0")
-            clearFocus()
+            currentFocus?.clearFocus()
             if (timerRunning&&timeLeftInMilliSecond>0L){
                 binding.button8.text="重設"
                 timeLeftInMilliSecond=0
@@ -66,7 +66,7 @@ class LittleTimer : AppCompatActivity() {
             if(timeLeftInMilliSecond>0L){
                 Log.d("timer","millieSecond:$timeLeftInMilliSecond")
                 startStop()
-                clearFocus()
+                currentFocus?.clearFocus()
             }
 
 
@@ -75,12 +75,6 @@ class LittleTimer : AppCompatActivity() {
         }
     }
 
-//    清除聚焦
-    private fun clearFocus(){
-        hourEditText.clearFocus()
-        minuteEditText.clearFocus()
-        secondEditText.clearFocus()
-    }
 
 //    更新時間方法
     private fun updateTimer(){

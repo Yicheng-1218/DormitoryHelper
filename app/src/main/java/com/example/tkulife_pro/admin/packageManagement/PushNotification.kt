@@ -1,9 +1,11 @@
 package com.example.tkulife_pro.admin.packageManagement
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.tkulife_pro.Keyboard
 import com.example.tkulife_pro.databinding.ActivityPushPackagenotificationBinding
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -28,6 +30,10 @@ class PushNotification : AppCompatActivity() {
 
 //        查詢按鈕
         binding.imageButton18.setOnClickListener {
+//            清除聚焦
+            currentFocus?.clearFocus()
+//            隱藏鍵盤
+            Keyboard.hide(this,it)
 //            取得editText.text
             val roomID=binding.roomBedText.editableText.toString()
 
@@ -61,6 +67,7 @@ class PushNotification : AppCompatActivity() {
                 }else{
 //                    查無床號
                     Log.d("package","room_bed not found")
+                    Toast.makeText(this,"查無床號",Toast.LENGTH_SHORT).show()
                 }
 
             }.continueWith {
@@ -95,7 +102,7 @@ class PushNotification : AppCompatActivity() {
 
         }catch (e:Exception){
             Log.d("package",e.toString())
-            Toast.makeText(this,"輸入框不可為空",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"資料輸入錯誤",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -103,4 +110,5 @@ class PushNotification : AppCompatActivity() {
     private fun setFragment(userData:HashMap<*,*>){
         supportFragmentManager.beginTransaction().replace(binding.fragmentContainerView.id,PackagePushForm(userData)).commit()
     }
+
 }

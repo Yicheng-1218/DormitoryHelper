@@ -20,7 +20,7 @@ class PackageAdapter : RecyclerView.Adapter<PackageAdapter.ViewHolder>(){
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val pkg = packageList[position] as JSONObject
+        val pkg = packageList[(packageList.length()-1)-position] as JSONObject
         holder.view.textView32.text = "編號末三碼: ${pkg["pid"]}"
     }
 

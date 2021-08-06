@@ -1,31 +1,36 @@
 package com.example.tkulife_pro.admin.packageManagement
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tkulife_pro.databinding.PackageAdminItemBinding
 import com.example.tkulife_pro.databinding.PackageItemBinding
-import com.example.tkulife_pro.student.stdPackage.PackageAdapter
 import org.json.JSONArray
 import org.json.JSONObject
 
 class RecordAdapter : RecyclerView.Adapter<RecordAdapter.ViewHolder>() {
-    private lateinit var binding : PackageAdminItemBinding
-    lateinit var packageList : JSONArray
-    class ViewHolder(val view: PackageAdminItemBinding):RecyclerView.ViewHolder(view.root)
+    private lateinit var binding : PackageItemBinding
+    lateinit var packageList : ArrayList<HashMap<*,*>>
+    class ViewHolder(val view: PackageItemBinding):RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding= PackageAdminItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        binding= PackageItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val pkg = packageList[position] as JSONObject
-        holder.view.textView37.text = "編號末三碼: ${pkg["pid"]}"
-        holder.view.textView39.text="已領取"
+        val pkg = packageList[position]
+        val map= mapOf(
+            true to "已領",
+            false to "未領"
+        )
+        holder.view.textView32.text
+        holder.view.textView33.text=map[pkg["taken"]]
+
     }
 
     override fun getItemCount(): Int {
-        return packageList.length()
+        return packageList.size
     }
 }

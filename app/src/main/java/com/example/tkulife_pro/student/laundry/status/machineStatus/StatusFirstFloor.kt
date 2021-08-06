@@ -64,13 +64,16 @@ class StatusFirstFloor : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.recyclerView.apply {
+            if (getLayoutManager()==null){
+                addItemDecoration(
+                    DividerItemDecoration(this@StatusFirstFloor,
+                        DividerItemDecoration.VERTICAL
+                    )
+                )
+            }
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
-            addItemDecoration(
-                DividerItemDecoration(this@StatusFirstFloor,
-                    DividerItemDecoration.VERTICAL
-                )
-            )
+
             adapter = viewAdapter //只建立一次FloorAdapter
         }
         viewAdapter.floor = "1F"
