@@ -5,17 +5,17 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tkulife_pro.databinding.PackageItemBinding
+import com.example.tkulife_pro.databinding.RecordItemBinding
 import org.json.JSONArray
 import org.json.JSONObject
 
 class RecordAdapter(private val mode:Int) : RecyclerView.Adapter<RecordAdapter.ViewHolder>() {
-    private lateinit var binding : PackageItemBinding
+    private lateinit var binding : RecordItemBinding
     lateinit var packageList : ArrayList<HashMap<*,*>>
-    class ViewHolder(val view: PackageItemBinding):RecyclerView.ViewHolder(view.root)
+    class ViewHolder(val view: RecordItemBinding):RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding= PackageItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        binding= RecordItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
 
         return ViewHolder(binding)
     }
@@ -57,19 +57,19 @@ class RecordAdapter(private val mode:Int) : RecyclerView.Adapter<RecordAdapter.V
         val pkg=list[(list.size-1)-position]
         when(pkg["taken"]){
             true->{
-                holder.view.textView33.apply {
+                holder.view.takenText.apply {
                     text="已領"
                     setTextColor(Color.parseColor("#0099e5"))
                 }
             }
             false->{
-                holder.view.textView33.apply {
+                holder.view.takenText.apply {
                     text="未領"
                     setTextColor(Color.parseColor("#ff4c4c"))
                 }
             }
         }
-        holder.view.textView32.text="${pkg["roomID"]}   後三碼:${pkg["pid"]}"
+        holder.view.pidText.text="${pkg["roomID"]}   後三碼:${pkg["pid"]}"
     }
 
 
