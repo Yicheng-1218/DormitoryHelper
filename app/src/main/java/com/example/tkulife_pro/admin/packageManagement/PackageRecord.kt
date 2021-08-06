@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -15,6 +17,8 @@ import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityPackagePageBinding
 import com.example.tkulife_pro.databinding.ActivityPackageRecordBinding
 import com.example.tkulife_pro.student.laundry.status.SharedViewModel
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.json.JSONArray
@@ -22,7 +26,7 @@ import org.json.JSONArray
 class PackageRecord : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: ActivityPackageRecordBinding
     private lateinit var viewModel:PackageViewModel
-    private val viewAdapter=RecordAdapter()
+    private lateinit var viewAdapter:RecordAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityPackageRecordBinding.inflate(layoutInflater)
@@ -34,12 +38,20 @@ class PackageRecord : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 //        取得ViewModel
         viewModel = ViewModelProvider(this).get(PackageViewModel::class.java)
-
-
+        viewModel.context=this
 //        搜尋按鈕
         binding.imageButton9.setOnClickListener {
             currentFocus?.clearFocus()
             Keyboard.hide(this,it)
+            binding.roomNumber.text.run {
+                if (this.isNotEmpty()){
+                    viewModel.searchByID(this.toString()).observe(this@PackageRecord,{ data->
+                        setRecyclerView(data,binding.spinner4.selectedItemPosition)
+                    })
+                }else{
+                    Toast.makeText(this@PackageRecord,"輸入框不可空白",Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
 //        spinner
@@ -52,12 +64,10 @@ class PackageRecord : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         }
 
-
     }
 
-
-
-    private fun setRecyclerView(packageList: ArrayList<HashMap<*,*>>){
+    private fun setRecyclerView(packageList: ArrayList<HashMap<*,*>>,mode:Int){
+        viewAdapter= RecordAdapter(mode)
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.packageRecycler2.apply {
@@ -81,9 +91,10 @@ class PackageRecord : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         currentFocus?.clearFocus()
         Keyboard.hide(this,p1!!)
         Log.d("spinner",p2.toString())
+        binding.roomNumber.setText("")
         viewModel.getSortList(p2).observe(this,{
             Log.d("model record",it.toString())
-            setRecyclerView(it)
+            setRecyclerView(it,p2)
         })
     }
 
