@@ -92,7 +92,7 @@ class PackageRecord : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         Keyboard.hide(this,p1!!)
         Log.d("spinner",p2.toString())
         binding.roomNumber.setText("")
-        viewModel.getSortList(p2).observe(this,{
+        viewModel.getSortList().observe(this,{
             Log.d("model record",it.toString())
             setRecyclerView(it,p2)
         })
