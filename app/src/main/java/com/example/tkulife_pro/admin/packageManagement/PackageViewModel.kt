@@ -27,7 +27,7 @@ class PackageViewModel:ViewModel() {
         MutableLiveData<ArrayList<HashMap<*,*>>>()
     }
 
-    private fun getPackageList(){
+    private val getPackageList by lazy{
         database= FirebaseFirestore.getInstance()
         ArrayList<HashMap<*,*>>().also { list->
             database.collection("roomList").get().addOnSuccessListener {
@@ -57,7 +57,7 @@ class PackageViewModel:ViewModel() {
     }
 
     fun getSortList(): LiveData<ArrayList<HashMap<*,*>>> {
-        getPackageList()
+        getPackageList
         return repository
     }
 
