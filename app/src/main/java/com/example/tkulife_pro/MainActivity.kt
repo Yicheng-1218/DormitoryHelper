@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         val signInIntent = AuthUI.getInstance()
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
+            .setTheme(R.style.Theme_TkuLife_pro)
             .build()
         signInLauncher.launch(signInIntent)
     }
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 startService(this)
             }
         } else {
-
+            logIn()
         }
     }
 

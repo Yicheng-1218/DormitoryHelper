@@ -8,6 +8,7 @@ import com.example.tkulife_pro.databinding.ActivityLaundryBinding
 import com.example.tkulife_pro.student.laundry.fixReport.FixPage
 import com.example.tkulife_pro.student.laundry.peaktimeChart.PeakTime
 import com.example.tkulife_pro.student.laundry.status.floor.FloorStatus
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -34,6 +35,11 @@ class Laundry : AppCompatActivity() {
         binding.button7.setOnClickListener {
             super.onBackPressed()
         }
+
+//        取得學號
+        val uid= FirebaseAuth.getInstance().currentUser?.email?.split('@')?.get(0)
+        uid.isNullOrEmpty().let{ if (!it)binding.textView21.text=uid }
+
 
 //        報修頁面
         binding.imageButton13.setOnClickListener {

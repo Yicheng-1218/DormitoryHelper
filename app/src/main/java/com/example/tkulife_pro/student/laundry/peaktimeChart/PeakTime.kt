@@ -71,7 +71,7 @@ class PeakTime : AppCompatActivity() {
                 it.add(BarEntry(e,i))
             }
         }
-        val barDataset = BarDataSet(entry,"個時段使用次數/全天使用次數").apply {
+        val barDataset = BarDataSet(entry,"各時段使用次數/全天使用次數").apply {
 //            資料字體大小
             valueTextSize=20f
         }

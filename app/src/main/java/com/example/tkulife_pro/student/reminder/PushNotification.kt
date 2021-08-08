@@ -15,6 +15,7 @@ import com.example.tkulife_pro.SharedXML
 import com.example.tkulife_pro.Sqlite
 import com.example.tkulife_pro.databinding.ActivityPushNotificationBinding
 import com.example.tkulife_pro.TkuNotification
+import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.properties.Delegates
@@ -41,6 +42,10 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     private fun initView() {
 //        取得開關狀態表
         val timerXML = SharedXML(this).getXML("timer")!!
+
+//        取得學號
+        val uid= FirebaseAuth.getInstance().currentUser?.email?.split('@')?.get(0)
+        uid.isNullOrEmpty().let{ if (!it)binding.textView12.text=uid }
 
 //        到垃圾廣播意圖
         trashIntent=Intent(this,TrashReceiver::class.java)

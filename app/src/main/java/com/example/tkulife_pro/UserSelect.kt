@@ -47,45 +47,35 @@ class UserSelect : AppCompatActivity() {
                 isAdmin(uid)
             }
         }
-//        清除帳密
-        binding.button6.setOnClickListener {
-            val confirm = AlertDialog.Builder(this)
-            confirm.setMessage("是否清除帳密")
-            confirm.setTitle("確認視窗")
-            confirm.setNegativeButton("是"){ _,_->
-                AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener {
-                        Toast.makeText(this,"您已登出此帳號!",Toast.LENGTH_LONG).show()
-                        Intent(this,MainActivity::class.java).apply {
-                            startActivity(this)
-                        }
-                    }
-            }
-            confirm.setPositiveButton("否", null)
-            confirm.show()
-        }
     }
 
 //    管理員檢查
     private fun isAdmin(uid:String){
-        database.collection("admin").get().addOnSuccessListener { doc->
-            val adminList= arrayListOf<String>().also { list->
-                doc.documents.onEach { list.add(it.id) }
-            }
-            Log.d("adminList",adminList.toString())
-            if (uid in adminList){
-                Intent(this,AdminMainPage::class.java).apply {
-                    startActivity(this)
-                }
-            }else{
-                val noAccess= AlertDialog.Builder(this)
-                noAccess.setMessage("您沒有管理員權限")
-                noAccess.setTitle("錯誤")
-                noAccess.setPositiveButton("我知道了",null)
-                noAccess.show()
-            }
+        val noAccess=AlertDialog.Builder(this).apply {
+            setMessage("您沒有管理員權限")
+            setTitle("錯誤")
+            setPositiveButton("確認",null)
         }
+
+        if (uid.isNotEmpty()){
+            database.collection("admin").get().addOnSuccessListener { doc->
+                val adminList= arrayListOf<String>().also { list->
+                    doc.documents.onEach { list.add(it.id) }
+                }
+                Log.d("adminList",adminList.toString())
+                if (uid in adminList){
+                    Intent(this,AdminMainPage::class.java).apply {
+                        startActivity(this)
+                    }
+                }
+                else{
+                    noAccess.show()
+                }
+            }
+        }else{
+            noAccess.show()
+        }
+
 
 
     }

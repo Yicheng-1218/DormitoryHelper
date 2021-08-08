@@ -23,19 +23,20 @@ class AdminMainPage : AppCompatActivity() {
             super.onBackPressed()
         }
 
-//        報修通知按鈕
+//        包裹管理按鈕
         binding.imageButton7.setOnClickListener{
-            Intent(this,FixNotification::class.java).apply{
-                startActivity(this)
-            }
-        }
-//      包裹管理按鈕
-        binding.imageButton4.setOnClickListener{
             Intent(this,PushNotification::class.java).apply {
                 startActivity((this))
             }
         }
 
+//        報修通知
+        binding.imageButton4.setOnClickListener{
+            Intent(this,FixNotification::class.java).apply{
+                startActivity(this)
+            }
+        }
+//        包裹簽收紀錄
         binding.imageButton16.setOnClickListener {
             Intent(this,PackageRecord::class.java).apply {
                 startActivity(this)

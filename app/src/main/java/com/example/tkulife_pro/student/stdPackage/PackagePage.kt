@@ -33,6 +33,11 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
         initView()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     override fun onResume() {
         super.onResume()
         //        取得目前登入的使用者
@@ -47,22 +52,29 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
             "https://tkudorm.site/pklist/${uid}",
             object : OkHttpUtil.ICallback {
                 override fun onResponse(response: Response) {
-                    val value = response.body?.string()
-
-                    val list = JSONArray(value)
-                    val untaken = ArrayList<JSONObject>().also { untaken ->
-                        for (i in 0..list.length() - 1) {
-                            val pk = list.get(i) as JSONObject
-                            if (pk["taken"] == false) {
-                                untaken.add(pk)
+                    try {
+                        val value = response.body?.string()
+                        val list = JSONArray(value)
+                        val untaken = ArrayList<JSONObject>().also { untaken ->
+                            for (i in 0 until list.length()) {
+                                val pk = list.get(i) as JSONObject
+                                if (pk["taken"] == false) {
+                                    untaken.add(pk)
+                                }
                             }
                         }
-                    }
-                    runOnUiThread {
-                        setRecyclerView(JSONArray(untaken))
+                        runOnUiThread {
+                            setRecyclerView(JSONArray(untaken))
 //                    關閉loading圖示
-                        binding.progressBar4.isVisible = false
+                            binding.progressBar4.isVisible = false
+                        }
+                    }catch (e:Exception){
+                        runOnUiThread {
+                            Toast.makeText(this@PackagePage,"您尚未登入",Toast.LENGTH_LONG).show()
+                            onBackPressed()
+                        }
                     }
+
 
                 }
 
