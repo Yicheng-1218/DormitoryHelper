@@ -28,64 +28,59 @@
 
     <ImageButton
         android:id="@+id/imageButton14"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_marginTop="55dp"
-        android:background="@drawable/circle_bg"
+        android:background="@drawable/ic_peaktime_1"
+        android:contentDescription="TODO"
         app:layout_constraintEnd_toEndOf="@+id/imageButton10"
         app:layout_constraintStart_toStartOf="@+id/imageButton10"
         app:layout_constraintTop_toTopOf="@+id/textView18"
-        app:srcCompat="@drawable/circle_bg"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:contentDescription="TODO" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/imageButton11"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/circle_bg"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/ic_washer_new"
         app:layout_constraintEnd_toStartOf="@+id/imageButton10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageButton10"
-        app:srcCompat="@drawable/circle_bg"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/imageButton12"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/circle_bg"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/ic_timer_new"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton10"
         app:layout_constraintTop_toTopOf="@+id/imageButton10"
-        app:srcCompat="@drawable/circle_bg"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/imageButton13"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_marginTop="55dp"
-        android:background="@drawable/circle_bg"
+        android:background="@drawable/ic_fixpage_1"
         app:layout_constraintStart_toStartOf="@+id/imageButton11"
         app:layout_constraintTop_toBottomOf="@+id/imageButton11"
-        app:srcCompat="@drawable/circle_bg"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/imageButton10"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/circle_bg"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/ic_dryer_new"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton12"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton11"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.15"
-        app:srcCompat="@drawable/circle_bg"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -93,6 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="洗衣機"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageButton11"
         app:layout_constraintStart_toStartOf="@+id/imageButton11"
         app:layout_constraintTop_toBottomOf="@+id/imageButton11" />
@@ -102,6 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="烘衣機"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageButton10"
         app:layout_constraintStart_toStartOf="@+id/imageButton10"
         app:layout_constraintTop_toBottomOf="@+id/imageButton10" />
@@ -111,6 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="計時提醒"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageButton12"
         app:layout_constraintStart_toStartOf="@+id/imageButton12"
         app:layout_constraintTop_toBottomOf="@+id/imageButton12" />
@@ -120,6 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="我要報修"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageButton13"
         app:layout_constraintStart_toStartOf="@+id/imageButton13"
         app:layout_constraintTop_toBottomOf="@+id/imageButton13" />
@@ -129,6 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="各時段使用狀況"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/imageButton14"
         app:layout_constraintStart_toStartOf="@+id/imageButton14"
         app:layout_constraintTop_toBottomOf="@+id/imageButton14" />
