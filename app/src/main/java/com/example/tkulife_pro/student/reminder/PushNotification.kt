@@ -42,9 +42,6 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
 //        取得開關狀態表
         val timerXML = SharedXML(this).getXML("timer")!!
 
-//        取得學號
-        val uid= FirebaseAuth.getInstance().currentUser?.email?.split('@')?.get(0)
-        uid.isNullOrEmpty().let{ if (!it)binding.textView12.text=uid }
 
 //        到垃圾廣播意圖
         trashIntent=Intent(this,TrashReceiver::class.java)
@@ -88,8 +85,10 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     private fun emptyImg(){
         if (getSQLTimer().size==0){
             binding.imageView2.visibility= View.VISIBLE
+            binding.textView8.visibility = View.VISIBLE
         }else{
             binding.imageView2.visibility= View.GONE
+            binding.textView8.visibility = View.GONE
         }
     }
 

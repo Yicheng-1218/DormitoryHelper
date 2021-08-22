@@ -50,7 +50,7 @@ class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ad
             }
         }else{
 //            1F報修顯示
-            holder.view.textView27.text = "${type[1]}-${type[2].toInt()+1}"
+            holder.view.textView27.text = "     ${type[1]}-${type[2].toInt()+1}     "
         }
 
 
