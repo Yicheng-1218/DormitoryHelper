@@ -40,10 +40,6 @@ class LittleTimer : AppCompatActivity() {
         minuteEditText.setText("0")
         secondEditText.setText("0")
 
-//        返回鍵
-        binding.button.setOnClickListener {
-            super.onBackPressed()
-        }
 
 //        重設
         binding.button8.setOnClickListener {

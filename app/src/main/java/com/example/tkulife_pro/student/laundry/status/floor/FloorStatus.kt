@@ -47,10 +47,6 @@ class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
             binding.progressBar2.isVisible = false
         })
 
-        //返回鍵
-        binding.button10.setOnClickListener {
-            onBackPressed()
-        }
     }
 
 //    設定recyclerView

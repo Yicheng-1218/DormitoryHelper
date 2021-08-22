@@ -35,10 +35,6 @@ class StatusFirstFloor : AppCompatActivity() {
         machineType = intent.getStringExtra("DataType")!!
 
 
-//        返回鍵
-        binding.button16.setOnClickListener {
-            onBackPressed()
-        }
 
 //        取得viewModel
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)

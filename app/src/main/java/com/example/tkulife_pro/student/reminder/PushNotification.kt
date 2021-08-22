@@ -30,8 +30,6 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     private val minute=1
 
     private var trashReminder by Delegates.notNull<Boolean>()
-    private var packageReminder by Delegates.notNull<Boolean>()
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,10 +69,6 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
 //        初始化RecyclerView
         setRecyclerView(getSQLTimer())
 
-//        返回鍵
-        binding.button5.setOnClickListener {
-            super.onBackPressed()
-        }
 
 //        垃圾車提醒開關
         binding.switch1.apply {
@@ -88,22 +82,14 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
 
         }
 
-//        包裹提醒開關
-        binding.switch2.apply {
-            isChecked = timerXML.getBoolean("packageReminder", isChecked)
-            packageReminder = isChecked
-            setOnCheckedChangeListener { _, b ->
-                packageReminder = isChecked
-                timerXML.edit().putBoolean("packageReminder", b).apply()
-                isChecked = timerXML.getBoolean("packageReminder", isChecked)
-            }
 
-        }
+    }
 
+    private fun emptyImg(){
         if (getSQLTimer().size==0){
-            binding.imageView8.visibility= View.VISIBLE
+            binding.imageView2.visibility= View.VISIBLE
         }else{
-            binding.imageView8.visibility= View.GONE
+            binding.imageView2.visibility= View.GONE
         }
     }
 
@@ -129,6 +115,9 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
         }
         //設定傳入recyclerview參數
         viewAdapter.dataSet=data
+
+//    這裡沒有東西
+        emptyImg()
     }
 
 //    取得SQL資料

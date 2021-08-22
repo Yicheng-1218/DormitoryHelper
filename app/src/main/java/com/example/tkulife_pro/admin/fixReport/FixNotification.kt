@@ -33,10 +33,6 @@ class FixNotification : AppCompatActivity() {
 
 
     private fun initView(){
-//        返回鍵
-        binding.button12.setOnClickListener{
-            onBackPressed()
-        }
 
 
 //        設定viewPager畫面內容

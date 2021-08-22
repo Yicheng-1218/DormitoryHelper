@@ -25,10 +25,6 @@ class StatusWithTab : AppCompatActivity() {
     private fun initView() {
         val floor = intent.getStringExtra("selectPos")!!
         val type = intent.getStringExtra("DataType")!!
-//        返回鍵
-        binding.button11.setOnClickListener(){
-            onBackPressed()
-        }
 
 //        設定viewPager畫面內容
         val fragments = arrayListOf(Building1(floor,type),Building2(floor,type), Building3(floor,type))
