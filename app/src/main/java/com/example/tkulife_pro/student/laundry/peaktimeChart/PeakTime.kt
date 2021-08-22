@@ -48,15 +48,8 @@ class PeakTime : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 setBarChart(tab!!.position)
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
 
@@ -101,7 +94,7 @@ class PeakTime : AppCompatActivity() {
 //            圖表動畫
             animateXY(2000,2000)
 //            圖表描述
-            setDescription("")
+            setDescription("兩周統計一次")
 //            描述字體大小
             setDescriptionTextSize(16f)
         }

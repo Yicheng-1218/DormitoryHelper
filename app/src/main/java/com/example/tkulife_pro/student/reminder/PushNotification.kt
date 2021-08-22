@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.PowerManager
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -97,6 +98,12 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
                 isChecked = timerXML.getBoolean("packageReminder", isChecked)
             }
 
+        }
+
+        if (getSQLTimer().size==0){
+            binding.imageView8.visibility= View.VISIBLE
+        }else{
+            binding.imageView8.visibility= View.GONE
         }
     }
 
