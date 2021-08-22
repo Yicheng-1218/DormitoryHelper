@@ -8,22 +8,23 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/circle_bg"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/ic_main_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.281"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.824"
-        app:srcCompat="@drawable/circle_bg" />
+        app:layout_constraintVertical_bias="0.824" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="宿舍生活"
+        android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageButton"
         app:layout_constraintStart_toStartOf="@+id/imageButton"
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />

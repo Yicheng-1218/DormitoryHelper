@@ -6,14 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".admin.fixReport.FixNotification">
 
-    <Button
-        android:id="@+id/button12"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout2"

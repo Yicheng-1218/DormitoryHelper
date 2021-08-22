@@ -17,32 +17,30 @@
 
     <ImageButton
         android:id="@+id/imageButton8"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/circle_bg"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/ic_packagestatus_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton6"
         app:layout_constraintTop_toTopOf="@+id/imageButton6"
-        app:srcCompat="@drawable/circle_bg"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/imageButton5"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/circle_bg"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/ic_garbagetrucknot_1"
         app:layout_constraintEnd_toStartOf="@+id/imageButton6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageButton6"
-        app:srcCompat="@drawable/circle_bg"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/imageButton6"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:background="@drawable/circle_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton8"
@@ -57,7 +55,8 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="鎖屏提醒"
+        android:text="垃圾車提醒"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageButton5"
         app:layout_constraintStart_toStartOf="@+id/imageButton5"
         app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
@@ -67,6 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="洗衣烘衣"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageButton6"
         app:layout_constraintStart_toStartOf="@+id/imageButton6"
         app:layout_constraintTop_toBottomOf="@+id/imageButton6" />
@@ -76,6 +76,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="包裹狀態"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageButton8"
         app:layout_constraintStart_toStartOf="@+id/imageButton8"
         app:layout_constraintTop_toBottomOf="@+id/imageButton8" />

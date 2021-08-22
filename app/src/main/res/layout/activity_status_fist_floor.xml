@@ -7,25 +7,13 @@
     tools:context=".student.laundry.status.machineStatus.StatusFirstFloor">
 
     <Button
-        android:id="@+id/button16"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="323dp"
-        android:text="BACK"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/button17"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="22dp"
         android:background="@color/purple_500"
         android:text="配置圖"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/button16"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
