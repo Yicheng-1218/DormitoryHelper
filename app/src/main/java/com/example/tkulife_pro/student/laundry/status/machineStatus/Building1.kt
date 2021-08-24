@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tkulife_pro.SharedXML
 import com.example.tkulife_pro.databinding.FragmentBuilding1Binding
 import com.example.tkulife_pro.student.laundry.status.SharedViewModel
 
@@ -22,7 +23,8 @@ class Building1(val selectFloor : String,val machineType:String) : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentBuilding1Binding.inflate(layoutInflater)
-        return binding.root
+
+            return binding.root
     }
 
 //    設定recyclerView
@@ -53,6 +55,7 @@ class Building1(val selectFloor : String,val machineType:String) : Fragment(){
         super.onActivityCreated(savedInstanceState)
 //        取得viewModel
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+        viewAdapter.sharedXML = SharedXML(requireContext())
 //        viewModel資料監聽
         viewModel.getRealtimeData().observe(viewLifecycleOwner,{ data->
             val type=data[machineType] as HashMap<*,*>
