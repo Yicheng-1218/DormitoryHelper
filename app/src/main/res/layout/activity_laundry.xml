@@ -31,7 +31,7 @@
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginTop="55dp"
-        android:background="@drawable/ic_peaktime_1"
+        android:background="@drawable/ic_peaktime_new"
         android:contentDescription="TODO"
         app:layout_constraintEnd_toEndOf="@+id/imageButton10"
         app:layout_constraintStart_toStartOf="@+id/imageButton10"
@@ -47,7 +47,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageButton10"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"/>
 
     <ImageButton
         android:id="@+id/imageButton12"
@@ -65,7 +65,7 @@
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginTop="55dp"
-        android:background="@drawable/ic_fixpage_1"
+        android:background="@drawable/ic_fixpage_new"
         app:layout_constraintStart_toStartOf="@+id/imageButton11"
         app:layout_constraintTop_toBottomOf="@+id/imageButton11"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -132,4 +132,26 @@
         app:layout_constraintEnd_toEndOf="@+id/imageButton14"
         app:layout_constraintStart_toStartOf="@+id/imageButton14"
         app:layout_constraintTop_toBottomOf="@+id/imageButton14" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_barr" />
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="洗衣烘衣"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView25"
+        app:layout_constraintEnd_toEndOf="@+id/imageView25"
+        app:layout_constraintStart_toStartOf="@+id/imageView25"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

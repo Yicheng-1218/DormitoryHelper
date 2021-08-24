@@ -29,7 +29,7 @@
         android:id="@+id/imageButton7"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:background="@drawable/ic_packagenotification_1"
+        android:background="@drawable/ic_packagenotification_new"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -42,7 +42,7 @@
         android:id="@+id/imageButton16"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:background="@drawable/ic_packagerecord_1"
+        android:background="@drawable/ic_packagerecord_new"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton7"
@@ -54,7 +54,7 @@
         android:id="@+id/imageButton4"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:background="@drawable/ic_fixnotifition_1"
+        android:background="@drawable/ic_fixnotification_new"
         app:layout_constraintEnd_toStartOf="@+id/imageButton7"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,5 +80,26 @@
         app:layout_constraintEnd_toEndOf="@+id/imageButton16"
         app:layout_constraintStart_toStartOf="@+id/imageButton16"
         app:layout_constraintTop_toBottomOf="@+id/imageButton16" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_barr" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="管理員"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView24"
+        app:layout_constraintEnd_toEndOf="@+id/imageView24"
+        app:layout_constraintStart_toStartOf="@+id/imageView24"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
