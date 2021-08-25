@@ -1,5 +1,6 @@
 package com.example.tkulife_pro.student.laundry.status.machineStatus
 
+import android.content.Context
 import android.os.Bundle
 import android.sax.StartElementListener
 import androidx.fragment.app.Fragment
@@ -14,11 +15,11 @@ import com.example.tkulife_pro.SharedXML
 import com.example.tkulife_pro.databinding.FragmentBuilding3Binding
 import com.example.tkulife_pro.student.laundry.status.SharedViewModel
 
-class Building3(val selectFloor : String,val machineType:String) : Fragment() {
+class Building3(private val selectFloor : String, private val machineType:String,cont1xt:Context) : Fragment() {
 
     private lateinit var binding: FragmentBuilding3Binding
     private lateinit var viewModel: SharedViewModel
-    private var viewAdapter = StatusAdapter()
+    private var viewAdapter = StatusAdapter(cont1xt)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,7 +57,6 @@ class Building3(val selectFloor : String,val machineType:String) : Fragment() {
         super.onActivityCreated(savedInstanceState)
 //        取得viewModel
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
-        viewAdapter.sharedXML = SharedXML(requireContext())
 //        viewModel資料監聽
         viewModel.getRealtimeData().observe(viewLifecycleOwner,{ data->
             val type=data[machineType] as HashMap<*,*>

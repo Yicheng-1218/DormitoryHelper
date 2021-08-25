@@ -1,7 +1,11 @@
 package com.example.tkulife_pro.student.laundry.status.machineStatus
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +15,16 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityStatusFistFloorBinding
+import com.example.tkulife_pro.databinding.FragmentMachineDiagramBinding
 import com.example.tkulife_pro.student.laundry.status.SharedViewModel
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class StatusFirstFloor : AppCompatActivity() {
     lateinit var machineType : String
     private lateinit var viewModel : SharedViewModel
     private lateinit var binding: ActivityStatusFistFloorBinding
-    private val viewAdapter= StatusAdapter()
+    private val viewAdapter= StatusAdapter(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityStatusFistFloorBinding.inflate(layoutInflater)
@@ -79,16 +86,18 @@ class StatusFirstFloor : AppCompatActivity() {
 
 //    示意圖專用class
     class MachineDialog:DialogFragment(){
+        lateinit var binding: FragmentMachineDiagramBinding
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-        ): View? {
-            var rootView:View=inflater.inflate(R.layout.fragment_machine_diagram,container,false)
-            rootView.findViewById<View>(R.id.close).setOnClickListener{
+        ): View {
+            binding= FragmentMachineDiagramBinding.inflate(layoutInflater)
+            binding.close.setOnClickListener {
                 dismiss()
             }
-            return rootView
+            return binding.root
         }
     }
+
 }

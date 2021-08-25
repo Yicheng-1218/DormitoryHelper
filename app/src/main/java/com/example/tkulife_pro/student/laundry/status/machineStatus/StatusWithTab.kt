@@ -27,7 +27,7 @@ class StatusWithTab : AppCompatActivity() {
         val type = intent.getStringExtra("DataType")!!
 
 //        設定viewPager畫面內容
-        val fragments = arrayListOf(Building1(floor,type),Building2(floor,type), Building3(floor,type))
+        val fragments = arrayListOf(Building1(floor,type,this),Building2(floor,type,this), Building3(floor,type,this))
         binding.ViewPager.adapter = object : FragmentStateAdapter(supportFragmentManager, lifecycle){
             override fun getItemCount(): Int {
                 return fragments.size

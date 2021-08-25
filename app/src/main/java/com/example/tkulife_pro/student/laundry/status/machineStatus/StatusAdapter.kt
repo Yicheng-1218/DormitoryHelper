@@ -1,26 +1,35 @@
 package com.example.tkulife_pro.student.laundry.status.machineStatus
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.CountDownTimer
+import android.os.SystemClock
+import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.SharedXML
 import com.example.tkulife_pro.databinding.MachineItemBinding
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
 import java.util.concurrent.TimeUnit
 import kotlin.properties.Delegates
 
-class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
+class StatusAdapter(val context: Context):RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
     lateinit var floor :String
     lateinit var machineData : ArrayList<HashMap<*,*>>
     lateinit var machineType : String
-    lateinit var sharedXML: SharedXML
-    val timerMap = mapOf<String,Int>("A" to 1620000, "B" to 2400000, "C" to 4080000)
 
     class ViewHolder(val view: MachineItemBinding) : RecyclerView.ViewHolder(view.root)
 
@@ -49,28 +58,20 @@ class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
         when(machine["con"]){
             "using"->{
                 holder.view.textView16.apply {
-                    text = "運轉"
+                    text = try {
+                        "預計完成時間:\n${timeFormat(machine["finish"] as Long)}"
+                    }catch (e:Exception){
+                        Log.e("time",e.toString())
+                        "預計完成時間:\n計算中"
+                    }
                     setTextColor(Color.parseColor("#BF4E30"))
                 }
-                if(::sharedXML.isInitialized){
-                    val countingMap = sharedXML.getXML("countingMap")
-                    var counting = countingMap!!.getBoolean(num,false)
-                    if(!counting){
-                        val millisec = getTime(machine)
-                        if (millisec != null) {
-                            object : CountDownTimer(millisec.toLong(), 1000) {
-                                override fun onTick(millisUntilFinished: Long) {
-                                    countingMap.edit().putBoolean(num,true)
-                                    var min = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)
-                                    var sec = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))
-                                    holder.view.textView64.text = "${min}:${sec}"
-                                }
-                                override fun onFinish() {
-                                    countingMap.edit().putBoolean(num,false)
-                                }
-                            }.start()
-                        }
+                try {
+                    if (System.currentTimeMillis() <= machine["finish"] as Long){
+                        busyBroadcast(machine["finish"] as Long,position,num)
                     }
+                }catch (e:Exception){
+                    Log.d("busy",e.toString())
                 }
             }
             "usable"->{
@@ -78,19 +79,11 @@ class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
                     text =  "閒置"
                     setTextColor(Color.parseColor("#157F1F"))
                 }
-                holder.view.textView64.apply {
-                    visibility = View.INVISIBLE
-                    height = 5
-                }
             }
             "broken"->{
                 holder.view.textView16.apply {
                     text = "故障"
                     setTextColor(Color.parseColor("#FAA300"))
-                }
-                holder.view.textView64.apply {
-                    visibility = View.INVISIBLE
-                    height = 5
                 }
             }
         }
@@ -101,13 +94,46 @@ class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
         return machineData.size
     }
 
-    private fun getTime(machine:HashMap<*,*>):Int?{
-        var mode = listOf<String>()
-        try{
-            mode = machine["mode"] as List<String>
-            return (timerMap[mode[0]]!! +timerMap[mode[1]]!!)/2
-        }catch (E:Exception){
-            return null
-        }
+    @SuppressLint("SimpleDateFormat")
+    private fun timeFormat(milliSeconds:Long):String?{
+        return SimpleDateFormat("HH:mm").format(milliSeconds)
     }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private fun busyBroadcast(milliSeconds: Long,position: Int,num:String){
+        val alarmManager: AlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent=Intent(context,Receiver::class.java).apply {
+            putExtra("pos",position)
+            putExtra("num",num)
+            putExtra("type",machineType)
+            action="busy"
+        }
+        val pi=PendingIntent.getBroadcast(context,position+1218, intent,PendingIntent.FLAG_ONE_SHOT)
+        alarmManager.set(AlarmManager.RTC_WAKEUP, milliSeconds,pi)
+        Log.d("busyBroadcast","Broadcast set")
+    }
+
+    class Receiver: BroadcastReceiver(){
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            val num=p1?.getStringExtra("num")?.split("-")
+            val type=p1?.getStringExtra("type")
+            try {
+                Log.d("busyReceive","onReceive")
+                Firebase.database.getReference(type!!).child(num!![0]).child("${num[1].toInt()-1}").get().addOnSuccessListener {
+                    val machine =it.value as HashMap<*,*>
+                    if (machine["con"]=="using"){
+                        val upDataData= mapOf(
+                            "finish" to System.currentTimeMillis()+(1000*60*5)
+                        )
+                        Firebase.database.getReference(type).child(num!![0]).child("${num[1].toInt()-1}").updateChildren(upDataData)
+                    }
+                }
+
+            }catch (e:Exception){
+
+            }
+        }
+
+    }
+
 }

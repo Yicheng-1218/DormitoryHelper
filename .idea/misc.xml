@@ -21,11 +21,12 @@
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/activity_package_record.xml" value="0.33" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/activity_push_notification.xml" value="0.33" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/activity_push_packagenotification.xml" value="0.2640625" />
+        <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/activity_status_fist_floor.xml" value="0.26197916666666665" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/activity_status_tab.xml" value="0.25" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/activity_std_mainpage.xml" value="0.23802083333333332" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/activity_user_select.xml" value="0.23802083333333332" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/fix_item.xml" value="0.18541666666666667" />
-        <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/machine_item.xml" value="0.5" />
+        <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/machine_item.xml" value="0.33" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/package_admin_item.xml" value="0.25416666666666665" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/package_item.xml" value="0.315625" />
         <entry key="..\:/WORK/test mobile app/tkuLife_pro/app/src/main/res/layout/package_notification_form.xml" value="0.33" />
@@ -35,7 +36,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
