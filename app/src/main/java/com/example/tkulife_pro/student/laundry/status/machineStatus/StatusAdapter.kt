@@ -33,9 +33,9 @@ class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 //        對照機器種類給予圖片
         if(machineType=="Washer"){
-            holder.view.imageView4.setImageResource(R.drawable.ic_washing_machine)
+            holder.view.imageView4.setImageResource(R.drawable.ic_washericon_new)
         }else{
-            holder.view.imageView4.setImageResource(R.drawable.ic_tumble_dryer)
+            holder.view.imageView4.setImageResource(R.drawable.ic_dryericon_new)
         }
 
 
@@ -50,7 +50,7 @@ class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
             "using"->{
                 holder.view.textView16.apply {
                     text = "運轉"
-                    setTextColor(Color.parseColor("#ff9900"))
+                    setTextColor(Color.parseColor("#BF4E30"))
                 }
                 if(::sharedXML.isInitialized){
                     val countingMap = sharedXML.getXML("countingMap")
@@ -76,7 +76,7 @@ class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
             "usable"->{
                 holder.view.textView16.apply {
                     text =  "閒置"
-                    setTextColor(Color.parseColor("#3369e7"))
+                    setTextColor(Color.parseColor("#157F1F"))
                 }
                 holder.view.textView64.apply {
                     visibility = View.INVISIBLE
@@ -86,7 +86,7 @@ class StatusAdapter:RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
             "broken"->{
                 holder.view.textView16.apply {
                     text = "故障"
-                    setTextColor(Color.parseColor("#ed1c24"))
+                    setTextColor(Color.parseColor("#FAA300"))
                 }
                 holder.view.textView64.apply {
                     visibility = View.INVISIBLE

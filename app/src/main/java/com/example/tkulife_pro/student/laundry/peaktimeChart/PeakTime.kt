@@ -69,7 +69,7 @@ class PeakTime : AppCompatActivity() {
             valueTextSize=20f
         }
 //    長條圖顏色
-        barDataset.color=R.color.tkuGray
+        barDataset.color=R.color.iconBlue
         val data =BarData(xLabel,barDataset)
         binding.barChart.apply {
 //            xLabel
@@ -94,7 +94,7 @@ class PeakTime : AppCompatActivity() {
 //            圖表動畫
             animateXY(2000,2000)
 //            圖表描述
-            setDescription("兩周統計一次")
+            setDescription("兩週統計一次")
 //            描述字體大小
             setDescriptionTextSize(16f)
         }

@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="47dp"
-        android:layout_height="48dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
@@ -29,7 +29,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_box" />
+        app:srcCompat="@drawable/ic_packageicon_new" />
 
     <TextView
         android:id="@+id/takenText"
