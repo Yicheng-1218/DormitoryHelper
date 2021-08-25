@@ -12,7 +12,10 @@ class ReminderAdapter(private var itemClickListener:OnItemClick):
 
 //    SQL鬧鐘資料表
     var dataSet= ArrayList<Array<Int>>()
-
+    set(value) {
+        field=value
+        notifyDataSetChanged()
+    }
 
     private val hour=0
     private val minute=1

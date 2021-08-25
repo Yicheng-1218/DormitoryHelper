@@ -13,7 +13,11 @@ import java.lang.Exception
 
 class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Adapter<RepairAdapter.ViewHolder>() {
 
-    lateinit var  data: JSONArray
+    var  data: JSONArray= JSONArray()
+        set(value) {
+            field=value
+            notifyDataSetChanged()
+        }
 
     class ViewHolder(val view: FixItemBinding) :RecyclerView.ViewHolder(view.root)
 

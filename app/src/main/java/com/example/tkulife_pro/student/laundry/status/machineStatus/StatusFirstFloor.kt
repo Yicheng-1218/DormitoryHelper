@@ -41,7 +41,7 @@ class StatusFirstFloor : AppCompatActivity() {
 //        取得intent機器種類
         machineType = intent.getStringExtra("DataType")!!
 
-
+        setRecyclerView()
 
 //        取得viewModel
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
@@ -49,7 +49,7 @@ class StatusFirstFloor : AppCompatActivity() {
         viewModel.getRealtimeData().observe(this, { data->
             val type=data[machineType] as HashMap<*,*>
             val machineList = type["1F"] as ArrayList<HashMap<*,*>>
-            setRecyclerView(machineList)
+            upDateRecycler(machineList)
         })
 
 //        示意圖
@@ -63,7 +63,7 @@ class StatusFirstFloor : AppCompatActivity() {
     }
 
 //    設定recyclerView
-    private fun setRecyclerView(adapterData:ArrayList<HashMap<*,*>>){
+    private fun setRecyclerView(){
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.recyclerView.apply {
@@ -79,6 +79,10 @@ class StatusFirstFloor : AppCompatActivity() {
 
             adapter = viewAdapter //只建立一次FloorAdapter
         }
+
+    }
+
+    private fun upDateRecycler(adapterData:ArrayList<HashMap<*,*>>){
         viewAdapter.floor = "1F"
         viewAdapter.machineData = adapterData
         viewAdapter.machineType = machineType

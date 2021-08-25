@@ -39,7 +39,7 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
                 val res = response.body?.string()
                 activity?.runOnUiThread{
 //                    UI線程
-                    setRecyclerView(JSONArray(res))
+                    upDateRecycler(JSONArray(res))
 //                    關閉loading圖示
                     binding.progressBar3.isVisible=false
                 }
@@ -55,26 +55,29 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
 //        開啟loading圖示
         binding.progressBar3.isVisible=true
         viewAdapter=RepairAdapter(this)
+        setRecyclerView()
     }
 
 //    設定recyclerView
-    private fun setRecyclerView(adapterData: JSONArray) {
+    private fun setRecyclerView() {
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.Process.apply {
-            if (getLayoutManager()==null){
-                addItemDecoration(
-                    DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL)
-                )
-            }
+
+            addItemDecoration(
+                DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL)
+            )
+
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
 
             adapter = viewAdapter
         }
+
+    }
+    private fun upDateRecycler(adapterData: JSONArray){
         viewAdapter.data = adapterData
     }
-
 
 
 //    處理中頁面元素監聽

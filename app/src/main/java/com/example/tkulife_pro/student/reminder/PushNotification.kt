@@ -1,5 +1,6 @@
 package com.example.tkulife_pro.student.reminder
 
+import android.annotation.SuppressLint
 import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -56,7 +57,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
             TimePickerDialog(this, { _, hour, minute ->
                 val data = arrayOf(hour, minute, System.currentTimeMillis().toInt())
                 addSQLTimer(data)
-                setRecyclerView(getSQLTimer())
+                upDateRecycler(getSQLTimer())
 
 //              設定循環鬧鐘廣播，間隔1天
                 setAlarm(AlarmManager.RTC_WAKEUP,hour,minute,86400000,data[2],trashIntent)
@@ -64,7 +65,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
             }, hourNow, minuteNow, false).show()
         }
 //        初始化RecyclerView
-        setRecyclerView(getSQLTimer())
+        upDateRecycler(getSQLTimer())
 
 
 //        垃圾車提醒開關
@@ -79,7 +80,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
 
         }
 
-
+        setRecyclerView()
     }
 
     private fun emptyImg(){
@@ -93,30 +94,31 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     }
 
 //    設定RecyclerView內容
-    private fun setRecyclerView(data: ArrayList<Array<Int>>){
+    private fun setRecyclerView(){
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.RecyclerView.apply {
-            if (getLayoutManager()==null){
+
 //              設定分隔線
-                addItemDecoration(
-                    DividerItemDecoration(
-                        this@PushNotification,
-                        DividerItemDecoration.VERTICAL
-                    )
+            addItemDecoration(
+                DividerItemDecoration(
+                    this@PushNotification,
+                    DividerItemDecoration.VERTICAL
                 )
-            }
+            )
+
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
-
-
             adapter=viewAdapter
         }
+    }
+    private fun upDateRecycler(data: ArrayList<Array<Int>>){
         //設定傳入recyclerview參數
         viewAdapter.dataSet=data
 
-//    這裡沒有東西
+        //    這裡沒有東西
         emptyImg()
+
     }
 
 //    取得SQL資料
@@ -142,7 +144,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
             TimePickerDialog(this,{
                     _,hour,minute->
                 Sqlite(this).updateTimer(createAt,hour,minute)
-                setRecyclerView(getSQLTimer())
+                upDateRecycler(getSQLTimer())
             },timerList[hour],timerList[minute],false).show()
 
         }
@@ -153,7 +155,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
         alter.setPositiveButton("修改"
         ) { _, _ -> updateTimer() }
         alter.setNegativeButton("刪除"
-        ) { _, _ -> Sqlite(this).delTimer(createAt);setRecyclerView(getSQLTimer());cancelAlarm(createAt,trashIntent) }
+        ) { _, _ -> Sqlite(this).delTimer(createAt);upDateRecycler(getSQLTimer());cancelAlarm(createAt,trashIntent) }
         alter.setNeutralButton("取消",null)
         alter.show()
 
@@ -174,6 +176,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     }
 
 //    設定鬧鐘
+    @SuppressLint("UnspecifiedImmutableFlag")
     private fun setAlarm(type: Int, triggerAtMillis: Long, intervalMillis: Long, requestCode: Int, intent: Intent) {
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.setRepeating(type, triggerAtMillis, intervalMillis, PendingIntent.getBroadcast(this,
@@ -182,6 +185,7 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
     }
 
 //    取消鬧鐘
+    @SuppressLint("UnspecifiedImmutableFlag")
     private fun cancelAlarm(requestCode: Int, intent: Intent) {
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.cancel(

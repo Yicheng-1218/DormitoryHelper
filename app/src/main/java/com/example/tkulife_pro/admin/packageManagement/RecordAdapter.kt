@@ -9,9 +9,18 @@ import com.example.tkulife_pro.databinding.RecordItemBinding
 import org.json.JSONArray
 import org.json.JSONObject
 
-class RecordAdapter(private val mode:Int) : RecyclerView.Adapter<RecordAdapter.ViewHolder>() {
+class RecordAdapter() : RecyclerView.Adapter<RecordAdapter.ViewHolder>() {
     private lateinit var binding : RecordItemBinding
-    lateinit var packageList : ArrayList<HashMap<*,*>>
+    var packageList = ArrayList<HashMap<*, *>>()
+        set(value) {
+            field=value
+            notifyDataSetChanged()
+        }
+    var mode:Int=0
+        set(value) {
+            field=value
+            notifyDataSetChanged()
+        }
     class ViewHolder(val view: RecordItemBinding):RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

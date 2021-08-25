@@ -27,9 +27,24 @@ import java.util.concurrent.TimeUnit
 import kotlin.properties.Delegates
 
 class StatusAdapter(val context: Context):RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
-    lateinit var floor :String
-    lateinit var machineData : ArrayList<HashMap<*,*>>
-    lateinit var machineType : String
+
+    var floor =""
+    set(value) {
+        field=value
+        notifyDataSetChanged()
+    }
+
+    var machineData = ArrayList<HashMap<*,*>>()
+    set(value) {
+        field=value
+        notifyDataSetChanged()
+    }
+
+    var machineType =""
+    set(value) {
+        field=value
+        notifyDataSetChanged()
+    }
 
     class ViewHolder(val view: MachineItemBinding) : RecyclerView.ViewHolder(view.root)
 

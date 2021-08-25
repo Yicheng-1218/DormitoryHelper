@@ -46,13 +46,22 @@ class PackageRecord : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             binding.roomNumber.text.run {
                 if (this.isNotEmpty()){
                     viewModel.searchByID(this.toString()).observe(this@PackageRecord,{ data->
-                        setRecyclerView(data,binding.spinner4.selectedItemPosition)
+                        searchMode(binding.spinner4.selectedItemPosition)
+                        upDateRecycler(data)
                     })
                 }else{
-                    Toast.makeText(this@PackageRecord,"輸入框不可空白",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@PackageRecord,"輸入框不可空白",Toast.LENGTH_SHORT).show()
+                    searchMode(0)
+                    viewModel.getSortList().value?.let { it1 -> upDateRecycler(it1) }
                 }
             }
         }
+
+        viewModel.getSortList().observe(this,{
+            Log.d("model record",it.toString())
+            upDateRecycler(it)
+        })
+
 
 //        spinner
         binding.spinner4.apply {
@@ -63,27 +72,33 @@ class PackageRecord : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 listOf("最新","已領","未領"))
 
         }
+        setRecyclerView()
 
     }
 
-    private fun setRecyclerView(packageList: ArrayList<HashMap<*,*>>,mode:Int){
-        viewAdapter= RecordAdapter(mode)
+    private fun setRecyclerView(){
+        viewAdapter= RecordAdapter()
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.packageRecycler2.apply {
-            if (getLayoutManager()==null){
-                addItemDecoration(
-                    DividerItemDecoration(
-                        this@PackageRecord,
-                        DividerItemDecoration.VERTICAL
-                    )
+
+            addItemDecoration(
+                DividerItemDecoration(
+                    this@PackageRecord,
+                    DividerItemDecoration.VERTICAL
                 )
-            }
+            )
+
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
             adapter=viewAdapter
         }
+    }
+    private fun upDateRecycler(packageList: ArrayList<HashMap<*,*>>){
         viewAdapter.packageList=packageList
+    }
+    private fun searchMode(mode:Int){
+        viewAdapter.mode=mode
     }
 
 //    元素監聽
@@ -91,11 +106,7 @@ class PackageRecord : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         currentFocus?.clearFocus()
         Keyboard.hide(this,p1!!)
         Log.d("spinner",p2.toString())
-        binding.roomNumber.setText("")
-        viewModel.getSortList().observe(this,{
-            Log.d("model record",it.toString())
-            setRecyclerView(it,p2)
-        })
+        searchMode(p2)
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

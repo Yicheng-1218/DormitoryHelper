@@ -88,7 +88,7 @@ class PackageViewModel:ViewModel() {
 //    包裹依照時間排序
     private fun sortByTime(packageList:ArrayList<HashMap<*,*>>) {
         packageList.sortBy { ele->ele["time"] as Double }
-        repository.value=packageList
+        repository.value= packageList
     }
 
 }

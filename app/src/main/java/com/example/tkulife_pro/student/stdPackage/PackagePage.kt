@@ -55,7 +55,7 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
                     try {
                         val value = response.body?.string()
                         val list = JSONArray(value)
-                        val untaken = ArrayList<JSONObject>().also { untaken ->
+                        val unTaken = ArrayList<JSONObject>().also { untaken ->
                             for (i in 0 until list.length()) {
                                 val pk = list.get(i) as JSONObject
                                 if (pk["taken"] == false) {
@@ -64,7 +64,7 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
                             }
                         }
                         runOnUiThread {
-                            setRecyclerView(JSONArray(untaken))
+                            upDateRecycler(JSONArray(unTaken))
 //                    關閉loading圖示
                             binding.progressBar4.isVisible = false
                         }
@@ -88,26 +88,26 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
     private fun initView() {
 //        開啟loading圖示
         binding.progressBar4.isVisible = true
-
+        setRecyclerView()
     }
 
     //    設定recyclerView
-    private fun setRecyclerView(packageList: JSONArray) {
+    private fun setRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.packageRecycler.apply {
-            if (getLayoutManager() == null) {
-                addItemDecoration(
-                    DividerItemDecoration(
-                        this@PackagePage,
-                        DividerItemDecoration.VERTICAL
-                    )
+            addItemDecoration(
+                DividerItemDecoration(
+                    this@PackagePage,
+                    DividerItemDecoration.VERTICAL
                 )
-            }
+            )
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
             adapter = viewAdapter
         }
+    }
+    private fun upDateRecycler(packageList: JSONArray){
         viewAdapter.packageList = packageList
     }
 

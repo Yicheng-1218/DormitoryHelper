@@ -11,7 +11,13 @@ import org.json.JSONObject
 
 class PackageAdapter(private var itemClickListener: OnItemClick) : RecyclerView.Adapter<PackageAdapter.ViewHolder>(){
     private lateinit var binding : PackageItemBinding
-    lateinit var packageList : JSONArray
+
+    var packageList = JSONArray()
+    set(value) {
+        field=value
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(val view:PackageItemBinding):RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

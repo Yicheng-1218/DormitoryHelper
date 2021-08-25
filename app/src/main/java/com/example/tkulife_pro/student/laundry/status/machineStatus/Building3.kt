@@ -30,38 +30,40 @@ class Building3(private val selectFloor : String, private val machineType:String
     }
 
 //    設定recyclerView
-    private fun setRecyclerView(adapterData:ArrayList<HashMap<*,*>>) {
+    private fun setRecyclerView() {
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.recycleView3.apply {
-            if (getLayoutManager()==null){
-                addItemDecoration(
-                    DividerItemDecoration(
-                        requireContext(),
-                        DividerItemDecoration.VERTICAL
-                    )
+
+            addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
                 )
-            }
+            )
+
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
 
             adapter = viewAdapter //只建立一次FloorAdapter
         }
+    }
+    private fun upDateRecycler(adapterData:ArrayList<HashMap<*,*>>){
         viewAdapter.floor = "三館-${selectFloor}F"
         viewAdapter.machineData = adapterData
         viewAdapter.machineType = machineType
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setRecyclerView()
 //        取得viewModel
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
 //        viewModel資料監聽
         viewModel.getRealtimeData().observe(viewLifecycleOwner,{ data->
             val type=data[machineType] as HashMap<*,*>
             val machineList = type["C-0${selectFloor}"] as ArrayList<HashMap<*,*>>
-            setRecyclerView(machineList)
+            upDateRecycler(machineList)
 
         })
     }

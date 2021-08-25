@@ -40,7 +40,7 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
                 json=JSONArray(res)
                 activity?.runOnUiThread{
 //                    UI線程
-                    setRecyclerView(json)
+                    upDateRecycler(json)
 
 //                    關閉loading圖示
                     binding.progressBar.isVisible=false
@@ -56,26 +56,28 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
 //        開啟loading圖示
         binding.progressBar.isVisible=true
         viewAdapter = RepairAdapter(this)
+        setRecyclerView()
     }
 
 
 //    設定recyclerView內容
-    private fun setRecyclerView(adapterData:JSONArray) {
+    private fun setRecyclerView() {
         val layoutManager = LinearLayoutManager(requireContext())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.Check.apply {
-            if (getLayoutManager()==null){
-                addItemDecoration(
-                    DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL)
-                )
-            }
+
+            addItemDecoration(
+                DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL)
+            )
+
             setHasFixedSize(true)
             setLayoutManager(layoutManager)
 
             adapter = viewAdapter
         }
+    }
+    private fun upDateRecycler(adapterData:JSONArray){
         viewAdapter.data= adapterData
-
     }
 
 //    元素監聽
