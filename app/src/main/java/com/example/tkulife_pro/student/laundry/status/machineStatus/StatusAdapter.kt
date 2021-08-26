@@ -59,7 +59,7 @@ class StatusAdapter(val context: Context):RecyclerView.Adapter<StatusAdapter.Vie
         if(machineType=="Washer"){
             holder.view.imageView4.setImageResource(R.drawable.ic_washericon_new)
         }else{
-            holder.view.imageView4.setImageResource(R.drawable.ic_dryericon_new)
+            holder.view.imageView4.setImageResource(R.drawable.ic_dryer_newicon)
         }
 
 
