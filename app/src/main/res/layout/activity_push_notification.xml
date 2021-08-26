@@ -39,10 +39,10 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_garbageicon_new" />
+            app:srcCompat="@drawable/ic_garbage_newicon" />
 
         <Button
             android:id="@+id/button4"
