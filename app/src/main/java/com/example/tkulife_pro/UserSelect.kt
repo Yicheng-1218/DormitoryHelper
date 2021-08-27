@@ -30,6 +30,8 @@ class UserSelect : AppCompatActivity() {
     }
 
     private fun initView(){
+//        設定Bar
+        BarTool(this).setBundle("用戶選擇",R.color.barBlue)
 //        返回鍵
         binding.button3.setOnClickListener {
             super.onBackPressed()

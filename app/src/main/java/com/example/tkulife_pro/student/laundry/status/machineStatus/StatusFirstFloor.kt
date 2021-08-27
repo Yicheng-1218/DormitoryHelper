@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityStatusFistFloorBinding
 import com.example.tkulife_pro.databinding.FragmentMachineDiagramBinding
@@ -38,6 +39,9 @@ class StatusFirstFloor : AppCompatActivity() {
     }
 
     private fun initView(){
+//        設定BAR
+        BarTool(this).setBundle("詳細狀態頁",R.color.barBlue)
+
 //        取得intent機器種類
         machineType = intent.getStringExtra("DataType")!!
 

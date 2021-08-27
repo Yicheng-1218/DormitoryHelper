@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.Keyboard
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityPackagePageBinding
@@ -35,6 +36,9 @@ class PackageRecord : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun initView(){
+//        設定BAR
+        BarTool(this).setBundle("包裹簽收紀錄",R.color.barBlue)
+
 
 //        取得ViewModel
         viewModel = ViewModelProvider(this).get(PackageViewModel::class.java)

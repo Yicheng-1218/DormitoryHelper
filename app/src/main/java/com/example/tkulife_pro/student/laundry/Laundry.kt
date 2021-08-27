@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.tkulife_pro.BarTool
+import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityLaundryBinding
 import com.example.tkulife_pro.student.laundry.fixReport.FixPage
 import com.example.tkulife_pro.student.laundry.peaktimeChart.PeakTime
@@ -30,6 +32,8 @@ class Laundry : AppCompatActivity() {
     }
 
     private fun initView(){
+//        設定BAR
+        BarTool(this).setBundle("洗烘衣機", R.color.barBlue)
 
 //        返回鍵
         binding.button7.setOnClickListener {

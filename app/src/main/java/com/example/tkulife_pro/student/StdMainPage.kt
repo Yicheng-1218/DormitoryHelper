@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.MainActivity
+import com.example.tkulife_pro.R
 import com.example.tkulife_pro.student.laundry.Laundry
 import com.example.tkulife_pro.databinding.ActivityStdMainpageBinding
 import com.example.tkulife_pro.student.stdPackage.PackagePage
@@ -24,6 +26,8 @@ class StdMainPage : AppCompatActivity() {
         initView()
     }
     private fun initView(){
+//        設定BAR
+        BarTool(this).setBundle("學生頁面", R.color.barBlue)
 //        取得學號
         val uid=FirebaseAuth.getInstance().currentUser?.email?.split('@')?.get(0)
         uid.isNullOrEmpty().let{ if (!it)binding.textView7.text=uid }

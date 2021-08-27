@@ -12,11 +12,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tkulife_pro.R
-import com.example.tkulife_pro.SharedXML
-import com.example.tkulife_pro.Sqlite
+import com.example.tkulife_pro.*
 import com.example.tkulife_pro.databinding.ActivityPushNotificationBinding
-import com.example.tkulife_pro.TkuNotification
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 import kotlin.collections.ArrayList
@@ -40,6 +37,8 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
         initView()
     }
     private fun initView() {
+//        設定BAR
+        BarTool(this).setBundle("垃圾車提醒",R.color.barBlue)
 //        取得開關狀態表
         val timerXML = SharedXML(this).getXML("timer")!!
 

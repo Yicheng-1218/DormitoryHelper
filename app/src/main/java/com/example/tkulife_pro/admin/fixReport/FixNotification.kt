@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.tkulife_pro.BarTool
+import com.example.tkulife_pro.R
 import com.example.tkulife_pro.admin.fixReport.fixTab.Check
 import com.example.tkulife_pro.admin.fixReport.fixTab.Process
 import com.example.tkulife_pro.databinding.ActivityFixNotificationBinding
@@ -33,6 +35,9 @@ class FixNotification : AppCompatActivity() {
 
 
     private fun initView(){
+//        設定BAR
+        BarTool(this).setBundle("報修通知", R.color.barBlue)
+
 
 
 //        設定viewPager畫面內容

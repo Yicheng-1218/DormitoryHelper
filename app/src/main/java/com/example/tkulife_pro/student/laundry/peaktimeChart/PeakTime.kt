@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.TableLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.PeakTimeTabBinding
 import com.example.tkulife_pro.student.laundry.status.SharedViewModel
@@ -32,6 +33,9 @@ class PeakTime : AppCompatActivity() {
     }
     private fun initView(){
 
+//        設定BAR
+        BarTool(this).setBundle("使用率分析",R.color.barBlue)
+//        初始化BarChart
         val res=BarChartModel.history[0]
         setBarChart(BarChartModel.countRate(res))
 

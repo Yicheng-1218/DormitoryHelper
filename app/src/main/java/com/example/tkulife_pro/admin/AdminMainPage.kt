@@ -3,6 +3,8 @@ package com.example.tkulife_pro.admin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.tkulife_pro.BarTool
+import com.example.tkulife_pro.R
 import com.example.tkulife_pro.admin.fixReport.FixNotification
 import com.example.tkulife_pro.admin.packageManagement.PackageRecord
 import com.example.tkulife_pro.admin.packageManagement.PushNotification
@@ -18,6 +20,9 @@ class AdminMainPage : AppCompatActivity() {
     }
 
     private fun initView(){
+//        設定BAR
+        BarTool(this).setBundle("管理員頁面", R.color.barBlue)
+
 //        返回鍵
         binding.button13.setOnClickListener{
             super.onBackPressed()

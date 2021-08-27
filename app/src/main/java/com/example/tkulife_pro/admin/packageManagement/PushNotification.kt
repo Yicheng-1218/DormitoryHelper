@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.Keyboard
+import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityPushPackagenotificationBinding
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,6 +27,9 @@ class PushNotification : AppCompatActivity() {
 
 
     private fun initView(){
+//        設定BAR
+        BarTool(this).setBundle("包裹提醒", R.color.barBlue)
+
 //        初始化db
         database=Firebase.firestore
 

@@ -10,4 +10,6 @@
     <color name="tkuRed">#C65149</color>
     <color name="tkuGray">#878787</color>
     <color name="iconBlue">#6EB0C3</color>
+    <color name="barRed">#ca131f</color>
+    <color name="barBlue">#6ba9bb</color>
 </resources>

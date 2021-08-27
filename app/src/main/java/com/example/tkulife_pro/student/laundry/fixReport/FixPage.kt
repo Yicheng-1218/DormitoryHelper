@@ -6,8 +6,10 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.OkHttpUtil
 import com.example.tkulife_pro.OkHttpUtil.Companion.mOkHttpUtil
+import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityFixPageBinding
 import com.google.android.material.snackbar.Snackbar
 import okhttp3.Response
@@ -25,6 +27,9 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun initView() {
+//        設定BAR
+        BarTool(this).setBundle("報修頁面", R.color.barBlue)
+
 //        新增spinner的選擇監聽
         binding.spinner1.onItemSelectedListener = this
 

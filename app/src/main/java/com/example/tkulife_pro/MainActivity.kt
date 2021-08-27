@@ -1,9 +1,16 @@
 package com.example.tkulife_pro
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.DrawableContainer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
+import androidx.appcompat.app.ActionBar
+import androidx.core.content.ContextCompat
 import com.example.tkulife_pro.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -21,6 +28,11 @@ class MainActivity : AppCompatActivity() {
         initView()
     }
     private fun initView(){
+//        設定BAR
+        BarTool(this).setBundle("淡江i生活",R.color.barRed)
+
+
+
 //        宿舍管理按鈕
         binding.imageButton.setOnClickListener {
             Intent(this,UserSelect::class.java).apply {
@@ -35,6 +47,12 @@ class MainActivity : AppCompatActivity() {
 
 //        取得登入狀態
         getUser()
+    }
+    private fun setBarTitle(title:String,colorHex:String){
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(colorHex)))
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+        supportActionBar?.setCustomView(R.layout.abs_layout)
+        supportActionBar?.customView?.findViewById<TextView>(R.id.barTitle)?.text= title
     }
 
 //    取得登入狀態

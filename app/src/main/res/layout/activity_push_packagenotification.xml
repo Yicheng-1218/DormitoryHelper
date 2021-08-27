@@ -9,27 +9,6 @@
     android:clickable="true"
     android:focusableInTouchMode="true">
 
-    <ImageView
-        android:id="@+id/imageView33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_barr" />
-
-    <TextView
-        android:id="@+id/textView61"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="包裹通知"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView33"
-        app:layout_constraintEnd_toEndOf="@+id/imageView33"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView33" />
-
     <EditText
         android:id="@+id/roomBedText"
         android:layout_width="300dp"
@@ -41,8 +20,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageButton18"
         app:layout_constraintEnd_toStartOf="@+id/imageButton18"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView33" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton18"

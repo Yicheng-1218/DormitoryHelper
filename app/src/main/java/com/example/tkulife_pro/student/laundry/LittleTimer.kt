@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.widget.EditText
+import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityLittleTimerBinding
 import com.example.tkulife_pro.TkuNotification
@@ -32,6 +33,8 @@ class LittleTimer : AppCompatActivity() {
         initView()
     }
     private fun initView(){
+//        設定BAR
+        BarTool(this).setBundle("計時器",R.color.barBlue)
 //        初始化editText
         hourEditText=binding.textInputLayout2.editText!!
         minuteEditText=binding.textInputLayout.editText!!

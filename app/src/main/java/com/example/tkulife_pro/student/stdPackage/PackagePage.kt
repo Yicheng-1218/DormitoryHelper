@@ -4,11 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityPackagePageBinding
 import com.example.tkulife_pro.OkHttpUtil
@@ -64,9 +66,11 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
                             }
                         }
                         runOnUiThread {
-                            upDateRecycler(JSONArray(unTaken))
 //                    關閉loading圖示
                             binding.progressBar4.isVisible = false
+
+                            upDateRecycler(JSONArray(unTaken))
+
                         }
                     }catch (e:Exception){
                         runOnUiThread {
@@ -86,6 +90,9 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
 
     }
     private fun initView() {
+//        設定BAR
+        BarTool(this).setBundle("包裹頁面", R.color.barBlue)
+
 //        開啟loading圖示
         binding.progressBar4.isVisible = true
         setRecyclerView()
@@ -108,8 +115,16 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
         }
     }
     private fun upDateRecycler(packageList: JSONArray){
+        if (packageList.length()==0){
+            binding.imageView23.visibility=View.VISIBLE
+            binding.textView32.visibility=View.VISIBLE
+        }else{
+            binding.imageView23.visibility=View.GONE
+            binding.textView32.visibility=View.GONE
+        }
         viewAdapter.packageList = packageList
     }
+
 
     override fun onItemClick(position: Int) {
         val confirm = AlertDialog.Builder(this)

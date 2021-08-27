@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.renderscript.Element
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.tkulife_pro.BarTool
+import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityStatusTabBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -23,6 +25,10 @@ class StatusWithTab : AppCompatActivity() {
     }
 
     private fun initView() {
+//        設定BAR
+        BarTool(this).setBundle("詳細狀態頁", R.color.barBlue)
+
+//        取得機器種類及樓層
         val floor = intent.getStringExtra("selectPos")!!
         val type = intent.getStringExtra("DataType")!!
 

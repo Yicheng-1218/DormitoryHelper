@@ -9,6 +9,8 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tkulife_pro.BarTool
+import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityFloorStatusBinding
 import com.example.tkulife_pro.student.laundry.status.SharedViewModel
 import com.example.tkulife_pro.student.laundry.status.machineStatus.StatusFirstFloor
@@ -31,6 +33,9 @@ class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
         finish()
     }
     private fun initView(){
+//        設定BAR
+        BarTool(this).setBundle("樓層可用台數", R.color.barBlue)
+
 //        開啟loading圖示
         binding.progressBar2.isVisible = true
 

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.TkuLife_pro" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.TkuLife_pro" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/tkuGray</item>
         <item name="colorPrimaryVariant">@color/tkuRed</item>
