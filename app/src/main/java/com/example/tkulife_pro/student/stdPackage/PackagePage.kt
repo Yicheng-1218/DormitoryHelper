@@ -57,19 +57,31 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
                     try {
                         val value = response.body?.string()
                         val list = JSONArray(value)
-                        val unTaken = ArrayList<JSONObject>().also { untaken ->
+                        val unTaken = ArrayList<JSONObject>().also { unTaken ->
                             for (i in 0 until list.length()) {
                                 val pk = list.get(i) as JSONObject
                                 if (pk["taken"] == false) {
-                                    untaken.add(pk)
+                                    unTaken.add(pk)
                                 }
                             }
                         }
                         runOnUiThread {
+                            val res=JSONArray(unTaken)
+                            upDateRecycler(res)
+
+
+
 //                    關閉loading圖示
                             binding.progressBar4.isVisible = false
 
-                            upDateRecycler(JSONArray(unTaken))
+//                            無包裹圖示
+                            if (res.length()==0){
+                                binding.imageView23.visibility=View.VISIBLE
+                                binding.textView32.visibility=View.VISIBLE
+                            }else{
+                                binding.imageView23.visibility=View.GONE
+                                binding.textView32.visibility=View.GONE
+                            }
 
                         }
                     }catch (e:Exception){
@@ -90,6 +102,9 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
 
     }
     private fun initView() {
+        binding.imageView23.visibility=View.GONE
+        binding.textView32.visibility=View.GONE
+
 //        設定BAR
         BarTool(this).setBundle("包裹頁面", R.color.barBlue)
 
@@ -115,13 +130,7 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
         }
     }
     private fun upDateRecycler(packageList: JSONArray){
-        if (packageList.length()==0){
-            binding.imageView23.visibility=View.VISIBLE
-            binding.textView32.visibility=View.VISIBLE
-        }else{
-            binding.imageView23.visibility=View.GONE
-            binding.textView32.visibility=View.GONE
-        }
+
         viewAdapter.packageList = packageList
     }
 

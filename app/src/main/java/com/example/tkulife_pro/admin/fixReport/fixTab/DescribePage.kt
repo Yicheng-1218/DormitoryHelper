@@ -96,11 +96,17 @@ class DescribePage : AppCompatActivity() {
 //                                UI線程
 
 //                                顯示sever回傳
-                              Toast.makeText(
+                                Toast.makeText(
                                     this@DescribePage,
                                     JSONObject(res!!)["msg"].toString(),
                                     Toast.LENGTH_LONG
                                 ).show()
+
+                                //導向到報修提醒
+                                Intent(this@DescribePage, FixNotification::class.java).apply {
+                                    putExtra("Page", 0)
+                                    startActivity(this)
+                                }
 
 //                                結束Activity
                                 finish()

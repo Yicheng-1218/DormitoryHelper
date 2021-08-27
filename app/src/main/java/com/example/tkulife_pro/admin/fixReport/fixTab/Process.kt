@@ -20,7 +20,7 @@ import java.io.IOException
 
 class Process : Fragment(),RepairAdapter.OnItemClick {
     private lateinit var binding: FragmentProcessBinding
-    private lateinit var viewAdapter:RepairAdapter
+    private val viewAdapter=RepairAdapter(this)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,11 +37,20 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
             override fun onResponse(response: Response) {
 //                回傳報修清單陣列
                 val res = response.body?.string()
+
                 activity?.runOnUiThread{
 //                    UI線程
                     upDateRecycler(JSONArray(res))
 //                    關閉loading圖示
                     binding.progressBar3.isVisible=false
+
+                    if (JSONArray(res).length()==0){
+                        binding.imageView25.isVisible=true
+                        binding.textView52.isVisible=true
+                    }else{
+                        binding.imageView25.isVisible=false
+                        binding.textView52.isVisible=false
+                    }
                 }
             }
 
@@ -54,8 +63,9 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
     private fun initView(){
 //        開啟loading圖示
         binding.progressBar3.isVisible=true
-        viewAdapter=RepairAdapter(this)
         setRecyclerView()
+        binding.imageView25.isVisible=false
+        binding.textView52.isVisible=false
     }
 
 //    設定recyclerView

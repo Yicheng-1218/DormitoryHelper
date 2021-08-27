@@ -18,7 +18,7 @@ import java.io.IOException
 
 class Check: Fragment(),RepairAdapter.OnItemClick {
     private lateinit var binding: FragmentCheckBinding
-    private lateinit var viewAdapter: RepairAdapter
+    private val viewAdapter= RepairAdapter(this)
     private lateinit var json: JSONArray
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +44,14 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
 
 //                    關閉loading圖示
                     binding.progressBar.isVisible=false
+
+                    if (json.length()==0){
+                        binding.imageView24.isVisible=true
+                        binding.textView51.isVisible=true
+                    }else{
+                        binding.imageView24.isVisible=false
+                        binding.textView51.isVisible=false
+                    }
                 }
             }
 
@@ -55,8 +63,10 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
     private fun initView(){
 //        開啟loading圖示
         binding.progressBar.isVisible=true
-        viewAdapter = RepairAdapter(this)
         setRecyclerView()
+
+        binding.imageView24.isVisible=false
+        binding.textView51.isVisible=false
     }
 
 
