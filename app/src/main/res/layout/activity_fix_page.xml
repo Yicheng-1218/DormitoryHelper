@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".student.laundry.fixReport.FixPage">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="設備"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -25,7 +15,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="設備"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -78,18 +80,20 @@
 
         <Spinner
             android:id="@+id/spinner2"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:background="@drawable/spinner"
             app:layout_constraintBottom_toBottomOf="@+id/spinner1"
             app:layout_constraintStart_toEndOf="@+id/spinner1" />
 
         <Spinner
             android:id="@+id/spinner1"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
+            android:background="@drawable/spinner"
             android:entries="@array/floor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView2"
@@ -97,8 +101,9 @@
 
         <Spinner
             android:id="@+id/spinner3"
-            android:layout_width="0dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/spinner"
             android:layout_marginStart="32dp"
             app:layout_constraintBottom_toBottomOf="@+id/spinner2"
             app:layout_constraintStart_toEndOf="@+id/spinner2"

@@ -68,13 +68,13 @@ class RecordAdapter() : RecyclerView.Adapter<RecordAdapter.ViewHolder>() {
             true->{
                 holder.view.takenText.apply {
                     text="已領"
-                    setTextColor(Color.parseColor("#0099e5"))
+                    setTextColor(Color.parseColor("#157F1F"))
                 }
             }
             false->{
                 holder.view.takenText.apply {
                     text="未領"
-                    setTextColor(Color.parseColor("#ff4c4c"))
+                    setTextColor(Color.parseColor("#BF4E30"))
                 }
             }
         }

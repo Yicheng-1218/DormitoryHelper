@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".student.reminder.PushNotification">
 
+
     <LinearLayout
         android:id="@+id/L1"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
 
         <ImageView
             android:id="@+id/imageView"
@@ -28,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="垃圾車提醒"
+            android:text="新增提醒"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <Switch
@@ -37,7 +39,9 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:checked="true" />
+
     </LinearLayout>
+
 
     <ImageView
         android:id="@+id/imageView2"
@@ -48,14 +52,16 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_empty" />
+        app:srcCompat="@drawable/ic_nothinghere_new" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nothing here"
+        android:text="尚未新增任何提醒"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/secondaryGary"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -69,4 +75,12 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/L1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        app:layout_constraintBottom_toTopOf="@id/RecyclerView"
+        android:background="@color/browser_actions_bg_grey"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="60dp"></View>
 </androidx.constraintlayout.widget.ConstraintLayout>

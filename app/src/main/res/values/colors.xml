@@ -11,5 +11,6 @@
     <color name="tkuGray">#878787</color>
     <color name="iconBlue">#6EB0C3</color>
     <color name="barRed">#ca131f</color>
-    <color name="barBlue">#6ba9bb</color>
+    <color name="barBlue">#6EB0C3</color>
+    <color name="secondaryGary">#C4C4C4</color>
 </resources>
