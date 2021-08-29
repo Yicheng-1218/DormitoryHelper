@@ -27,7 +27,7 @@ class StdMainPage : AppCompatActivity() {
     }
     private fun initView(){
 //        設定BAR
-        BarTool(this).setBundle("學生頁面", R.color.barBlue)
+        BarTool(this).setBundle("住宿生", R.color.barBlue)
 //        取得學號
         val uid=FirebaseAuth.getInstance().currentUser?.email?.split('@')?.get(0)
         uid.isNullOrEmpty().let{ if (!it)binding.textView7.text=uid }

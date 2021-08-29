@@ -91,10 +91,10 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
 
 
 //    處理中頁面元素監聽
-    override fun onItemClick(position: Int) {
+    override fun onItemClick(position: Int,id:String) {
 //    顯示對話框
         val confirm = AlertDialog.Builder(requireContext())
-        confirm.setMessage("確認要將狀態改為可使用嗎?")
+        confirm.setMessage("確認要將${id}機台改為可使用嗎?")
         confirm.setTitle("確認視窗")
         confirm.setNegativeButton("取消", null)
         confirm.setPositiveButton("確定") { _, _ ->

@@ -32,7 +32,7 @@ class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ad
         val location=details["location"].toString()
 //        location路徑分割
         val type=location.split('_')
-
+        var mid=""
 //        字串轉換對照表
         if(type[1]!="1F"){
 //            分館分樓報修顯示
@@ -48,13 +48,15 @@ class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ad
             var floor= listOf<String>()
             try{
                 floor = type[1].split('-')
-                holder.view.textView27.text = "${ref[floor[0]]}-${ref[floor[1]]}-${(type[2].toInt()+1)}"
+                mid="${ref[floor[0]]}-${ref[floor[1]]}-${(type[2].toInt()+1)}"
+                holder.view.textView27.text = mid
             }catch(E:Exception){
                 Log.d("index",floor.toString())
             }
         }else{
 //            1F報修顯示
-            holder.view.textView27.text = "     ${type[1]}-${type[2].toInt()+1}     "
+            mid="${type[1]}-${type[2].toInt()+1}"
+            holder.view.textView27.text = mid
         }
 
 
@@ -63,11 +65,11 @@ class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ad
         when (machine){
             "Washer" -> {
                 machine = "洗衣機"
-                holder.view.imageView5.setImageResource(R.drawable.ic_washing_machine)
+                holder.view.imageView5.setImageResource(R.drawable.ic_washericon_new)
             }
             "Dryer" -> {
                 machine = "烘衣機"
-                holder.view.imageView5.setImageResource(R.drawable.ic_tumble_dryer)
+                holder.view.imageView5.setImageResource(R.drawable.ic_dryer_newicon)
             }
         }
 //        顯示機器種類
@@ -75,7 +77,7 @@ class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ad
 
 //        點擊回傳position
         holder.view.fixItem.setOnClickListener {
-            itemClickListener.onItemClick(position)
+            itemClickListener.onItemClick(position,"【$machine-$mid】")
         }
     }
 
@@ -84,6 +86,6 @@ class RepairAdapter(private var itemClickListener: OnItemClick): RecyclerView.Ad
     }
 
     interface OnItemClick{
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int,id:String)
     }
 }

@@ -1,10 +1,14 @@
 package com.example.tkulife_pro.student.laundry
 
+import android.annotation.SuppressLint
+import android.content.res.ColorStateList
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.widget.EditText
+import androidx.core.content.ContextCompat
 import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityLittleTimerBinding
@@ -32,9 +36,10 @@ class LittleTimer : AppCompatActivity() {
         setContentView(binding.root)
         initView()
     }
+    @SuppressLint("ResourceAsColor")
     private fun initView(){
 //        設定BAR
-        BarTool(this).setBundle("計時器",R.color.barBlue)
+        BarTool(this).setBundle("計時提醒",R.color.barBlue)
 //        初始化editText
         hourEditText=binding.textInputLayout2.editText!!
         minuteEditText=binding.textInputLayout.editText!!
@@ -67,11 +72,9 @@ class LittleTimer : AppCompatActivity() {
                 startStop()
                 currentFocus?.clearFocus()
             }
-
-
-
-
         }
+
+
     }
 
 
@@ -102,6 +105,7 @@ class LittleTimer : AppCompatActivity() {
     }
 
 //    開始計時
+    @SuppressLint("ResourceAsColor")
     private fun startTimer(){
         myTimer=object:CountDownTimer(timeLeftInMilliSecond,1000){
             override fun onTick(p0: Long) {
@@ -113,17 +117,23 @@ class LittleTimer : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                TkuNotification(this@LittleTimer,"洗衣計時","洗衣計時").build("計時器","設定的計時器到啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(
+                TkuNotification(this@LittleTimer,"洗衣計時","洗衣計時").build("計時提醒","快去拿衣服啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(
                     R.string.littleTimer
                 )
                 hourEditText.isEnabled=true
                 minuteEditText.isEnabled=true
                 secondEditText.isEnabled=true
                 binding.button8.text="重設"
-                binding.button9.text="開始計時"
+                binding.button9.apply {
+                    text="開始計時"
+                    backgroundTintList= ColorStateList.valueOf(R.color.barBlue)
+                }
             }
         }.start()
-        binding.button9.text="暫停"
+        binding.button9.apply {
+            text="暫停"
+            backgroundTintList= ColorStateList.valueOf(R.color.barBlue)
+        }
         binding.button8.text="取消"
         timerRunning=true
     }

@@ -135,9 +135,9 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
     }
 
 
-    override fun onItemClick(position: Int) {
+    override fun onItemClick(position: Int,pid:String) {
         val confirm = AlertDialog.Builder(this)
-        confirm.setMessage("確認要簽收此包裹嗎?")
+        confirm.setMessage("確認要簽收末三碼為${pid}包裹嗎?")
         confirm.setTitle("確認視窗")
         confirm.setNegativeButton("取消", null)
         confirm.setPositiveButton("確定") { _, _ ->

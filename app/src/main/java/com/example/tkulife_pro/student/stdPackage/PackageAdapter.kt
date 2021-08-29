@@ -30,7 +30,7 @@ class PackageAdapter(private var itemClickListener: OnItemClick) : RecyclerView.
         val pkg = packageList[(packageList.length()-1)-position] as JSONObject
         holder.view.textView33.text = "編號末三碼: ${pkg["pid"]}"
         holder.view.button18.setOnClickListener{
-            itemClickListener.onItemClick(pkg["index"].toString().toInt())
+            itemClickListener.onItemClick(pkg["index"].toString().toInt(),pkg["pid"].toString())
         }
     }
 
@@ -38,6 +38,6 @@ class PackageAdapter(private var itemClickListener: OnItemClick) : RecyclerView.
         return packageList.length()
     }
     interface OnItemClick{
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int,pid:String)
     }
 }

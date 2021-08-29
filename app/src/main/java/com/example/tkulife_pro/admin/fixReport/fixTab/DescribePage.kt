@@ -29,13 +29,16 @@ class DescribePage : AppCompatActivity() {
 //        取得報修項目index
         val index = intent.getStringExtra("index")
 
+//        取得機器ID
+        val id=intent.getStringExtra("id")
+
 //        設定描述框內文字
         binding.editText.text = rep
 
 //        確定故障監聽
         binding.button15.setOnClickListener {
             val confirm = AlertDialog.Builder(this)
-            confirm.setMessage("確認要將狀態改為故障中嗎?")
+            confirm.setMessage("確認要將${id}機台改為故障中嗎?")
             confirm.setTitle("確認視窗")
             confirm.setNegativeButton("取消", null)
             confirm.setPositiveButton("確定") { _, _ ->
@@ -79,7 +82,7 @@ class DescribePage : AppCompatActivity() {
 //        無故障按鈕監聽
         binding.button14.setOnClickListener {
             val confirm = AlertDialog.Builder(this)
-            confirm.setMessage("確認此機台無故障嗎?")
+            confirm.setMessage("確認${id}機台無故障嗎?")
             confirm.setTitle("確認視窗")
             confirm.setNegativeButton("取消", null)
             confirm.setPositiveButton("確定") { _, _ ->

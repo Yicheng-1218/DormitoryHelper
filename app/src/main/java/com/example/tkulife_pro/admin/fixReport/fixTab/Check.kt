@@ -91,7 +91,7 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
     }
 
 //    元素監聽
-    override fun onItemClick(position: Int) {
+    override fun onItemClick(position: Int,id:String) {
         val item = json[position] as JSONObject
         val machine = item["machine"] as JSONObject
 //    導向至描述頁面
@@ -100,6 +100,8 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
             putExtra("rep",machine["rep"].toString())
 //            機器陣列index
             putExtra("index",position.toString())
+//            機器ID
+            putExtra("id",id)
             startActivity((this))
         }
     }

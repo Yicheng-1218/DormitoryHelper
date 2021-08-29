@@ -12,8 +12,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ProgressBar
         android:id="@+id/progressBar4"
@@ -35,17 +37,16 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_empty"
-        tools:visibility="gone" />
+        app:srcCompat="@drawable/ic_nothinghere_new" />
 
     <TextView
         android:id="@+id/textView32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nothing here"
+        android:text="尚無任何通知"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/secondaryGary"
         app:layout_constraintEnd_toEndOf="@+id/imageView23"
         app:layout_constraintStart_toStartOf="@+id/imageView23"
-        app:layout_constraintTop_toBottomOf="@+id/imageView23"
-        tools:visibility="gone" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView23" />
 </androidx.constraintlayout.widget.ConstraintLayout>
