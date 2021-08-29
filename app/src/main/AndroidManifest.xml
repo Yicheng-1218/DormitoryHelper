@@ -50,8 +50,7 @@
         </activity>
 
         <receiver
-            android:name=".student.reminder.PushNotification$TrashReceiver"
-            android:permission="android.permission.WAKE_LOCK">
+            android:name=".student.reminder.PushNotification$TrashReceiver">
             <intent-filter>
                 <action android:name="trash" />
             </intent-filter>

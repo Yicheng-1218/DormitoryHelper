@@ -8,12 +8,12 @@
 
     <Button
         android:id="@+id/button13"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button"
         android:text="back"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView26"
@@ -80,5 +80,17 @@
         app:layout_constraintEnd_toEndOf="@+id/imageButton16"
         app:layout_constraintStart_toStartOf="@+id/imageButton16"
         app:layout_constraintTop_toBottomOf="@+id/imageButton16" />
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/circle_bg"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton4"
+        app:layout_constraintTop_toTopOf="@+id/imageButton4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

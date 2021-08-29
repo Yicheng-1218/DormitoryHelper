@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.OkHttpUtil
 import com.example.tkulife_pro.databinding.ActivityDescribePageBinding
 import com.example.tkulife_pro.OkHttpUtil.Companion.mOkHttpUtil
+import com.example.tkulife_pro.R
 import com.example.tkulife_pro.admin.fixReport.FixNotification
 import okhttp3.Response
 import org.json.JSONObject
@@ -23,6 +25,8 @@ class DescribePage : AppCompatActivity() {
     }
 
     private fun initView() {
+//        設定BAR
+        BarTool(this).setBundle("報修通知", R.color.barBlue)
 //        取得報修項目報修內容
         val rep = intent.getStringExtra("rep")
 
