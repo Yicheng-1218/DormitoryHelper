@@ -10,7 +10,8 @@
     <LinearLayout
         android:id="@+id/L1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="4dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/RecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,13 +75,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/L1" />
+        app:layout_constraintTop_toBottomOf="@id/hr" />
 
     <View
+        android:id="@+id/hr"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        app:layout_constraintBottom_toTopOf="@id/RecyclerView"
-        android:background="@color/browser_actions_bg_grey"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="60dp"></View>
+        android:layout_marginTop="16dp"
+        android:background="@color/secondaryGary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/L1"></View>
 </androidx.constraintlayout.widget.ConstraintLayout>

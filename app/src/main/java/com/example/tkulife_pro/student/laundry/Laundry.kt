@@ -33,7 +33,7 @@ class Laundry : AppCompatActivity() {
 
     private fun initView(){
 //        設定BAR
-        BarTool(this).setBundle("洗烘衣機", R.color.barBlue)
+        BarTool(this).setBundle("洗衣烘衣", R.color.barBlue)
 
 //        返回鍵
         binding.button7.setOnClickListener {

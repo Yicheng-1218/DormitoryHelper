@@ -33,14 +33,18 @@ class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
         finish()
     }
     private fun initView(){
+        //        取得intent機器種類
+        machineType = intent.getStringExtra("DataType")!!
+        val ref= mapOf(
+            "Dryer" to "烘衣機",
+            "Washer" to "洗衣機"
+        )
 //        設定BAR
-        BarTool(this).setBundle("樓層可用台數", R.color.barBlue)
+        BarTool(this).setBundle(ref[machineType]!!, R.color.barBlue)
 
 //        開啟loading圖示
         binding.progressBar2.isVisible = true
 
-//        取得intent機器種類
-        machineType = intent.getStringExtra("DataType")!!
 
 //        取得viewModel
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)

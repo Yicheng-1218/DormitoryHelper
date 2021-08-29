@@ -125,15 +125,11 @@ class LittleTimer : AppCompatActivity() {
                 secondEditText.isEnabled=true
                 binding.button8.text="重設"
                 binding.button9.apply {
-                    text="開始計時"
-                    backgroundTintList= ColorStateList.valueOf(R.color.barBlue)
-                }
+                    text="開始計時" }
             }
         }.start()
         binding.button9.apply {
-            text="暫停"
-            backgroundTintList= ColorStateList.valueOf(R.color.barBlue)
-        }
+            text="暫停" }
         binding.button8.text="取消"
         timerRunning=true
     }

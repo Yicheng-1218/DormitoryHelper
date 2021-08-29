@@ -21,7 +21,7 @@ class AdminMainPage : AppCompatActivity() {
 
     private fun initView(){
 //        設定BAR
-        BarTool(this).setBundle("管理員頁面", R.color.barBlue)
+        BarTool(this).setBundle("管理員", R.color.barBlue)
 
 //        返回鍵
         binding.button13.setOnClickListener{

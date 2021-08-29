@@ -106,7 +106,7 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
         binding.textView32.visibility=View.GONE
 
 //        設定BAR
-        BarTool(this).setBundle("包裹頁面", R.color.barBlue)
+        BarTool(this).setBundle("包裹提醒", R.color.barBlue)
 
 //        開啟loading圖示
         binding.progressBar4.isVisible = true

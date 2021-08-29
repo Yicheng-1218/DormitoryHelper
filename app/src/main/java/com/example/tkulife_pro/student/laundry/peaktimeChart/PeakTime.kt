@@ -34,7 +34,7 @@ class PeakTime : AppCompatActivity() {
     private fun initView(){
 
 //        設定BAR
-        BarTool(this).setBundle("使用率分析",R.color.barBlue)
+        BarTool(this).setBundle("各時段使用狀況",R.color.barBlue)
 //        初始化BarChart
         val res=BarChartModel.history[0]
         setBarChart(BarChartModel.countRate(res))
@@ -73,9 +73,14 @@ class PeakTime : AppCompatActivity() {
             valueFormatter = PercentFormatter()
 //            資料字體大小
             valueTextSize=13f
+            highLightColor=Color.rgb(88,134,148)
+            color=Color.rgb(110,176,195)
+
         }
+
+//        binding.barChart.setBackgroundColor(R.color.barBlue)
 //    長條圖顏色
-        barDataset.color=R.color.iconBlue
+
         val data =BarData(xLabel,barDataset)
         binding.barChart.apply {
 //            xLabel
@@ -98,7 +103,7 @@ class PeakTime : AppCompatActivity() {
             this.data = data
 
 //            設定背景色
-            setBackgroundColor(Color.WHITE)
+//            setBackgroundColor(Color.WHITE)
 //            圖表動畫
             animateXY(2000,2000)
 //            圖表描述
