@@ -32,10 +32,7 @@ class UserSelect : AppCompatActivity() {
     private fun initView(){
 //        設定Bar
         BarTool(this).setBundle("宿舍管理",R.color.barBlue)
-//        返回鍵
-        binding.button3.setOnClickListener {
-            super.onBackPressed()
-        }
+
 //        學生主頁
         binding.imageButton3.setOnClickListener {
             Intent(this,StdMainPage::class.java).apply {

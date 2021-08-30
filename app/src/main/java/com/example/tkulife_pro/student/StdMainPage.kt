@@ -32,10 +32,6 @@ class StdMainPage : AppCompatActivity() {
         val uid=FirebaseAuth.getInstance().currentUser?.email?.split('@')?.get(0)
         uid.isNullOrEmpty().let{ if (!it)binding.textView7.text=uid }
 
-//        返回鍵
-        binding.button2.setOnClickListener {
-            super.onBackPressed()
-        }
 //        鎖屏提醒
         binding.imageButton5.setOnClickListener {
             Intent(this,PushNotification::class.java).apply {
@@ -56,22 +52,22 @@ class StdMainPage : AppCompatActivity() {
         }
 
 //        清除帳號
-        binding.button6.setOnClickListener {
-            val confirm = AlertDialog.Builder(this)
-            confirm.setMessage("是否清除帳密")
-            confirm.setTitle("確認視窗")
-            confirm.setNegativeButton("是"){ _,_->
-                AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener {
-                        Toast.makeText(this,"您已登出此帳號!", Toast.LENGTH_LONG).show()
-                        Intent(this, MainActivity::class.java).apply {
-                            startActivity(this)
-                        }
-                    }
-            }
-            confirm.setPositiveButton("否", null)
-            confirm.show()
-        }
+//        binding.button6.setOnClickListener {
+//            val confirm = AlertDialog.Builder(this)
+//            confirm.setMessage("是否清除帳密")
+//            confirm.setTitle("確認視窗")
+//            confirm.setNegativeButton("是"){ _,_->
+//                AuthUI.getInstance()
+//                    .signOut(this)
+//                    .addOnCompleteListener {
+//                        Toast.makeText(this,"您已登出此帳號!", Toast.LENGTH_LONG).show()
+//                        Intent(this, MainActivity::class.java).apply {
+//                            startActivity(this)
+//                        }
+//                    }
+//            }
+//            confirm.setPositiveButton("否", null)
+//            confirm.show()
+//        }
     }
 }

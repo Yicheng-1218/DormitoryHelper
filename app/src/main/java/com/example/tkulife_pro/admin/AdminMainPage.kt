@@ -23,11 +23,6 @@ class AdminMainPage : AppCompatActivity() {
 //        設定BAR
         BarTool(this).setBundle("管理員", R.color.barBlue)
 
-//        返回鍵
-        binding.button13.setOnClickListener{
-            super.onBackPressed()
-        }
-
 //        包裹管理按鈕
         binding.imageButton7.setOnClickListener{
             Intent(this,PushNotification::class.java).apply {
