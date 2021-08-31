@@ -2,7 +2,7 @@
     <string name="app_name">淡江i生活</string>
     <string name="trashReminder">0</string>
     <string name="littleTimer">1</string>
-
+    <string name="packageReminder">2</string>
     <string-array name="floor">
         <item>一樓</item>
         <item>二樓</item>

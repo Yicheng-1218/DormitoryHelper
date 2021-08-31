@@ -6,6 +6,8 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.text.style.UpdateLayout
 import android.util.Log
 import android.widget.EditText
 import androidx.core.content.ContextCompat
@@ -13,6 +15,8 @@ import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityLittleTimerBinding
 import com.example.tkulife_pro.TkuNotification
+import okhttp3.internal.notify
+import okhttp3.internal.notifyAll
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -26,8 +30,9 @@ class LittleTimer : AppCompatActivity() {
     private var minute by Delegates.notNull<String>()
     private var second by Delegates.notNull<String>()
     private var timerRunning=false
-    private var timeLeftInMilliSecond:Long = 0
     private lateinit var myTimer:CountDownTimer
+    var timeLeftInMilliSecond:Long=0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,9 +79,7 @@ class LittleTimer : AppCompatActivity() {
             }
         }
 
-
     }
-
 
 //    更新時間方法
     private fun updateTimer(){
@@ -86,6 +89,7 @@ class LittleTimer : AppCompatActivity() {
         hourEditText.setText(hour.toString())
         minuteEditText.setText(minute.toString())
         secondEditText.setText(second.toString())
+
     }
 
 //    計時開關
@@ -109,11 +113,9 @@ class LittleTimer : AppCompatActivity() {
     private fun startTimer(){
         myTimer=object:CountDownTimer(timeLeftInMilliSecond,1000){
             override fun onTick(p0: Long) {
+                Log.d("countdown",p0.toString())
                 timeLeftInMilliSecond=p0
                 updateTimer()
-                hourEditText.isEnabled=false
-                minuteEditText.isEnabled=false
-                secondEditText.isEnabled=false
             }
 
             override fun onFinish() {
@@ -124,12 +126,11 @@ class LittleTimer : AppCompatActivity() {
                 minuteEditText.isEnabled=true
                 secondEditText.isEnabled=true
                 binding.button8.text="重設"
-                binding.button9.apply {
-                    text="開始計時" }
+                binding.button9.text="開始計時"
+
             }
         }.start()
-        binding.button9.apply {
-            text="暫停" }
+        binding.button9.text="暫停"
         binding.button8.text="取消"
         timerRunning=true
     }

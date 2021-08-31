@@ -95,7 +95,11 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
                 }
 
                 override fun onFailure(e: IOException) {
-                    Toast.makeText(this@PackagePage,"請求錯誤",Toast.LENGTH_LONG).show()
+                    runOnUiThread {
+                        binding.progressBar4.isVisible=false
+                        Toast.makeText(this@PackagePage,"請求錯誤",Toast.LENGTH_LONG).show()
+
+                    }
                 }
 
             })

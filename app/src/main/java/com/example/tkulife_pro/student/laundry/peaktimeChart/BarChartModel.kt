@@ -31,7 +31,7 @@ class BarChartModel {
             }
         }
         private fun genRandArr():List<Int>{
-            return List(9){Random.nextInt(1,100)}
+            return List(9){Random.nextInt(30,100)}
         }
     }
 

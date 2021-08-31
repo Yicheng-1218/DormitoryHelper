@@ -197,20 +197,19 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
 //    廣播接收
     class TrashReceiver:BroadcastReceiver(){
         override fun onReceive(p0: Context?, p1: Intent?) {
-            val timerXML= SharedXML(p0!!).getXML("timer")
-            val status=timerXML?.getBoolean("trashReminder",false)
-            if (status == true) {
+
+
 //                發送提醒
-                TkuNotification(p0, "垃圾車提醒", "垃圾車提醒").build("垃圾車提醒", "該倒垃圾啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(R.string.trashReminder)
-                val wakelock = p0.getSystemService(POWER_SERVICE) as PowerManager
+            TkuNotification(p0!!, "垃圾車提醒", "垃圾車提醒").build("垃圾車提醒", "該倒垃圾啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(R.string.trashReminder)
+            val wakelock = p0.getSystemService(POWER_SERVICE) as PowerManager
 //                兩個Flag缺一不可，都存在才可以點亮螢幕
-                val newWake = wakelock.newWakeLock(
-                    PowerManager.ACQUIRE_CAUSES_WAKEUP or PowerManager.SCREEN_DIM_WAKE_LOCK,
-                    "MyApp::trash"
-                )
+            val newWake = wakelock.newWakeLock(
+                PowerManager.ACQUIRE_CAUSES_WAKEUP or PowerManager.SCREEN_DIM_WAKE_LOCK,
+                "MyApp::trash"
+            )
 //                自動熄滅時間
-                newWake.acquire(5000 /*5 second*/)
-            }
+            newWake.acquire(5000 /*5 second*/)
+
         }
     }
 }

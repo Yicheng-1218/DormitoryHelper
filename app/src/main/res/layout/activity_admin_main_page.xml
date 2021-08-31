@@ -78,9 +78,10 @@
         android:layout_height="25dp"
         android:background="@drawable/circle_bg"
         android:gravity="center"
-        android:text="1"
+        android:text="0"
         android:textColor="@color/white"
         android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/imageButton4"
         app:layout_constraintTop_toTopOf="@+id/imageButton4" />
 

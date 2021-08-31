@@ -14,14 +14,34 @@ class FixReportViewModel: ViewModel() {
 
     private val repList:MutableLiveData<JSONArray> by lazy {
         MutableLiveData<JSONArray>().also {
-            repRequest()
+            OkHttpUtil.mOkHttpUtil.getAsync("https://tkudorm.site/repairList/rep",object : OkHttpUtil.ICallback {
+                override fun onResponse(response: Response) {
+//                回傳報修清單陣列
+                    val res = response.body?.string()
 
+                    repList.postValue(JSONArray(res))
+
+                }
+
+                override fun onFailure(e: IOException) {
+
+                }
+            })
         }
     }
     private val conList:MutableLiveData<JSONArray> by lazy {
         MutableLiveData<JSONArray>().also {
-            conRequest()
-//TODO
+            OkHttpUtil.mOkHttpUtil.getAsync("https://tkudorm.site/repairList/con",object : OkHttpUtil.ICallback {
+                override fun onResponse(response: Response) {
+//                回傳報修清單陣列
+                    val res = response.body?.string()
+
+                    conList.postValue(JSONArray(res))
+                }
+
+                override fun onFailure(e: IOException) {
+                }
+            })
         }
     }
 
@@ -32,34 +52,4 @@ class FixReportViewModel: ViewModel() {
         return conList
     }
 
-    private fun repRequest(){
-        //        request報修清單(rep)
-        OkHttpUtil.mOkHttpUtil.getAsync("https://tkudorm.site/repairList/rep",object : OkHttpUtil.ICallback {
-            override fun onResponse(response: Response) {
-//                回傳報修清單陣列
-                val res = response.body?.string()
-
-                repList.postValue(JSONArray(res))
-
-            }
-
-            override fun onFailure(e: IOException) {
-
-            }
-        })
-    }
-    private fun conRequest(){
-//TODO
-        OkHttpUtil.mOkHttpUtil.getAsync("https://tkudorm.site/repairList/con",object : OkHttpUtil.ICallback {
-            override fun onResponse(response: Response) {
-//                回傳報修清單陣列
-               val res = response.body?.string()
-
-                conList.postValue(JSONArray(res))
-            }
-
-            override fun onFailure(e: IOException) {
-            }
-        })
-    }
 }
