@@ -68,16 +68,16 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
 
 
 //        垃圾車提醒開關
-        binding.switch1.apply {
-            isChecked = timerXML.getBoolean("trashReminder", isChecked)
-            trashReminder = isChecked
-            setOnCheckedChangeListener { _, b ->
-                trashReminder = isChecked
-                timerXML.edit().putBoolean("trashReminder", b).apply()
-                isChecked = timerXML.getBoolean("trashReminder", isChecked)
-            }
-
-        }
+//        binding.switch1.apply {
+//            isChecked = timerXML.getBoolean("trashReminder", isChecked)
+//            trashReminder = isChecked
+//            setOnCheckedChangeListener { _, b ->
+//                trashReminder = isChecked
+//                timerXML.edit().putBoolean("trashReminder", b).apply()
+//                isChecked = timerXML.getBoolean("trashReminder", isChecked)
+//            }
+//
+//        }
 
         setRecyclerView()
     }
@@ -197,10 +197,12 @@ class PushNotification : AppCompatActivity(),ReminderAdapter.OnItemClick {
 //    廣播接收
     class TrashReceiver:BroadcastReceiver(){
         override fun onReceive(p0: Context?, p1: Intent?) {
-
+            val c = Calendar.getInstance()
+            val hourNow = c.get(Calendar.HOUR_OF_DAY)
+            val minuteNow = c.get(Calendar.MINUTE)
 
 //                發送提醒
-            TkuNotification(p0!!, "垃圾車提醒", "垃圾車提醒").build("垃圾車提醒", "該倒垃圾啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(R.string.trashReminder)
+            TkuNotification(p0!!, "垃圾車提醒", "垃圾車提醒").build("垃圾車提醒", "${hourNow}:${minuteNow},該倒垃圾啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(R.string.trashReminder)
             val wakelock = p0.getSystemService(POWER_SERVICE) as PowerManager
 //                兩個Flag缺一不可，都存在才可以點亮螢幕
             val newWake = wakelock.newWakeLock(

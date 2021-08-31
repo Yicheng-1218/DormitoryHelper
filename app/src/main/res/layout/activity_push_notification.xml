@@ -30,17 +30,10 @@
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:text="新增提醒"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:checked="true"
-            android:paddingRight="20dp" />
 
     </LinearLayout>
 
