@@ -35,11 +35,6 @@ class Laundry : AppCompatActivity() {
 //        設定BAR
         BarTool(this).setBundle("洗衣烘衣", R.color.barBlue)
 
-//        返回鍵
-        binding.button7.setOnClickListener {
-            super.onBackPressed()
-        }
-
 //        取得學號
         val uid= FirebaseAuth.getInstance().currentUser?.email?.split('@')?.get(0)
         uid.isNullOrEmpty().let{ if (!it)binding.textView21.text=uid }
@@ -68,12 +63,12 @@ class Laundry : AppCompatActivity() {
         }
 
 //        烘衣機按鈕
-        binding.imageButton10.setOnClickListener {
-            Intent(this, FloorStatus::class.java).apply {
-                putExtra("DataType","Dryer")
-                startActivity(this)
-            }
-        }
+//        binding.imageButton10.setOnClickListener {
+//            Intent(this, FloorStatus::class.java).apply {
+//                putExtra("DataType","Dryer")
+//                startActivity(this)
+//            }
+//        }
 
 //        報修按鈕
         binding.imageButton13.setOnClickListener {

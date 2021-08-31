@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".UserSelect">
 
-    <Button
-        android:id="@+id/button3"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HOME"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="72dp"

@@ -40,7 +40,7 @@ class StatusFirstFloor : AppCompatActivity() {
 
     private fun initView(){
 //        設定BAR
-        BarTool(this).setBundle("詳細狀態頁",R.color.barBlue)
+        BarTool(this).setBundle("洗衣機",R.color.barBlue)
 
 //        取得intent機器種類
         machineType = intent.getStringExtra("DataType")!!

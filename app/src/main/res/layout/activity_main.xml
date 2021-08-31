@@ -44,7 +44,7 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="宿舍生活"
+                    android:text="宿舍管理"
                     android:textAlignment="center"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="@+id/imageButton"
