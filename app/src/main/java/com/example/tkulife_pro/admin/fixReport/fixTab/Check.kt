@@ -38,7 +38,7 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
         super.onResume()
 //        request報修清單(rep)
 
-        viewModel.getFixList().observe(requireActivity(),{ data->
+        viewModel.getRepList().observe(requireActivity(),{ data->
             activity?.runOnUiThread {
                 upDateRecycler(data)
                 binding.progressBar.isVisible=false

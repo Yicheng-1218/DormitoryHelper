@@ -20,6 +20,7 @@ class FixReportViewModel: ViewModel() {
     }
     private val conList:MutableLiveData<JSONArray> by lazy {
         MutableLiveData<JSONArray>().also {
+            conRequest()
 //TODO
         }
     }
@@ -49,5 +50,16 @@ class FixReportViewModel: ViewModel() {
     }
     private fun conRequest(){
 //TODO
+        OkHttpUtil.mOkHttpUtil.getAsync("https://tkudorm.site/repairList/con",object : OkHttpUtil.ICallback {
+            override fun onResponse(response: Response) {
+//                回傳報修清單陣列
+               val res = response.body?.string()
+
+                conList.postValue(JSONArray(res))
+            }
+
+            override fun onFailure(e: IOException) {
+            }
+        })
     }
 }
