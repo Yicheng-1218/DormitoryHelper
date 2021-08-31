@@ -63,12 +63,12 @@ class Laundry : AppCompatActivity() {
         }
 
 //        烘衣機按鈕
-        binding.imageButton10.setOnClickListener {
-            Intent(this, FloorStatus::class.java).apply {
-                putExtra("DataType","Dryer")
-                startActivity(this)
-            }
-        }
+//        binding.imageButton10.setOnClickListener {
+//            Intent(this, FloorStatus::class.java).apply {
+//                putExtra("DataType","Dryer")
+//                startActivity(this)
+//            }
+//        }
 
 //        報修按鈕
         binding.imageButton13.setOnClickListener {
