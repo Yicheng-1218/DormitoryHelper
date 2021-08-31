@@ -57,8 +57,7 @@ class FCMService : FirebaseMessagingService(){
 
 //    前景接收FCM作業
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        val isEnableFCM = timerXML.getBoolean("packageReminder",true)
-        if(isEnableFCM){
+
             Log.d("fcm", "From: ${remoteMessage.from}")
             // Check if message contains a data payload.
             if (remoteMessage.data.isNotEmpty()) {
@@ -69,7 +68,7 @@ class FCMService : FirebaseMessagingService(){
                 Log.d("fcm", "Message Notification Body: ${it.body}")
                 TkuNotification(this,"包裹提醒","包裹提醒").build("包裹提醒","您目前有包裹需領取! 包裹編號後3碼:${remoteMessage.data["pid"]}").show(2)
             }
-        }
+
 
 
     }
