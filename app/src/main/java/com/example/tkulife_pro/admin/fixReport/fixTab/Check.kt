@@ -41,6 +41,7 @@ class Check: Fragment(),RepairAdapter.OnItemClick {
         viewModel.getRepList().observe(requireActivity(),{ data->
             activity?.runOnUiThread {
                 upDateRecycler(data)
+                json=data
                 binding.progressBar.isVisible=false
                 if (data.length()==0){
                     binding.imageView24.isVisible=true
