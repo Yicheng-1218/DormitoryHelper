@@ -31,6 +31,7 @@ class AdminMainPage : AppCompatActivity() {
             if (count==0){
                 binding.textView53.isVisible=false
             }else{
+                binding.textView53.isVisible=true
                 binding.textView53.text= data.length().toString()
             }
 
