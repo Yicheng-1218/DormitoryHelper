@@ -33,6 +33,8 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
     override fun onResume() {
         super.onResume()
 //        request報修清單(con)
+
+//        TODO 換去model 仿作check
         OkHttpUtil.mOkHttpUtil.getAsync("https://tkudorm.site/repairList/con",object : OkHttpUtil.ICallback {
             override fun onResponse(response: Response) {
 //                回傳報修清單陣列

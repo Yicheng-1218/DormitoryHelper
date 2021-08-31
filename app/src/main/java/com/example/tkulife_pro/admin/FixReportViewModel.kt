@@ -20,7 +20,7 @@ class FixReportViewModel: ViewModel() {
     }
     private val conList:MutableLiveData<JSONArray> by lazy {
         MutableLiveData<JSONArray>().also {
-
+//TODO
         }
     }
 
@@ -48,6 +48,6 @@ class FixReportViewModel: ViewModel() {
         })
     }
     private fun conRequest(){
-
+//TODO
     }
 }
