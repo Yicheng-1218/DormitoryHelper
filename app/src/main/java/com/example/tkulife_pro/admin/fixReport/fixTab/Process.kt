@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.OkHttpUtil
+import com.example.tkulife_pro.admin.FixReportViewModel
 import com.example.tkulife_pro.databinding.FragmentProcessBinding
 import okhttp3.Response
 import org.json.JSONArray
@@ -20,6 +22,7 @@ import java.io.IOException
 
 class Process : Fragment(),RepairAdapter.OnItemClick {
     private lateinit var binding: FragmentProcessBinding
+    private lateinit var viewModel: FixReportViewModel
     private val viewAdapter=RepairAdapter(this)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,29 +36,20 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
     override fun onResume() {
         super.onResume()
 //        request報修清單(con)
-        OkHttpUtil.mOkHttpUtil.getAsync("https://tkudorm.site/repairList/con",object : OkHttpUtil.ICallback {
-            override fun onResponse(response: Response) {
-//                回傳報修清單陣列
-                val res = response.body?.string()
 
-                activity?.runOnUiThread{
-//                    UI線程
-                    upDateRecycler(JSONArray(res))
-//                    關閉loading圖示
-                    binding.progressBar3.isVisible=false
 
-                    if (JSONArray(res).length()==0){
-                        binding.imageView25.isVisible=true
-                        binding.textView52.isVisible=true
-                    }else{
-                        binding.imageView25.isVisible=false
-                        binding.textView52.isVisible=false
-                    }
+//        TODO 換去model 仿作check
+        viewModel.getConList().observe(requireActivity(),{ data->
+            activity?.runOnUiThread {
+                upDateRecycler(data)
+                binding.progressBar3.isVisible=false
+                if (data.length()==0){
+                    binding.imageView25.isVisible=true
+                    binding.textView52.isVisible=true
+                }else{
+                    binding.imageView25.isVisible=false
+                    binding.textView52.isVisible=false
                 }
-            }
-
-            override fun onFailure(e: IOException) {
-
             }
         })
     }
@@ -66,6 +60,7 @@ class Process : Fragment(),RepairAdapter.OnItemClick {
         setRecyclerView()
         binding.imageView25.isVisible=false
         binding.textView52.isVisible=false
+        viewModel = ViewModelProvider(requireActivity()).get(FixReportViewModel::class.java)
     }
 
 //    設定recyclerView

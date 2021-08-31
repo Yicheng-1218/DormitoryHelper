@@ -18,26 +18,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton14"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="55dp"
-        android:background="@drawable/ic_peaktime_new"
-        android:contentDescription="TODO"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton10"
-        app:layout_constraintStart_toStartOf="@+id/imageButton10"
-        app:layout_constraintTop_toTopOf="@+id/textView18"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
         android:id="@+id/imageButton11"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:background="@drawable/ic_washer_new"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton10"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton14"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton10"
+        app:layout_constraintTop_toTopOf="@+id/imageButton14"
         tools:ignore="SpeakableTextPresentCheck"/>
 
     <ImageButton
@@ -47,8 +35,8 @@
         android:background="@drawable/ic_timer_new"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton10"
-        app:layout_constraintTop_toTopOf="@+id/imageButton10"
+        app:layout_constraintStart_toEndOf="@+id/imageButton14"
+        app:layout_constraintTop_toTopOf="@+id/imageButton14"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -62,10 +50,10 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imageButton10"
+        android:id="@+id/imageButton14"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:background="@drawable/ic_dryer_new"
+        android:background="@drawable/ic_peaktime_new"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton12"
         app:layout_constraintHorizontal_bias="0.5"
@@ -88,11 +76,11 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="烘衣機"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton10"
-        app:layout_constraintStart_toStartOf="@+id/imageButton10"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton10" />
+        android:text="各時段使用狀況"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton14"
+        app:layout_constraintStart_toStartOf="@+id/imageButton14"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton14" />
 
     <TextView
         android:id="@+id/textView19"
@@ -113,15 +101,5 @@
         app:layout_constraintEnd_toEndOf="@+id/imageButton13"
         app:layout_constraintStart_toStartOf="@+id/imageButton13"
         app:layout_constraintTop_toBottomOf="@+id/imageButton13" />
-
-    <TextView
-        android:id="@+id/textView31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="各時段使用狀況"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton14"
-        app:layout_constraintStart_toStartOf="@+id/imageButton14"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

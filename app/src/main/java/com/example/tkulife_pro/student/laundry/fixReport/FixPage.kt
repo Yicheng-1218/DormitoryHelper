@@ -35,15 +35,15 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 //        卻定報修按鈕
         binding.button.setOnClickListener {
-            val type=radioSelectType()
+//            val type=radioSelectType()
             val no=stringCombination()
             val depict=binding.detailBox.text.toString()
 
 //            發送請求資料
-            val json=JSONObject("{'type':'${type}','no':'${no}','depict':'${depict}'}")
+            val json=JSONObject("{'type':'Washer','no':'${no}','depict':'${depict}'}")
 
 //            如果DataValid發送請求
-            if(type!="未選擇"){
+
 //                請求過程關閉按鈕
                 binding.button.isEnabled=false
 
@@ -65,7 +65,7 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
                     }
                 })
-            }
+
 
         }
     }
@@ -90,20 +90,20 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
 //    檢查radioButton選擇種類
-    private fun radioSelectType(): String {
-        val res: String
-        if (binding.radioButton.isChecked || binding.radioButton2.isChecked) {
-            res = if (binding.radioButton.isChecked) {
-                "Washer"
-            } else {
-                "Dryer"
-            }
-        } else {
-            res="未選擇"
-            Toast.makeText(this,"請選擇設備種類!",Toast.LENGTH_LONG).show()
-        }
-        return res
-    }
+//    private fun radioSelectType(): String {
+//        val res: String
+//        if (binding.radioButton.isChecked || binding.radioButton2.isChecked) {
+//            res = if (binding.radioButton.isChecked) {
+//                "Washer"
+//            } else {
+//                "Dryer"
+//            }
+//        } else {
+//            res="未選擇"
+//            Toast.makeText(this,"請選擇設備種類!",Toast.LENGTH_LONG).show()
+//        }
+//        return res
+//    }
 
     //spinner組合(棟+樓+機台編號)
     private fun stringCombination():String {
