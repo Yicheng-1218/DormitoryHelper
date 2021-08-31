@@ -25,13 +25,11 @@ class StatusWithTab : AppCompatActivity() {
     }
 
     private fun initView() {
-//        設定BAR
-        BarTool(this).setBundle("詳細狀態頁", R.color.barBlue)
-
 //        取得機器種類及樓層
         val floor = intent.getStringExtra("selectPos")!!
         val type = intent.getStringExtra("DataType")!!
-
+//        設定BAR
+        BarTool(this).setBundle("${floor}F洗衣機", R.color.barBlue)
 //        設定viewPager畫面內容
         val fragments = arrayListOf(Building1(floor,type,this),Building2(floor,type,this), Building3(floor,type,this))
         binding.ViewPager.adapter = object : FragmentStateAdapter(supportFragmentManager, lifecycle){
