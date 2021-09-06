@@ -2,6 +2,7 @@ package com.example.tkulife_pro
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
@@ -36,7 +37,12 @@ class Sqlite(context: Context):SQLiteOpenHelper(context,"SQLdb",null,4) {
         values.put("hour", timer[hour])
         values.put("minute",timer[minute])
         values.put("createAt",timer[createAt])
-        writableDatabase.insert(this.timer, null, values)
+        try {
+            writableDatabase.insert(this.timer, null, values)
+        }catch (e:Exception){
+            Log.d("sql-Exception",e.toString())
+        }
+
     }
 
 //    刪除提醒

@@ -113,7 +113,7 @@ class PushNotification : AppCompatActivity() {
 
 //    設定Fragment
     private fun setFragment(userData:HashMap<*,*>){
-        supportFragmentManager.beginTransaction().replace(binding.fragmentContainerView.id,PackagePushForm(userData)).commit()
+        PackagePushForm(userData).show(supportFragmentManager,"packageForm")
     }
 
 }

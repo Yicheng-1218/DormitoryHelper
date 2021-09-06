@@ -7,16 +7,32 @@
     tools:context=".student.reminder.PushNotification">
 
 
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/ic_garbage_bar"
+        android:gravity="center"
+        android:text="垃圾車停靠時間\n周一至周六19:00~20:30\n週日、國定假日不提供服務"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/L1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/L1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="4dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/RecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView31">
 
 
         <ImageView
@@ -65,19 +81,32 @@
         android:id="@+id/RecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hr" />
+        app:layout_constraintTop_toBottomOf="@id/hr"
+        tools:visibility="invisible" />
 
     <View
         android:id="@+id/hr"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="1dp"
         android:background="@color/secondaryGary"
+        app:layout_constraintBottom_toTopOf="@+id/RecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/L1"></View>
+
+    <TextView
+        android:id="@+id/textView60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hr" />
 </androidx.constraintlayout.widget.ConstraintLayout>

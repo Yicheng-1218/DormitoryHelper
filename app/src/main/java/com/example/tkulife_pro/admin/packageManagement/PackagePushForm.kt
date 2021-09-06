@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.example.tkulife_pro.OkHttpUtil
 import com.example.tkulife_pro.databinding.PackageNotificationFormBinding
@@ -14,7 +15,7 @@ import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
 
-class PackagePushForm(private val userData:HashMap<*,*>): Fragment() {
+class PackagePushForm(private val userData:HashMap<*,*>): DialogFragment() {
 
     private lateinit var binding: PackageNotificationFormBinding
 
