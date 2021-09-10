@@ -1,5 +1,8 @@
 package com.example.tkulife_pro.admin.packageManagement
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +18,7 @@ import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
 
-class PackagePushForm(private val userData:HashMap<*,*>): DialogFragment() {
+class PackagePushForm(private val userData:HashMap<*,*>): Fragment() {
 
     private lateinit var binding: PackageNotificationFormBinding
 
@@ -28,7 +31,6 @@ class PackagePushForm(private val userData:HashMap<*,*>): DialogFragment() {
         initView()
         return binding.root
     }
-
 
     private fun initView(){
 //        loading圖示

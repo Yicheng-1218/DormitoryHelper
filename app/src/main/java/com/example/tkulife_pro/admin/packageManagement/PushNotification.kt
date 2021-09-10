@@ -1,6 +1,8 @@
 package com.example.tkulife_pro.admin.packageManagement
 
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -113,7 +115,11 @@ class PushNotification : AppCompatActivity() {
 
 //    設定Fragment
     private fun setFragment(userData:HashMap<*,*>){
-        PackagePushForm(userData).show(supportFragmentManager,"packageForm")
+//        PackagePushForm(userData).show(supportFragmentManager,"packageForm")
+        supportFragmentManager.beginTransaction().replace(binding.form.id,PackagePushForm(userData)).commit()
+
+//        supportFragmentManager.beginTransaction().replace(binding.fragmentContainerView.id,PackagePushForm(userData))
+//        binding.fragmentContainerView
     }
 
 }
