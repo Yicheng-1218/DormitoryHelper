@@ -28,7 +28,7 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private fun initView() {
 //        設定BAR
-        BarTool(this).setBundle("我要報修", R.color.barBlue)
+        BarTool(this).setBundle("洗衣機報修", R.color.barBlue)
 
 //        新增spinner的選擇監聽
         binding.spinner1.onItemSelectedListener = this

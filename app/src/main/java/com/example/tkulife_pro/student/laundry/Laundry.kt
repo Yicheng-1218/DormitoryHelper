@@ -33,7 +33,7 @@ class Laundry : AppCompatActivity() {
 
     private fun initView(){
 //        設定BAR
-        BarTool(this).setBundle("洗衣事項", R.color.barBlue)
+        BarTool(this).setBundle("我要洗衣", R.color.barBlue)
 
 //        取得學號
         val uid= FirebaseAuth.getInstance().currentUser?.email?.split('@')?.get(0)
