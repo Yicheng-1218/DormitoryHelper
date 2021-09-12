@@ -88,7 +88,7 @@ class PeakTime : AppCompatActivity() {
                 this.position = XAxis.XAxisPosition.BOTTOM
                 textSize=11f
             }
-            xAxis.labelRotationAngle=-60f
+            xAxis.labelRotationAngle=-65f
             xAxis.spaceBetweenLabels=2
             xAxis.setDrawGridLines(false)
 //            yLabel
