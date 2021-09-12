@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.IBinder
 import android.util.Log
+import com.example.tkulife_pro.student.stdPackage.PackagePage
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -60,6 +61,7 @@ class FCMService : FirebaseMessagingService(){
         Log.d("fcm", "refresh token:$token")
     }
 
+
 //    前景接收FCM作業
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
 
@@ -71,7 +73,11 @@ class FCMService : FirebaseMessagingService(){
         // Check if message contains a notification payload.
         remoteMessage.notification?.let {
             Log.d("fcm", "Message Notification Body: ${it.body}")
-            TkuNotification(this,"包裹提醒","包裹提醒").build("包裹提醒","您目前有包裹需領取! 包裹編號後3碼:${remoteMessage.data["pid"]}").show(R.string.packageReminder)
+            TkuNotification(this,"包裹提醒","包裹提醒").apply {
+                bindingActivity(Intent(this@FCMService,PackagePage::class.java))
+                build("包裹提醒","您目前有包裹需領取! 包裹編號後3碼:${remoteMessage.data["pid"]}")
+                show(R.string.packageReminder)
+            }
         }
 
     }

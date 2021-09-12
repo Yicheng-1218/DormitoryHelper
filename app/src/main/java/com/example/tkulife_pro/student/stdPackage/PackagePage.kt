@@ -85,6 +85,7 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
 
                         }
                     }catch (e:Exception){
+                        Log.e("package",e.toString())
                         runOnUiThread {
                             Toast.makeText(this@PackagePage,"您尚未登入",Toast.LENGTH_LONG).show()
                             onBackPressed()

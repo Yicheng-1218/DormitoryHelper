@@ -1,16 +1,20 @@
 package com.example.tkulife_pro
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
 
 
 class TkuNotification(private val context: Context, private val id :String, private val name:String) {
     private var channel:NotificationChannel
     private val manager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
     lateinit var content:Notification
+    private val builder = Notification.Builder(context, id)
 
     //    建立channel方法
     private fun setChannel(): NotificationChannel {
@@ -25,22 +29,32 @@ class TkuNotification(private val context: Context, private val id :String, priv
 
 //    建立推播內容方法
     fun build(title:String,text:String): TkuNotification {
-        val builder = Notification.Builder(context, id)
-        builder.setSmallIcon(R.drawable.email__1_)
-            .setContentTitle(title)
-            .setContentText(text)
-            .setAutoCancel(true)
-            .setVisibility(Notification.VISIBILITY_PUBLIC)
-
-        content= builder.build()
+        builder.apply {
+            setSmallIcon(R.drawable.email__1_)
+            setContentTitle(title)
+            setContentText(text)
+            setAutoCancel(true)
+            setVisibility(Notification.VISIBILITY_PUBLIC)
+        }
         return this
     }
 
 //    顯示推播內容
     fun show(id:Int){
+        content= builder.build()
         manager.createNotificationChannel(channel)
         manager.notify(id, content)
-        println("發送notify")
+    }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    fun bindingActivity(intent: Intent){
+        val pendingIntent =
+            PendingIntent.getActivity(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT)
+        builder.setContentIntent(pendingIntent)
     }
 
 }

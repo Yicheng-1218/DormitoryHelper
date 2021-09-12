@@ -26,7 +26,12 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".student.stdPackage.PackagePage" />
+        <activity android:name=".student.stdPackage.PackagePage" >
+            <intent-filter>
+                <action android:name="Package" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".student.laundry.peaktimeChart.PeakTime" />
         <activity android:name=".student.laundry.status.machineStatus.StatusWithTab" />
         <activity android:name=".student.laundry.status.machineStatus.StatusFirstFloor" />
