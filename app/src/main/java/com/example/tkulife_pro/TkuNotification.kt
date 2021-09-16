@@ -46,8 +46,13 @@ class TkuNotification(private val context: Context, private val id :String, priv
         manager.notify(id, content)
     }
 
+    fun getNotification():Notification{
+        return builder.build()
+    }
+
     @SuppressLint("UnspecifiedImmutableFlag")
-    fun bindingActivity(intent: Intent){
+    fun build(title:String, text:String, intent: Intent){
+        build(title, text)
         val pendingIntent =
             PendingIntent.getActivity(
                 context,

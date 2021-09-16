@@ -2,6 +2,7 @@ package com.example.tkulife_pro.student.laundry.status.machineStatus
 
 import android.annotation.SuppressLint
 import android.app.AlarmManager
+import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -17,6 +18,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tkulife_pro.NotifyService
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.SharedXML
 import com.example.tkulife_pro.databinding.MachineItemBinding
@@ -87,6 +89,19 @@ class StatusAdapter(val context: Context):RecyclerView.Adapter<StatusAdapter.Vie
                     }
                 }catch (e:Exception){
                     Log.d("busy",e.toString())
+                }
+                holder.view.machineItem.setOnClickListener {
+                    AlertDialog.Builder(context).apply {
+                        setTitle("洗衣提醒")
+                        setMessage("完成後提醒我")
+                        setNegativeButton("取消",null)
+                        setPositiveButton("確定"){ _,_->
+                            Intent(context,NotifyService::class.java).apply {
+                                putExtra("machineID","${machineType}-$num")
+                                context.startForegroundService(this)
+                            }
+                        }
+                    }.show()
                 }
             }
             "usable"->{

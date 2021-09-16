@@ -11,7 +11,12 @@
         android:roundIcon="@drawable/ic_campusinfor"
         android:supportsRtl="true"
         android:theme="@style/Theme.TkuLife_pro">
-        <activity android:name=".admin.packageManagement.PackageRecord"></activity>
+        <service
+            android:name=".NotifyService"
+            android:enabled="true"
+            android:exported="false"></service>
+
+        <activity android:name=".admin.packageManagement.PackageRecord" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -26,10 +31,11 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".student.stdPackage.PackagePage" >
+        <activity android:name=".student.stdPackage.PackagePage">
             <intent-filter>
                 <action android:name="Package" />
-                <category android:name="android.intent.category.DEFAULT"/>
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".student.laundry.peaktimeChart.PeakTime" />
@@ -54,18 +60,20 @@
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".student.reminder.PushNotification$TrashReceiver">
+        <receiver android:name=".student.reminder.PushNotification$TrashReceiver">
             <intent-filter>
                 <action android:name="trash" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".student.laundry.status.machineStatus.StatusAdapter$Receiver">
             <intent-filter>
                 <action android:name="busy" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name=".NotifyService$StopServiceReceiver"
+            android:enabled="true"
+            android:process=":remote" />
     </application>
 
 </manifest>

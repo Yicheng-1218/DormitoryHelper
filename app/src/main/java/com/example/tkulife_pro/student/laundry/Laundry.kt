@@ -48,11 +48,11 @@ class Laundry : AppCompatActivity() {
         }
 
 //        洗衣提醒
-        binding.imageButton12.setOnClickListener {
-            Intent(this,LittleTimer::class.java).apply {
-                startActivity(this)
-            }
-        }
+//        binding.imageButton12.setOnClickListener {
+//            Intent(this,LittleTimer::class.java).apply {
+//                startActivity(this)
+//            }
+//        }
 
 //        洗衣機按鈕
         binding.imageButton11.setOnClickListener {

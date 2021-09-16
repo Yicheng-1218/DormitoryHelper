@@ -74,8 +74,8 @@ class FCMService : FirebaseMessagingService(){
         remoteMessage.notification?.let {
             Log.d("fcm", "Message Notification Body: ${it.body}")
             TkuNotification(this,"包裹提醒","包裹提醒").apply {
-                bindingActivity(Intent(this@FCMService,PackagePage::class.java))
-                build("包裹提醒","您目前有包裹需領取! 包裹編號後3碼:${remoteMessage.data["pid"]}")
+                val intent=Intent(this@FCMService,PackagePage::class.java)
+                build("包裹提醒","您目前有包裹需領取! 包裹編號後3碼:${remoteMessage.data["pid"]}",intent)
                 show(R.string.packageReminder)
             }
         }
