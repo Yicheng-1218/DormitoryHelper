@@ -3,24 +3,16 @@ package com.example.tkulife_pro.student.laundry.peaktimeChart
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.widget.TableLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.PeakTimeTabBinding
-import com.example.tkulife_pro.student.laundry.status.SharedViewModel
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
-import okhttp3.internal.notify
-import java.util.*
 import kotlin.collections.ArrayList
 
 class PeakTime : AppCompatActivity() {

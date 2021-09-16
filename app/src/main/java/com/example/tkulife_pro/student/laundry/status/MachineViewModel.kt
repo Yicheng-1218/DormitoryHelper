@@ -10,14 +10,18 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class SharedViewModel : ViewModel() {
+class MachineViewModel : ViewModel() {
     private lateinit var database: DatabaseReference
-
+    private lateinit var listener: ValueEventListener
 //    可變串流儲藏庫
     private val repository:MutableLiveData<HashMap<*,*>> by lazy {
         MutableLiveData<HashMap<*,*>>().also {
             valueListener()
         }
+    }
+
+    override fun onCleared() {
+        database.removeEventListener(listener)
     }
 
     fun getRealtimeData():LiveData<HashMap<*,*>>{
@@ -29,19 +33,20 @@ class SharedViewModel : ViewModel() {
 //        建立資料庫實例
         database = Firebase.database.reference
 
-//        新增監聽事件
-        database.addValueEventListener(object :ValueEventListener{
+        listener=object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
 
 //                設定repository的value=realtime資料的root
                 repository.value=snapshot.value as HashMap<*, *>
             }
 
-//            資料取得失敗
+            //            資料取得失敗
             override fun onCancelled(error: DatabaseError) {
                 repository.value= hashMapOf("msg" to "Firebase出現錯誤")
             }
 
-        })
+        }
+//        新增監聽事件
+        database.addValueEventListener(listener)
     }
 }

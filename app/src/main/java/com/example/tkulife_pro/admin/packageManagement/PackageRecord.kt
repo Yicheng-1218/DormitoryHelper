@@ -6,23 +6,13 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.Keyboard
 import com.example.tkulife_pro.R
-import com.example.tkulife_pro.databinding.ActivityPackagePageBinding
 import com.example.tkulife_pro.databinding.ActivityPackageRecordBinding
-import com.example.tkulife_pro.student.laundry.status.SharedViewModel
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import org.json.JSONArray
 
 class PackageRecord : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: ActivityPackageRecordBinding

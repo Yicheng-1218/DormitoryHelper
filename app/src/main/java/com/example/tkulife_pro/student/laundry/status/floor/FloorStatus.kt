@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -12,14 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityFloorStatusBinding
-import com.example.tkulife_pro.student.laundry.status.SharedViewModel
+import com.example.tkulife_pro.student.laundry.status.MachineViewModel
 import com.example.tkulife_pro.student.laundry.status.machineStatus.StatusFirstFloor
 import com.example.tkulife_pro.student.laundry.status.machineStatus.StatusWithTab
 
 class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
     private lateinit var machineType :String
     private lateinit var binding:ActivityFloorStatusBinding
-    private lateinit var viewModel:SharedViewModel
+    private lateinit var viewModel:MachineViewModel
     private var  viewAdapter = FloorAdapter(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +46,7 @@ class FloorStatus : AppCompatActivity() , FloorAdapter.OnItemClick{
 
 
 //        取得viewModel
-        viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MachineViewModel::class.java)
 //        viewModel資料監聽
         viewModel.getRealtimeData().observe(this, { data->
 //            更新recyclerView

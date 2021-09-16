@@ -8,8 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import android.util.Log
-import androidx.lifecycle.ViewModelProvider
-import com.example.tkulife_pro.student.laundry.status.SharedViewModel
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase

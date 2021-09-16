@@ -1,11 +1,7 @@
 package com.example.tkulife_pro.student.laundry.status.machineStatus
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,13 +13,11 @@ import com.example.tkulife_pro.BarTool
 import com.example.tkulife_pro.R
 import com.example.tkulife_pro.databinding.ActivityStatusFistFloorBinding
 import com.example.tkulife_pro.databinding.FragmentMachineDiagramBinding
-import com.example.tkulife_pro.student.laundry.status.SharedViewModel
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.example.tkulife_pro.student.laundry.status.MachineViewModel
 
 class StatusFirstFloor : AppCompatActivity() {
     lateinit var machineType : String
-    private lateinit var viewModel : SharedViewModel
+    private lateinit var viewModel : MachineViewModel
     private lateinit var binding: ActivityStatusFistFloorBinding
     private val viewAdapter= StatusAdapter(this)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +42,7 @@ class StatusFirstFloor : AppCompatActivity() {
         setRecyclerView()
 
 //        取得viewModel
-        viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MachineViewModel::class.java)
 //        viewModel資料監聽
         viewModel.getRealtimeData().observe(this, { data->
             val type=data[machineType] as HashMap<*,*>
