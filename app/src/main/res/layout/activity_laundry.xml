@@ -66,9 +66,8 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="各時段使用狀況"
-        android:textSize="16sp"
+        android:text="使用率"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageButton14"
         app:layout_constraintStart_toStartOf="@+id/imageButton14"
         app:layout_constraintTop_toBottomOf="@+id/imageButton14" />
