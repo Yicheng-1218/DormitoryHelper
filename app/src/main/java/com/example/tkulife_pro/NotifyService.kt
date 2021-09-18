@@ -68,7 +68,6 @@ class NotifyService : Service() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-
                     Log.w("onCancelled", databaseError.toException())
                 }
             }

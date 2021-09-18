@@ -119,7 +119,7 @@ class LittleTimer : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                TkuNotification(this@LittleTimer,"洗衣計時","洗衣計時").build("計時提醒","快去拿衣服啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(
+                TkuNotification(this@LittleTimer,"洗衣提醒","洗衣提醒").build("洗衣提醒","快去拿衣服啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(
                     R.string.littleTimer
                 )
                 hourEditText.isEnabled=true
