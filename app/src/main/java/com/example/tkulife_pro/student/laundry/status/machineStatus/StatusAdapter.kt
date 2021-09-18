@@ -96,13 +96,9 @@ class StatusAdapter(val context: Context):RecyclerView.Adapter<StatusAdapter.Vie
                         setMessage("完成後提醒我")
                         setNegativeButton("取消",null)
                         setPositiveButton("確定"){ _,_->
-                            try {
-                                Intent(context,NotifyService::class.java).apply {
-                                    putExtra("machineID","${machineType}-$num")
-                                    context.startForegroundService(this)
-                                }
-                            }catch (e:Exception){
-                                Log.d("service_dialog",e.toString())
+                            Intent(context,NotifyService::class.java).apply {
+                                putExtra("machineID","${machineType}-$num")
+                                context.startForegroundService(this)
                             }
                         }
                     }.show()

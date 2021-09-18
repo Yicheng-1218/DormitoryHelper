@@ -48,7 +48,6 @@
         <activity android:name=".admin.packageManagement.PushNotification" />
         <activity android:name=".admin.fixReport.FixNotification" />
         <activity android:name=".student.laundry.fixReport.FixPage" />
-        <activity android:name=".student.laundry.LittleTimer" />
         <activity android:name=".student.laundry.Laundry" />
         <activity android:name=".student.reminder.PushNotification" />
         <activity android:name=".student.StdMainPage" />

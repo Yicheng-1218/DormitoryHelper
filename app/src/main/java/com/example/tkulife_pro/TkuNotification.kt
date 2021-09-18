@@ -10,20 +10,16 @@ import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 
 
-class TkuNotification(private val context: Context, private val id :String, private val name:String) {
-    private var channel:NotificationChannel
+class TkuNotification(private val context: Context, id :String,name:String) {
+
+    private var channel:NotificationChannel = NotificationChannel(id, name, NotificationManager.IMPORTANCE_HIGH)
     private val manager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
     lateinit var content:Notification
     private val builder = Notification.Builder(context, id)
 
-    //    建立channel方法
-    private fun setChannel(): NotificationChannel {
-        return NotificationChannel(id, name, NotificationManager.IMPORTANCE_HIGH)
-    }
 
 //    初始化channel建立
     init {
-        channel=setChannel()
         channel.lockscreenVisibility=Notification.VISIBILITY_PUBLIC
     }
 
@@ -38,6 +34,18 @@ class TkuNotification(private val context: Context, private val id :String, priv
         }
         return this
     }
+    @SuppressLint("UnspecifiedImmutableFlag")
+    fun build(title:String, text:String, intent: Intent):TkuNotification{
+        build(title, text)
+        val pendingIntent =
+            PendingIntent.getActivity(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT)
+        builder.setContentIntent(pendingIntent)
+        return this
+    }
 
 //    顯示推播內容
     fun show(id:Int){
@@ -49,17 +57,4 @@ class TkuNotification(private val context: Context, private val id :String, priv
     fun getNotification():Notification{
         return builder.build()
     }
-
-    @SuppressLint("UnspecifiedImmutableFlag")
-    fun build(title:String, text:String, intent: Intent){
-        build(title, text)
-        val pendingIntent =
-            PendingIntent.getActivity(
-                context,
-                0,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT)
-        builder.setContentIntent(pendingIntent)
-    }
-
 }

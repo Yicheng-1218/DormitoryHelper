@@ -34,8 +34,8 @@ class NotifyService : Service() {
     @SuppressLint("UnspecifiedImmutableFlag")
     override fun onCreate() {
 
-        val workingNotify=TkuNotification(this,"洗衣提醒","洗衣提醒").also {
-            it.build("洗衣提醒","追蹤狀態中...點擊取消")
+        val workingNotify=TkuNotification(this,"狀態追蹤","狀態追蹤").also {
+            it.build("狀態追蹤","追蹤狀態中...點擊取消")
         }.getNotification().apply {
             contentIntent=PendingIntent.getBroadcast(this@NotifyService,0,
                 Intent(this@NotifyService,StopServiceReceiver::class.java),PendingIntent.FLAG_CANCEL_CURRENT
