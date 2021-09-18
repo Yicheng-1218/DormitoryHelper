@@ -14,7 +14,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.tkulife_pro"
+        applicationId "com.tkuLife.dorm"
         minSdkVersion 27
         targetSdkVersion 30
         versionCode 1
@@ -38,7 +38,6 @@ android {
 }
 
 dependencies {
-    implementation platform('com.google.firebase:firebase-bom:28.3.0')
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -46,7 +45,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
-    implementation 'com.google.firebase:firebase-database:20.0.1'
+    implementation 'com.google.firebase:firebase-database:20.0.2'
     implementation 'com.google.firebase:firebase-storage:20.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-messaging:22.0.0'
@@ -72,6 +71,6 @@ dependencies {
 //     authUI
     implementation 'com.firebaseui:firebase-ui-auth:8.0.0'
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
-
+    implementation platform('com.google.firebase:firebase-bom:28.3.0')
 }
 

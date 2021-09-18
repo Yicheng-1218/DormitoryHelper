@@ -1,2 +1,2 @@
-rootProject.name = "tkuLife_pro"
+rootProject.name = "dorm"
 include ':app'
