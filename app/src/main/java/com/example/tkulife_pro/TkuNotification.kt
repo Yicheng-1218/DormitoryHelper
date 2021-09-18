@@ -34,6 +34,31 @@ class TkuNotification(private val context: Context, id :String,name:String) {
         }
         return this
     }
+    fun build(title:String,text:String,channelID:String): TkuNotification {
+        builder.apply {
+            setSmallIcon(R.drawable.email__1_)
+            setContentTitle(title)
+            setContentText(text)
+            setAutoCancel(true)
+            setChannelId(channelID)
+            setVisibility(Notification.VISIBILITY_PUBLIC)
+        }
+        return this
+    }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    fun build(title:String, text:String,channelID:String,intent: Intent):TkuNotification{
+        build(title, text,  channelID)
+        val pendingIntent =
+            PendingIntent.getActivity(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT)
+        builder.setContentIntent(pendingIntent)
+        return this
+    }
+
     @SuppressLint("UnspecifiedImmutableFlag")
     fun build(title:String, text:String, intent: Intent):TkuNotification{
         build(title, text)

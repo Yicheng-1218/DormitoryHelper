@@ -34,8 +34,8 @@ class NotifyService : Service() {
     @SuppressLint("UnspecifiedImmutableFlag")
     override fun onCreate() {
 
-        val workingNotify=TkuNotification(this,"狀態追蹤","狀態追蹤").also {
-            it.build("狀態追蹤","追蹤狀態中...點擊取消")
+        val workingNotify=TkuNotification(this,"洗衣提醒","洗衣提醒").also {
+            it.build("洗衣提醒","追蹤狀態中...點擊取消","washReminder")
         }.getNotification().apply {
             contentIntent=PendingIntent.getBroadcast(this@NotifyService,0,
                 Intent(this@NotifyService,StopServiceReceiver::class.java),PendingIntent.FLAG_CANCEL_CURRENT
@@ -61,7 +61,7 @@ class NotifyService : Service() {
                     val floor=type[num[1]] as ArrayList<HashMap<*,*>>
                     val machine=floor[num[2].toInt()-1]
                     if (machine["con"]=="usable"){
-                        TkuNotification(this@NotifyService,"洗衣提醒","洗衣提醒").build("洗衣提醒","快去拿衣服啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(R.string.littleTimer)
+                        TkuNotification(this@NotifyService,"洗衣提醒","洗衣提醒").build("洗衣提醒","快去拿衣服啦(⁎⁍̴̛ᴗ⁍̴̛⁎)").show(R.string.washReminder)
                         stopListener()
                         stopSelf()
                     }
