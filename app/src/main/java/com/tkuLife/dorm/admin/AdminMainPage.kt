@@ -23,6 +23,11 @@ class AdminMainPage : AppCompatActivity() {
         initView()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     private fun initView(){
         viewModel=ViewModelProvider(this).get(FixReportViewModel::class.java)
         viewModel.getRepList().observe(this,{ data->

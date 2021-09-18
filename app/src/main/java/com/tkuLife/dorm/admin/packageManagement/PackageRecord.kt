@@ -25,6 +25,11 @@ class PackageRecord : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         initView()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     private fun initView(){
 //        設定BAR
         BarTool(this).setBundle("包裹簽收紀錄",R.color.barBlue)

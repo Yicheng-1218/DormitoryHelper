@@ -23,6 +23,12 @@ class PeakTime : AppCompatActivity() {
         setContentView(binding.root)
         initView()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     private fun initView(){
 
 //        設定BAR

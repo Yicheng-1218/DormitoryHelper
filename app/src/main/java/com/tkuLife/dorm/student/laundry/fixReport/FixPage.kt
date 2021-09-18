@@ -25,6 +25,11 @@ class FixPage : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         initView()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     private fun initView() {
 //        設定BAR
         BarTool(this).setBundle("洗衣機報修", R.color.barBlue)

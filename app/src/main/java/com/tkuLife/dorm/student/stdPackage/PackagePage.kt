@@ -16,6 +16,7 @@ import com.tkuLife.dorm.OkHttpUtil
 import com.tkuLife.dorm.OkHttpUtil.Companion.mOkHttpUtil
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import okhttp3.Call
 import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
@@ -25,6 +26,8 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
     private lateinit var binding: ActivityPackagePageBinding
     private lateinit var uid : String
     private val viewAdapter = PackageAdapter(this)
+    private var task: Call?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPackagePageBinding.inflate(layoutInflater)
@@ -47,7 +50,7 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
         uid = user?.email?.split('@')?.get(0).toString()
 
 //        向server請求包裹清單
-        mOkHttpUtil.getAsync(
+        task=mOkHttpUtil.getAsync(
             "https://tkudorm.site/pklist/${uid}",
             object : OkHttpUtil.ICallback {
                 override fun onResponse(response: Response) {
@@ -101,8 +104,13 @@ class PackagePage : AppCompatActivity() ,PackageAdapter.OnItemClick {
                 }
 
             })
-
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        task?.cancel()
+    }
+
     private fun initView() {
         binding.imageView23.visibility=View.GONE
         binding.textView32.visibility=View.GONE

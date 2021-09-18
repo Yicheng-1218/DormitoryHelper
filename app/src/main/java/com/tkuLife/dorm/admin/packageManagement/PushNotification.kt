@@ -25,6 +25,10 @@ class PushNotification : AppCompatActivity() {
         initView()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 
     private fun initView(){
 //        設定BAR

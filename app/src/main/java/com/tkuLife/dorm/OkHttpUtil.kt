@@ -20,7 +20,7 @@ class OkHttpUtil {
     }
 
     //Get 非同步
-    fun getAsync(url: String, callback: ICallback) {
+    fun getAsync(url: String, callback: ICallback):Call? {
         //Part 2: 宣告 Request，要求要連到指定網址
         val request = with(Request.Builder()) {
             url(url)
@@ -42,21 +42,22 @@ class OkHttpUtil {
                 callback.onResponse(response)
             }
         })
+        return call
     }
 
 //    POST方法
-    fun post(url: String,json: JSONObject,callback: ICallback){
-        request(url,"POST",json,callback)
+    fun post(url: String,json: JSONObject,callback: ICallback):Call?{
+        return request(url,"POST",json,callback)
     }
 
 //    PUT方法
-    fun put(url: String,json: JSONObject,callback: ICallback){
-        request(url,"PUT",json,callback)
+    fun put(url: String,json: JSONObject,callback: ICallback):Call?{
+        return request(url,"PUT",json,callback)
     }
 
 
 //    request
-    private fun request(url: String,method:String ,json: JSONObject, callback: ICallback){
+    private fun request(url: String,method:String ,json: JSONObject, callback: ICallback):Call?{
         val mediaType = "application/json; charset=utf-8".toMediaType()
         val body= json.toString().toRequestBody(mediaType)
         val request= with(Request.Builder()){
@@ -77,6 +78,7 @@ class OkHttpUtil {
             }
 
         })
+        return call
     }
 
 

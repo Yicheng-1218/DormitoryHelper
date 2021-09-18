@@ -26,6 +26,11 @@ class UserSelect : AppCompatActivity() {
         initView()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     private fun initView(){
 //        設定Bar
         BarTool(this).setBundle("宿舍管理",R.color.barBlue)

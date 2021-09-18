@@ -20,6 +20,12 @@ class StdMainPage : AppCompatActivity() {
 
         initView()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     private fun initView(){
 //        設定BAR
         BarTool(this).setBundle("住宿生", R.color.barBlue)

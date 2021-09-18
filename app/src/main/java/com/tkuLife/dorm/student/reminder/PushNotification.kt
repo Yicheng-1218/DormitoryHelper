@@ -43,6 +43,12 @@ class PushNotification : AppCompatActivity(){
         setContentView(binding.root)
         initView()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
     private fun initView() {
 //        設定BAR
         BarTool(this).setBundle("垃圾車提醒",R.color.barBlue)
