@@ -88,10 +88,10 @@ class StatusAdapter(val context: Context):RecyclerView.Adapter<StatusAdapter.Vie
                         setMessage("完成後提醒我")
                         setNegativeButton("取消",null)
                         setPositiveButton("確定"){ _,_->
+                            Toast.makeText(context,"幫你追蹤瞜<3",Toast.LENGTH_SHORT).show()
                             Intent(context,NotifyService::class.java).apply {
                                 putExtra("machineID","${machineType}-$num")
                                 context.startForegroundService(this)
-                                Toast.makeText(context,"幫你追蹤瞜<3",Toast.LENGTH_SHORT).show()
                             }
                         }
                     }.show()
