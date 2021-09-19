@@ -1,5 +1,6 @@
 package com.tkuLife.dorm
 
+import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
@@ -29,8 +30,9 @@ class NotifyService : Service() {
         database.removeEventListener(listener)
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     override fun onCreate() {
-        val notification = TkuNotification(this,"狀態追蹤","狀態追蹤",NotificationManager.IMPORTANCE_NONE).apply {
+        val notification = TkuNotification(this,"狀態追蹤","狀態追蹤").apply {
             build("追蹤狀態中...點擊取消",null)
         }.getNotification().also {
             it.contentIntent=PendingIntent.getBroadcast(this@NotifyService,0,
