@@ -45,7 +45,6 @@ class TkuNotification(val context: Context, channelID :String, name:String){
 
     @SuppressLint("UnspecifiedImmutableFlag")
     fun build(title:String,text:String?, intent: Intent): TkuNotification {
-        build(title, text)
         val pendingIntent =
             PendingIntent.getActivity(
                 context,
@@ -53,6 +52,7 @@ class TkuNotification(val context: Context, channelID :String, name:String){
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT)
         builder.setContentIntent(pendingIntent)
+        build(title, text)
         return this
     }
 
