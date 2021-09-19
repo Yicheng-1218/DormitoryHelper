@@ -11,6 +11,7 @@ import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.tkuLife.dorm.NotifyService
 import com.tkuLife.dorm.R
@@ -90,6 +91,7 @@ class StatusAdapter(val context: Context):RecyclerView.Adapter<StatusAdapter.Vie
                             Intent(context,NotifyService::class.java).apply {
                                 putExtra("machineID","${machineType}-$num")
                                 context.startForegroundService(this)
+                                Toast.makeText(context,"幫你追蹤瞜<3",Toast.LENGTH_SHORT).show()
                             }
                         }
                     }.show()
