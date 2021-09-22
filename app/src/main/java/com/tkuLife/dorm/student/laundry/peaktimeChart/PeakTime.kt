@@ -32,7 +32,7 @@ class PeakTime : AppCompatActivity() {
     private fun initView(){
 
 //        設定BAR
-        BarTool(this).setBundle("各時段使用狀況",R.color.barBlue)
+        BarTool(this).setBundle("各時段使用率",R.color.barBlue)
 //        初始化BarChart
         val res=BarChartModel.history[0]
         setBarChart(BarChartModel.countRate(res))
