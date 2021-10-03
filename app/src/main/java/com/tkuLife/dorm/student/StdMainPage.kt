@@ -4,12 +4,16 @@ import com.tkuLife.dorm.student.reminder.PushNotification
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.firebase.ui.auth.AuthUI
 import com.tkuLife.dorm.BarTool
 import com.tkuLife.dorm.R
 import com.tkuLife.dorm.student.laundry.Laundry
 import com.tkuLife.dorm.databinding.ActivityStdMainpageBinding
 import com.tkuLife.dorm.student.stdPackage.PackagePage
 import com.google.firebase.auth.FirebaseAuth
+import com.tkuLife.dorm.MainActivity
 
 class StdMainPage : AppCompatActivity() {
     private lateinit var binding: ActivityStdMainpageBinding
@@ -53,22 +57,23 @@ class StdMainPage : AppCompatActivity() {
         }
 
 //        清除帳號
-//        binding.button6.setOnClickListener {
-//            val confirm = AlertDialog.Builder(this)
-//            confirm.setMessage("是否清除帳密")
-//            confirm.setTitle("確認視窗")
-//            confirm.setNegativeButton("是"){ _,_->
-//                AuthUI.getInstance()
-//                    .signOut(this)
-//                    .addOnCompleteListener {
-//                        Toast.makeText(this,"您已登出此帳號!", Toast.LENGTH_LONG).show()
-//                        Intent(this, MainActivity::class.java).apply {
-//                            startActivity(this)
-//                        }
-//                    }
-//            }
-//            confirm.setPositiveButton("否", null)
-//            confirm.show()
-//        }
+        binding.button3.setOnClickListener {
+            val confirm = AlertDialog.Builder(this)
+            confirm.setMessage("是否清除帳密")
+            confirm.setTitle("確認視窗")
+            confirm.setNegativeButton("是"){ _,_->
+                AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener {
+                        Toast.makeText(this,"您已登出此帳號!", Toast.LENGTH_LONG).show()
+                        Intent(this, MainActivity::class.java).apply {
+                            startActivity(this)
+                        }
+                        finish()
+                    }
+            }
+            confirm.setPositiveButton("否", null)
+            confirm.show()
+        }
     }
 }
