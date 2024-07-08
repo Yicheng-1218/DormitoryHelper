@@ -19,3 +19,4 @@ This is a Kotlin-based mobile app project designed to address the issue of stude
 
 
 ## Data Flow Diagram
+![dataflow](https://github.com/Yicheng-1218/DormitoryHelper/assets/72242651/7e6df1d8-1704-4a3f-bdd1-7c8526bf4970)
