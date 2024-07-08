@@ -13,12 +13,9 @@ This is a Kotlin-based mobile app project designed to address the issue of stude
 
 ## Screenshots
 
-| Description          | Screenshot |
-|----------------------|------------|
-| Main page            | <img src="image/mainpage.png" alt="main_page" width="600"> |
-| Students page        | <img src="image/studentpage.png" alt="students_page" width="600"> |
-| Admin page           | <img src="image/adminpage.png" alt="admin_page" width="600"> |
-| Admin Package record | <img src="image/admin_package_record.png" alt="admin_package_record" width="600"> |
+| Main page | Students page | Admin page | Admin Package record |
+|-----------|---------------|------------|----------------------|
+| <img src="image/mainpage.png" alt="main_page" width="300"> | <img src="image/studentpage.png" alt="students_page" width="300"> | <img src="image/adminpage.png" alt="admin_page" width="300"> | <img src="image/admin_package_record.png" alt="admin_package_record" width="300"> |
 
 
 ## Data Flow Diagram
