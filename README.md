@@ -12,16 +12,13 @@ This is a Kotlin-based mobile app project designed to address the issue of stude
 - Separate interfaces for students and administrators
 
 ## Screenshots
-Main page
-![main_page](image/mainpage.png)
 
-Students page
-![students_page](image/studentpage.png)
+| Description          | Screenshot |
+|----------------------|------------|
+| Main page            | <img src="image/mainpage.png" alt="main_page" width="600"> |
+| Students page        | <img src="image/studentpage.png" alt="students_page" width="600"> |
+| Admin page           | <img src="image/adminpage.png" alt="admin_page" width="600"> |
+| Admin Package record | <img src="image/admin_package_record.png" alt="admin_package_record" width="600"> |
 
-Admin page
-![admin_page](image/adminpage.png)
-
-Admin Package record
-![admin_package_record](image/admin_package_record.png)
 
 ## Data Flow Diagram
